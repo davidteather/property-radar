@@ -1,0 +1,31 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <h1>Lists</h1>
+  <p class="sub">Curated buckets of listings — a built-in favorites plus your own feature lists.</p>
+
+  {{if .Write}}
+  <form class="filters" method="post" action="/lists">
+    <input class="input" style="width:82px" type="text" name="emoji" placeholder="🏷️" maxlength="8" aria-label="emoji">
+    <input class="input grow" type="text" name="name" placeholder="New list name — e.g. big windows" required>
+    <button class="btn sm" type="submit">Create list</button>
+  </form>
+  {{end}}
+
+  <div class="grid cols">
+    {{range .Lists}}
+    <div class="card">
+      <div class="row" style="align-items:flex-start">
+        <a href="/lists/{{.ID}}" style="font-weight:600;color:hsl(var(--fg))">{{if .Emoji}}{{.Emoji}} {{end}}{{.Name}}</a>
+        {{if and $.Write (not .IsDefault)}}
+        <form method="post" action="/lists/{{.ID}}/delete" onsubmit="return confirm('Delete the {{.Name}} list?')">
+          <button class="chipx" type="submit" title="Delete list" style="font-size:1rem">&times;</button>
+        </form>{{end}}
+      </div>
+      <div class="muted" style="font-size:.85rem;margin-top:.35rem">
+        {{.Count}} listing{{if ne .Count 1}}s{{end}}{{if .IsDefault}} &middot; default{{end}}
+      </div>
+    </div>
+    {{else}}<p class="muted">No lists yet.</p>{{end}}
+  </div>
+</div></main>
+{{template "foot" .}}

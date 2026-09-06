@@ -1,0 +1,816 @@
+{
+ "id": "1644015",
+ "soldDate": null,
+ "verifiedUpToDate": false,
+ "daysOnMarket": 1305,
+ "onMarketAt": "2023-01-26",
+ "propertyId": "1126700",
+ "advertisedOnSe": true,
+ "offMarketAt": null,
+ "buildingId": "49366",
+ "status": "ACTIVE",
+ "preview": {
+  "daysIn": null,
+  "hideDays": false,
+  "hidePriceChanges": false
+ },
+ "legacy": {
+  "closingId": null,
+  "sourceGroupLabel": "Beacon Vale Realty",
+  "license": {
+   "address": {
+    "street": "500 Corporate Plaza",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10022",
+    "displayUnit": "Floor 2"
+   },
+   "businessName": "Beacon Vale Realty",
+   "licenseType": "Corporate Broker"
+  },
+  "sourceGroup": {
+   "brokeragePhoto": null
+  }
+ },
+ "statusChanges": [
+  {
+   "status": "DRAFT",
+   "changedAt": "2023-01-26T10:41:00.000-05:00"
+  },
+  {
+   "status": "ACTIVE",
+   "changedAt": "2023-01-26T14:10:58.000-05:00"
+  }
+ ],
+ "createdAt": "2023-01-26T10:41:00.000-05:00",
+ "updatedAt": "2026-08-10T14:43:24.000-04:00",
+ "interestingChangeAt": "2026-06-08T16:17:31.000-04:00",
+ "saleType": "Resale",
+ "description": "Perched atop one of the neighborhood's premier waterfront buildings, this expansive duplex penthouse offers a rare combination of scale, light, and sweeping views. Floor-to-ceiling windows frame open outlooks across the harbor and skyline, while a private landscaped terrace extends the living space outdoors.\n\nThe main level features a sun-filled great room, a formal dining room, and a windowed chef's kitchen outfitted with premium appliances and custom cabinetry. A library and two powder rooms complete the entertaining floor.\n\nBelow, a serene primary suite enjoys wall-to-wall windows, dual walk-in closets, and a spa-style marble bath. Additional bedrooms, each with generous closets and en-suite or nearby baths, provide comfort and flexibility for family and guests.\n\nThe full-service building offers a 24-hour doorman, a state-of-the-art fitness center, children's playrooms, a screening room, on-site parking, and beautifully landscaped courtyards, all moments from waterfront parks and greenways.",
+ "propertyDetails": {
+  "address": {
+   "state": "NY",
+   "street": "175 Harborline Street",
+   "city": "BROOKLYN",
+   "zipCode": "11201",
+   "displayUnit": "#1216"
+  },
+  "roomCount": 15,
+  "bedroomCount": 6,
+  "fullBathroomCount": 4,
+  "halfBathroomCount": 2,
+  "livingAreaSize": 8500,
+  "lotAreaSize": 0,
+  "amenities": {
+   "list": [
+    "BIKE_ROOM",
+    "CHILDRENS_PLAYROOM",
+    "STORAGE_SPACE",
+    "CONCIERGE",
+    "SHARED_OUTDOOR_SPACE",
+    "DOORMAN",
+    "ELEVATOR",
+    "FIOS_AVAILABLE",
+    "PARKING",
+    "GYM",
+    "LAUNDRY",
+    "LIVE_IN_SUPER",
+    "PACKAGE_ROOM"
+   ],
+   "doormanTypes": [
+    "FULL_TIME"
+   ],
+   "parkingTypes": [
+    "GARAGE"
+   ],
+   "sharedOutdoorSpaceTypes": [
+    "COURTYARD"
+   ],
+   "storageSpaceTypes": [
+    "COLD_STORAGE"
+   ]
+  },
+  "features": {
+   "list": [
+    "CENTRAL_AC",
+    "VIEW",
+    "DISHWASHER",
+    "HARDWOOD_FLOORS",
+    "PRIVATE_OUTDOOR_SPACE",
+    "WASHER_DRYER"
+   ],
+   "fireplaceTypes": [],
+   "privateOutdoorSpaceTypes": [
+    "TERRACE"
+   ],
+   "views": [
+    "CITY",
+    "PARK",
+    "SKYLINE",
+    "WATER"
+   ]
+  }
+ },
+ "propertyHistory": [
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1644015",
+   "offMarketAt": null,
+   "soldDate": null,
+   "sourceGroupLabel": "Beacon Vale Realty",
+   "saleEventsOfInterest": [
+    {
+     "date": "2025-04-25",
+     "price": 14495000,
+     "pricePercentChange": -3.334444761276245
+    },
+    {
+     "date": "2023-01-26",
+     "price": 14995000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "0c8009f9a90a51a3997dff37f2e13416"
+    },
+    {
+     "key": "48089ba554e6c4173cb754209d17d2b2"
+    },
+    {
+     "key": "4a1cd3a20dd5cce3e43348e0d60346a9"
+    },
+    {
+     "key": "bf7b697e4b96ee7ffc0e0e1573da6995"
+    },
+    {
+     "key": "9cce836f7a40e995f15c058648d68bb3"
+    },
+    {
+     "key": "098230949da1cfd01020c2c32b492ca1"
+    },
+    {
+     "key": "bf1225ed67ad29757bf8243defa53519"
+    },
+    {
+     "key": "96b4c5a00e1cbea6018008b0cae4ec4c"
+    },
+    {
+     "key": "e208b9c5785723905ceb4d80041fe363"
+    },
+    {
+     "key": "678d41c916760f7bb738f92adee5266d"
+    },
+    {
+     "key": "e8dc02fe2995e03082373a6b18029849"
+    },
+    {
+     "key": "d1a453d65c11485612e82323aabc3343"
+    },
+    {
+     "key": "0b342e676e4566bc7ed0112104c6fa60"
+    },
+    {
+     "key": "cb886917e6e981df2b540d70017a5c3b"
+    },
+    {
+     "key": "905edcce26efaaec5234314183b89ac3"
+    },
+    {
+     "key": "a7ef1a760c2a7e0b4a9a3af321a76a01"
+    },
+    {
+     "key": "7508b5dcde095ef97fe0c61093ab3a5e"
+    },
+    {
+     "key": "f03a3cd2ad2da7835123935664a41b54"
+    },
+    {
+     "key": "96ebb7a201297f51935c749955019a4d"
+    },
+    {
+     "key": "c6d1affe637114603ccff80c997e94d8"
+    },
+    {
+     "key": "dd19cb558d14decee1bad1f5ffe2dc86"
+    },
+    {
+     "key": "b45a95e89037b5f194aa0e982b2ce870"
+    },
+    {
+     "key": "6cfbe108161ee47435335034d69c1084"
+    },
+    {
+     "key": "99b7bff20c458fdf9f84c16fc8dfa4a1"
+    },
+    {
+     "key": "6c95a04daa66eb7db38e8fd9460a26f8"
+    },
+    {
+     "key": "295df0f18e43490f2bd21f5d13a5b050"
+    },
+    {
+     "key": "f26d0f553f7b42998b708d6e9c0d20e0"
+    },
+    {
+     "key": "55c31e2008a1afeee2407ebeff853dd3"
+    },
+    {
+     "key": "a3c850710c72e956a368be1f9fb6e22d"
+    },
+    {
+     "key": "8b531173cc7486ad6ad74b26d6beb661"
+    },
+    {
+     "key": "51e87a705a98de90450675bac5c82f86"
+    },
+    {
+     "key": "d7ccfdc038629b453e5c7a0aeb365456"
+    },
+    {
+     "key": "0cec98f6f26b11ea226075fa507c6acd"
+    },
+    {
+     "key": "5eb107d020665c01e3d02caf3133a632"
+    },
+    {
+     "key": "35c583a46b75dd2d7fd133a9a7103937"
+    },
+    {
+     "key": "27fc861641ce0f0eb48b0cab3269feb0"
+    },
+    {
+     "key": "0d17545cfc1f085e684c15adccc18fdc"
+    },
+    {
+     "key": "c03cda6ad2e4c2370db762f382a6dd0b"
+    },
+    {
+     "key": "985b2a927a8dc01ff6d85984a9d608d3"
+    },
+    {
+     "key": "937595e1dae00442e8ef83bb35fd7405"
+    },
+    {
+     "key": "7353b9feffdcb3196ad76ff3e8091a2d"
+    },
+    {
+     "key": "9f214c175cc8d441e964516a0f024f8e"
+    },
+    {
+     "key": "7659a3f384fe8aa1d2c8ca345933782e"
+    },
+    {
+     "key": "e34bccde2c169d451a084a5725f8933c"
+    },
+    {
+     "key": "c1335bc19aa1791eeadf32c28d077692"
+    },
+    {
+     "key": "9f42c10ecca3faadc5c00156565a8211"
+    },
+    {
+     "key": "b34902786a8c381062f0113a3bc7043d"
+    },
+    {
+     "key": "819a964493f684aa175015213030b662"
+    },
+    {
+     "key": "9d2a6642a8d37c38d5befcf4ddfd43fe"
+    },
+    {
+     "key": "3367008ea8eba0d0d25b95d47a41e79e"
+    },
+    {
+     "key": "1738b7adb306edd8bd2cd8efe6b4634a"
+    },
+    {
+     "key": "9fce992333acd71d9afa7eec080ee37c"
+    },
+    {
+     "key": "54b31807129723836a51a637d0735be1"
+    },
+    {
+     "key": "f67c94654880420b74658b02dd640255"
+    },
+    {
+     "key": "8b6ba8bb9770eccf8afeb0324a3ea445"
+    },
+    {
+     "key": "87ce2cf55fb4a288ae99d5a8054980df"
+    },
+    {
+     "key": "b214c73d047d8c2dadbabbdb0cc18987"
+    },
+    {
+     "key": "906d8411cee894c0106f1f273132854c"
+    },
+    {
+     "key": "33ebf8854944f04aa382cf97138f36b6"
+    },
+    {
+     "key": "297a1c146e699d8fbe361e82aaebc8c0"
+    },
+    {
+     "key": "52ca290d63ed7949ef91f00c786ab55b"
+    },
+    {
+     "key": "2d6c06cc05edc1cc44248c65b59e437d"
+    },
+    {
+     "key": "a2b54f69fb1c6f53afa10e5624dd780e"
+    }
+   ]
+  },
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1357678",
+   "offMarketAt": "2021-11-03",
+   "soldDate": null,
+   "sourceGroupLabel": "Beacon Vale Realty",
+   "saleEventsOfInterest": [
+    {
+     "date": "2022-02-02",
+     "price": 14950000,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2021-11-03",
+     "price": 14950000,
+     "status": "TEMPORARILY_OFF_MARKET"
+    },
+    {
+     "date": "2020-09-11",
+     "price": 14950000,
+     "pricePercentChange": -5.974842548370361
+    },
+    {
+     "date": "2019-02-19",
+     "price": 15900000,
+     "pricePercentChange": -5.917159557342529
+    },
+    {
+     "date": "2019-01-20",
+     "price": 16900000,
+     "status": "ACTIVE"
+    },
+    {
+     "date": "2018-08-09",
+     "price": 16900000,
+     "status": "NO_LONGER_AVAILABLE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "65cba1efacc66e5aaea0c8f9cfc492d0"
+    },
+    {
+     "key": "46b0fa7f96fac07ca1ffc2a1a9781fff"
+    },
+    {
+     "key": "a89f37a9ff0b81c7c3197431c7cfaa73"
+    },
+    {
+     "key": "15b5a1c088ad61de6dd887a3aa9ade3e"
+    },
+    {
+     "key": "ad0880fa6d2e20334347459f8a04b1d7"
+    },
+    {
+     "key": "fc2188135addaadcc2665053e0754876"
+    },
+    {
+     "key": "4e12f566167b05d470fee1a06836117f"
+    },
+    {
+     "key": "6429b3cd66f5780048049f08f3717f64"
+    },
+    {
+     "key": "b9500a8ff6c12f19b7d4e9c34267c1cb"
+    },
+    {
+     "key": "3485171edf03ef0c68bafdb8d8405511"
+    },
+    {
+     "key": "e1505fe9e87314da3dfaa46e6fabee3c"
+    },
+    {
+     "key": "a30b1f7c7345678b3c4cdd375693cb5c"
+    },
+    {
+     "key": "cbaf188e1de17a0be1477d330836dff3"
+    },
+    {
+     "key": "7dc804758948d8e88ead7aaca061292e"
+    },
+    {
+     "key": "8a665ff986bc5bf480c9481c9742235d"
+    },
+    {
+     "key": "c32b1da862547c90cf683015c215d36b"
+    },
+    {
+     "key": "92af1aa64f86d3bca42dd0763512881f"
+    },
+    {
+     "key": "8f036ca911f26ca55cfa23f9ab818b2b"
+    },
+    {
+     "key": "31be73681184eb4f3b2de072401e4956"
+    },
+    {
+     "key": "ab62785b9a7ea5047cabd41f8dc6cd7d"
+    },
+    {
+     "key": "aeb77440b41f13b9c64fdc1bdfe37b80"
+    },
+    {
+     "key": "b159a3be8f5e341872584841df3ef3e2"
+    },
+    {
+     "key": "b944cde7d702ff5229661d35040e3ed7"
+    },
+    {
+     "key": "4f3b25fd25941fb5f50186d565889d0b"
+    },
+    {
+     "key": "11a86513d5e68b2a07526dc25ecdc9d1"
+    }
+   ]
+  },
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1304905",
+   "offMarketAt": "2018-07-12",
+   "soldDate": null,
+   "sourceGroupLabel": "Parkline Properties",
+   "saleEventsOfInterest": [
+    {
+     "date": "2018-07-12",
+     "price": 17900000,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2018-03-14",
+     "price": 17900000,
+     "pricePercentChange": -8.20512866973877
+    },
+    {
+     "date": "2017-10-02",
+     "price": 19500000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "b036aedd4cc67ef7b0f53fcaa7435691"
+    },
+    {
+     "key": "3a8bf3d7beeec50687b0762558d7e65d"
+    },
+    {
+     "key": "c9ca89289a2e5289008ecd4f3ed4eddb"
+    },
+    {
+     "key": "eb728f52c86399b21d363d631ce0ec71"
+    },
+    {
+     "key": "92c55bc054775f19f4d75b5e0a7d32da"
+    },
+    {
+     "key": "fe5c16f158672658892e493ba3a4fc39"
+    },
+    {
+     "key": "44fcd6470ea238d8c9619625317d8d63"
+    },
+    {
+     "key": "c0117db402395c8f5db2abde0bef3706"
+    },
+    {
+     "key": "4a667afdb09fa7ffd3edb5305c4cb8f2"
+    },
+    {
+     "key": "3f56210c23525f37b38d45b7d2a71ed8"
+    },
+    {
+     "key": "04da343f9dd119703682c61492c3b3ca"
+    },
+    {
+     "key": "e416327e71db8d71be30852e63b3da04"
+    },
+    {
+     "key": "506aa81bd1d250fb656a0c255261de98"
+    },
+    {
+     "key": "e01abc37610ccd9cd6fe0bf25e9d13e6"
+    },
+    {
+     "key": "5a2759ea1b4af0d29288164a25ebb752"
+    },
+    {
+     "key": "a2bab6c3531fe67db26b930b1ddbe79d"
+    },
+    {
+     "key": "73386063a34e186a5ad36d507b0f5be7"
+    },
+    {
+     "key": "191b00e953a2c427452e994b29bfdff7"
+    },
+    {
+     "key": "bf7b1f42f673ae3defcb5da197b53f00"
+    },
+    {
+     "key": "4b01ae63df7dcf10bd0450551c82d292"
+    },
+    {
+     "key": "ab59c5076d942d874655b3022fac07e3"
+    },
+    {
+     "key": "1618385c6f4810f501c96519d6adacf6"
+    },
+    {
+     "key": "261cfdf93cfb38daa1657068b72a9a33"
+    },
+    {
+     "key": "760f5e36d55db961bfef6edc86769c7f"
+    },
+    {
+     "key": "48d12dae8b5939dadfffca475aa399a4"
+    }
+   ]
+  }
+ ],
+ "pricing": {
+  "monthlyMaintenance": null,
+  "monthlyTaxes": 7568,
+  "monthlyCommonCharges": 12484,
+  "maxFinancing": 0,
+  "taxDeduction": 0,
+  "price": 14495000,
+  "priceDelta": -500000,
+  "soldPrice": null,
+  "estimatedMonthlyPayment": 93347,
+  "interestingPriceDelta": null,
+  "priceChanges": [
+   {
+    "price": 14995000,
+    "changedAt": "2023-01-26T10:45:44.000-05:00"
+   },
+   {
+    "price": 14495000,
+    "changedAt": "2025-04-25T11:39:30.000-04:00"
+   }
+  ]
+ },
+ "upcomingOpenHouses": [],
+ "slug": "1216",
+ "listingSource": {
+  "sourceType": "PARTNER",
+  "sourceListingId": null
+ },
+ "mlsNumber": null,
+ "media": {
+  "photos": [
+   {
+    "key": "0c8009f9a90a51a3997dff37f2e13416"
+   },
+   {
+    "key": "48089ba554e6c4173cb754209d17d2b2"
+   },
+   {
+    "key": "4a1cd3a20dd5cce3e43348e0d60346a9"
+   },
+   {
+    "key": "bf7b697e4b96ee7ffc0e0e1573da6995"
+   },
+   {
+    "key": "9cce836f7a40e995f15c058648d68bb3"
+   },
+   {
+    "key": "098230949da1cfd01020c2c32b492ca1"
+   },
+   {
+    "key": "bf1225ed67ad29757bf8243defa53519"
+   },
+   {
+    "key": "96b4c5a00e1cbea6018008b0cae4ec4c"
+   },
+   {
+    "key": "e208b9c5785723905ceb4d80041fe363"
+   },
+   {
+    "key": "678d41c916760f7bb738f92adee5266d"
+   },
+   {
+    "key": "e8dc02fe2995e03082373a6b18029849"
+   },
+   {
+    "key": "d1a453d65c11485612e82323aabc3343"
+   },
+   {
+    "key": "0b342e676e4566bc7ed0112104c6fa60"
+   },
+   {
+    "key": "cb886917e6e981df2b540d70017a5c3b"
+   },
+   {
+    "key": "905edcce26efaaec5234314183b89ac3"
+   },
+   {
+    "key": "a7ef1a760c2a7e0b4a9a3af321a76a01"
+   },
+   {
+    "key": "7508b5dcde095ef97fe0c61093ab3a5e"
+   },
+   {
+    "key": "f03a3cd2ad2da7835123935664a41b54"
+   },
+   {
+    "key": "96ebb7a201297f51935c749955019a4d"
+   },
+   {
+    "key": "c6d1affe637114603ccff80c997e94d8"
+   },
+   {
+    "key": "dd19cb558d14decee1bad1f5ffe2dc86"
+   },
+   {
+    "key": "b45a95e89037b5f194aa0e982b2ce870"
+   },
+   {
+    "key": "6cfbe108161ee47435335034d69c1084"
+   },
+   {
+    "key": "99b7bff20c458fdf9f84c16fc8dfa4a1"
+   },
+   {
+    "key": "6c95a04daa66eb7db38e8fd9460a26f8"
+   },
+   {
+    "key": "295df0f18e43490f2bd21f5d13a5b050"
+   },
+   {
+    "key": "f26d0f553f7b42998b708d6e9c0d20e0"
+   },
+   {
+    "key": "55c31e2008a1afeee2407ebeff853dd3"
+   },
+   {
+    "key": "a3c850710c72e956a368be1f9fb6e22d"
+   },
+   {
+    "key": "8b531173cc7486ad6ad74b26d6beb661"
+   },
+   {
+    "key": "51e87a705a98de90450675bac5c82f86"
+   },
+   {
+    "key": "d7ccfdc038629b453e5c7a0aeb365456"
+   },
+   {
+    "key": "0cec98f6f26b11ea226075fa507c6acd"
+   },
+   {
+    "key": "5eb107d020665c01e3d02caf3133a632"
+   },
+   {
+    "key": "35c583a46b75dd2d7fd133a9a7103937"
+   },
+   {
+    "key": "27fc861641ce0f0eb48b0cab3269feb0"
+   },
+   {
+    "key": "0d17545cfc1f085e684c15adccc18fdc"
+   },
+   {
+    "key": "c03cda6ad2e4c2370db762f382a6dd0b"
+   },
+   {
+    "key": "985b2a927a8dc01ff6d85984a9d608d3"
+   },
+   {
+    "key": "937595e1dae00442e8ef83bb35fd7405"
+   },
+   {
+    "key": "7353b9feffdcb3196ad76ff3e8091a2d"
+   },
+   {
+    "key": "9f214c175cc8d441e964516a0f024f8e"
+   },
+   {
+    "key": "7659a3f384fe8aa1d2c8ca345933782e"
+   },
+   {
+    "key": "e34bccde2c169d451a084a5725f8933c"
+   },
+   {
+    "key": "c1335bc19aa1791eeadf32c28d077692"
+   },
+   {
+    "key": "9f42c10ecca3faadc5c00156565a8211"
+   },
+   {
+    "key": "b34902786a8c381062f0113a3bc7043d"
+   },
+   {
+    "key": "819a964493f684aa175015213030b662"
+   },
+   {
+    "key": "9d2a6642a8d37c38d5befcf4ddfd43fe"
+   },
+   {
+    "key": "3367008ea8eba0d0d25b95d47a41e79e"
+   },
+   {
+    "key": "1738b7adb306edd8bd2cd8efe6b4634a"
+   },
+   {
+    "key": "9fce992333acd71d9afa7eec080ee37c"
+   },
+   {
+    "key": "54b31807129723836a51a637d0735be1"
+   },
+   {
+    "key": "f67c94654880420b74658b02dd640255"
+   },
+   {
+    "key": "8b6ba8bb9770eccf8afeb0324a3ea445"
+   },
+   {
+    "key": "87ce2cf55fb4a288ae99d5a8054980df"
+   },
+   {
+    "key": "b214c73d047d8c2dadbabbdb0cc18987"
+   },
+   {
+    "key": "906d8411cee894c0106f1f273132854c"
+   },
+   {
+    "key": "33ebf8854944f04aa382cf97138f36b6"
+   },
+   {
+    "key": "297a1c146e699d8fbe361e82aaebc8c0"
+   },
+   {
+    "key": "52ca290d63ed7949ef91f00c786ab55b"
+   },
+   {
+    "key": "2d6c06cc05edc1cc44248c65b59e437d"
+   },
+   {
+    "key": "a2b54f69fb1c6f53afa10e5624dd780e"
+   }
+  ],
+  "videos": [
+   {
+    "url": "https://www.youtube.com/v/Xy0Kd3ab9Zq",
+    "imageUrl": "https://img.youtube.com/vi/Xy0Kd3ab9Zq/hqdefault.jpg",
+    "id": "Xy0Kd3ab9Zq",
+    "provider": "YOUTUBE"
+   }
+  ],
+  "tour3dUrl": null,
+  "floorPlans": [
+   {
+    "key": "685bbe25b3ec2c5874466aae6327ce15"
+   },
+   {
+    "key": "6929a39c8e46c22c0d22358429e2009b"
+   },
+   {
+    "key": "6325bbad0f01e7160493f3d46f7cb115"
+   }
+  ]
+ },
+ "signatureMediaGallery": null,
+ "recentListingsPriceStats": {
+  "bedroomCount": 6,
+  "rentalPriceStats": {
+   "maxPrice": 35000,
+   "medianPrice": 35000,
+   "minPrice": 35000,
+   "numListings": 1
+  },
+  "salePriceStats": {
+   "maxPrice": 17000000,
+   "medianPrice": 12187500,
+   "minPrice": 5000000,
+   "numListings": 8
+  }
+ },
+ "latestListing": {
+  "id": "1644015",
+  "status": "ACTIVE",
+  "pricing": {
+   "price": 14495000
+  }
+ },
+ "urlPath": "/building/harborline-commons/1216",
+ "hasSignatureEnabled": false,
+ "isPremiumHdpEnabled": false,
+ "showHdpProfileBadging": false,
+ "listingAddress": "175 Harborline Street #1216"
+}

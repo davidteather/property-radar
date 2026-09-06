@@ -1,0 +1,332 @@
+{
+ "id": "1777453",
+ "soldDate": null,
+ "verifiedUpToDate": false,
+ "daysOnMarket": 426,
+ "onMarketAt": "2025-06-23",
+ "propertyId": "24120171",
+ "advertisedOnSe": true,
+ "offMarketAt": null,
+ "buildingId": "108246",
+ "status": "ACTIVE",
+ "preview": {
+  "daysIn": null,
+  "hideDays": null,
+  "hidePriceChanges": null
+ },
+ "legacy": {
+  "closingId": null,
+  "sourceGroupLabel": "Harborline Realty",
+  "license": {
+   "address": {
+    "street": "4200 Meadow Lane",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zipCode": "11234",
+    "displayUnit": null
+   },
+   "businessName": "Harborline Realty Llc",
+   "licenseType": "Limited Liability Broker"
+  },
+  "sourceGroup": {
+   "brokeragePhoto": null
+  }
+ },
+ "statusChanges": [
+  {
+   "status": "DRAFT",
+   "changedAt": "2025-06-23T14:31:00.000-04:00"
+  },
+  {
+   "status": "ACTIVE",
+   "changedAt": "2025-06-23T15:01:21.000-04:00"
+  }
+ ],
+ "createdAt": "2025-06-23T14:31:00.000-04:00",
+ "updatedAt": "2026-08-02T12:00:28.000-04:00",
+ "interestingChangeAt": "2026-07-29T12:01:43.000-04:00",
+ "saleType": "Resale",
+ "description": "Sunny one-bedroom co-op in a well-maintained mid-century building. This bright home offers a generous king-size bedroom, a comfortable living and dining area, and excellent closet space throughout. The full-service building features a 24-hour doorman, on-site laundry, a live-in superintendent, and a landscaped courtyard. Freshly painted and move-in ready, with easy access to nearby parks, subway lines, and neighborhood shops and cafes.",
+ "propertyDetails": {
+  "address": {
+   "state": "NY",
+   "street": "288 Larkspur Street",
+   "city": "BROOKLYN",
+   "zipCode": "11205",
+   "displayUnit": "#614"
+  },
+  "roomCount": 4,
+  "bedroomCount": 1,
+  "fullBathroomCount": 1,
+  "halfBathroomCount": 0,
+  "livingAreaSize": 711,
+  "lotAreaSize": 0,
+  "amenities": {
+   "list": [
+    "ELEVATOR",
+    "FIOS_AVAILABLE",
+    "DOORMAN",
+    "LAUNDRY",
+    "LIVE_IN_SUPER",
+    "PARKING",
+    "STORAGE_SPACE"
+   ],
+   "doormanTypes": [
+    "FULL_TIME"
+   ],
+   "parkingTypes": [],
+   "sharedOutdoorSpaceTypes": [],
+   "storageSpaceTypes": []
+  },
+  "features": null
+ },
+ "propertyHistory": [
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1777453",
+   "offMarketAt": null,
+   "soldDate": null,
+   "sourceGroupLabel": "Harborline Realty",
+   "saleEventsOfInterest": [
+    {
+     "date": "2026-06-12",
+     "price": 499000,
+     "pricePercentChange": -3.853564500808716
+    },
+    {
+     "date": "2026-05-18",
+     "price": 519000,
+     "pricePercentChange": 9.263157844543457
+    },
+    {
+     "date": "2026-04-07",
+     "price": 475000,
+     "pricePercentChange": -8.477842330932617
+    },
+    {
+     "date": "2025-08-18",
+     "price": 519000,
+     "pricePercentChange": -5.464480876922607
+    },
+    {
+     "date": "2025-06-23",
+     "price": 549000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "e47137fc31e9b66b594612a8f34510d9"
+    },
+    {
+     "key": "148b9c3c62f8012c8efc6b6e0e5ab5cf"
+    },
+    {
+     "key": "12b748dd4a262d5d7905997a72deed1d"
+    },
+    {
+     "key": "2d2730f5593669907e1a842362d28bcd"
+    },
+    {
+     "key": "7658fa554dd797187c180eb867ee48ab"
+    },
+    {
+     "key": "80a228f177eb09da7d484d835a3b0764"
+    },
+    {
+     "key": "f13af38366b0556d6d5ac62557ba0e20"
+    },
+    {
+     "key": "e8d8f9261ffc3121db299509dee93783"
+    }
+   ]
+  },
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1716150",
+   "offMarketAt": "2025-06-21",
+   "soldDate": null,
+   "sourceGroupLabel": "Metro Crossing Residential",
+   "saleEventsOfInterest": [
+    {
+     "date": "2025-06-21",
+     "price": 559000,
+     "status": "DELISTED"
+    },
+    {
+     "date": "2025-01-07",
+     "price": 559000,
+     "pricePercentChange": 1.8214936256408691
+    },
+    {
+     "date": "2025-01-07",
+     "price": 549000,
+     "status": "ACTIVE"
+    },
+    {
+     "date": "2024-10-28",
+     "price": 549000,
+     "status": "TEMPORARILY_OFF_MARKET"
+    },
+    {
+     "date": "2024-05-09",
+     "price": 549000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "75ad9694b2504825f3388d3944de40ba"
+    },
+    {
+     "key": "44eb2d1ea00e57e681b71072b569461b"
+    },
+    {
+     "key": "1f6a85036c5ec9167eff5149c5a844fa"
+    },
+    {
+     "key": "c5f45916656750e6c2fc7c42ed23cfd4"
+    },
+    {
+     "key": "89cc7fdc8f9679f2aaa1a630e13dacd4"
+    },
+    {
+     "key": "2bd5333876c25ed4ff5107af07c2e658"
+    },
+    {
+     "key": "2e17e137239d8956f567fef795b5c3c6"
+    },
+    {
+     "key": "c7344a666b36101837d54f0296b78395"
+    },
+    {
+     "key": "244805680ecff87dfd300aeb4ebf7981"
+    },
+    {
+     "key": "1053eea3f71f47faae7e85f52d01c9c1"
+    },
+    {
+     "key": "8130b52bc6dc6f6c58b26ed1df2b5c39"
+    },
+    {
+     "key": "f79afea93bf1a7adbf157b6b02743142"
+    },
+    {
+     "key": "6b6ae02542a9c96374c27eedb05a612e"
+    },
+    {
+     "key": "8d81c5d0046d96616c7f40204157c98a"
+    },
+    {
+     "key": "351a5a0315088d10fc7f5a8343136228"
+    }
+   ]
+  }
+ ],
+ "pricing": {
+  "monthlyMaintenance": 912,
+  "monthlyTaxes": 0,
+  "monthlyCommonCharges": null,
+  "maxFinancing": 0,
+  "taxDeduction": 0,
+  "price": 499000,
+  "priceDelta": -20000,
+  "soldPrice": null,
+  "estimatedMonthlyPayment": 3435,
+  "interestingPriceDelta": null,
+  "priceChanges": [
+   {
+    "price": 549000,
+    "changedAt": "2025-06-23T14:55:27.000-04:00"
+   },
+   {
+    "price": 519000,
+    "changedAt": "2025-08-18T14:04:02.000-04:00"
+   },
+   {
+    "price": 475000,
+    "changedAt": "2026-04-07T11:19:29.000-04:00"
+   },
+   {
+    "price": 519000,
+    "changedAt": "2026-05-18T11:05:08.000-04:00"
+   },
+   {
+    "price": 499000,
+    "changedAt": "2026-06-12T10:57:35.000-04:00"
+   }
+  ]
+ },
+ "upcomingOpenHouses": [],
+ "slug": "614",
+ "listingSource": {
+  "sourceType": "PARTNER",
+  "sourceListingId": null
+ },
+ "mlsNumber": null,
+ "media": {
+  "photos": [
+   {
+    "key": "e47137fc31e9b66b594612a8f34510d9"
+   },
+   {
+    "key": "148b9c3c62f8012c8efc6b6e0e5ab5cf"
+   },
+   {
+    "key": "12b748dd4a262d5d7905997a72deed1d"
+   },
+   {
+    "key": "2d2730f5593669907e1a842362d28bcd"
+   },
+   {
+    "key": "7658fa554dd797187c180eb867ee48ab"
+   },
+   {
+    "key": "80a228f177eb09da7d484d835a3b0764"
+   },
+   {
+    "key": "f13af38366b0556d6d5ac62557ba0e20"
+   },
+   {
+    "key": "e8d8f9261ffc3121db299509dee93783"
+   }
+  ],
+  "videos": [],
+  "tour3dUrl": null,
+  "floorPlans": [
+   {
+    "key": "5c70e780e663e8610d2458fe32f8bb30"
+   }
+  ]
+ },
+ "signatureMediaGallery": null,
+ "recentListingsPriceStats": {
+  "bedroomCount": 1,
+  "rentalPriceStats": {
+   "maxPrice": 10000,
+   "medianPrice": 3900,
+   "minPrice": 2425,
+   "numListings": 100
+  },
+  "salePriceStats": {
+   "maxPrice": 1200000,
+   "medianPrice": 700750,
+   "minPrice": 379000,
+   "numListings": 46
+  }
+ },
+ "latestListing": {
+  "id": "1777453",
+  "status": "ACTIVE",
+  "pricing": {
+   "price": 499000
+  }
+ },
+ "urlPath": "/building/288-larkspur-street-brooklyn/614",
+ "hasSignatureEnabled": false,
+ "isPremiumHdpEnabled": false,
+ "showHdpProfileBadging": false,
+ "listingAddress": "288 Larkspur Street #614"
+}

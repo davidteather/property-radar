@@ -1,0 +1,47 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <h1>Overview</h1>
+  <p class="sub">Live snapshot of the corpus and your saved taste state.</p>
+
+  {{if eq .Total 0}}
+  <div class="card" style="border-style:dashed;margin-bottom:1.4rem">
+    <h2 style="margin-bottom:.2rem">Nothing here yet 👋</h2>
+    <p class="muted" style="margin:0 0 .7rem;max-width:60ch">The corpus is empty. Connect Property Radar to Claude or ChatGPT and ask it to find and crawl homes — listings show up here after the next crawl.</p>
+    {{template "examplePrompts" .}}
+  </div>
+  {{end}}
+
+  <div class="grid cols">
+    <div class="card stat"><div class="k">Listings</div><div class="v">{{.Total}}</div></div>
+    <a class="card stat clickcard" href="/verdicts"><div class="k">Verdicts &rarr;</div><div class="v">{{len .State.Verdicts}}</div></a>
+    <div class="card stat"><div class="k">Rubric</div><div class="v" style="font-size:1.1rem">
+      {{if .State.RubricStale}}<span class="badge warn">stale</span>{{else if .State.Rubric}}<span class="badge good">fresh</span>{{else}}<span class="badge">none</span>{{end}}
+    </div></div>
+    <div class="card stat"><div class="k">Profile</div><div class="v" style="font-size:1.1rem;text-transform:capitalize">{{if .State.Profile.ListingType}}{{.State.Profile.ListingType}}{{else}}—{{end}}</div></div>
+  </div>
+
+  <div class="row sectiongap"><h2 style="margin:0">Recent listings</h2><a class="link" href="/listings">Browse all →</a></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Address</th><th>Neighborhood</th><th class="num">Price</th><th class="num">Bd</th><th class="num">Ba</th><th>Photos</th><th>Status</th></tr></thead>
+      <tbody>{{template "rowsBody" .Recent}}</tbody>
+    </table>
+  </div>
+
+  {{if .Targets}}
+  <div class="row sectiongap"><h2 style="margin:0">Crawl targets</h2><a class="link" href="/crawls">Details →</a></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Kind</th><th>Type</th><th>Areas</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>{{range .Targets}}<tr>
+        <td>{{.Kind}}</td>
+        <td style="text-transform:capitalize">{{.ListingType}}</td>
+        <td class="muted">{{join .Areas ", "}}</td>
+        <td><span class="badge {{if eq .Status "done"}}good{{else if eq .Status "failed"}}bad{{else}}warn{{end}}">{{.Status}}</span></td>
+        <td class="muted">{{short .Note 40}}</td>
+      </tr>{{end}}</tbody>
+    </table>
+  </div>
+  {{end}}
+</div></main>
+{{template "foot" .}}

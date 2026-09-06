@@ -1,0 +1,76 @@
+{{define "head"}}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Property Radar Console</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%A1%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/console.css">
+<script>try{var t=localStorage.getItem('pr-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="htmx-config" content='{"responseHandling":[{"code":"204","swap":false},{"code":"[23]..","swap":true},{"code":"[45]..","swap":true,"error":true},{"code":"...","swap":true}],"historyCacheSize":0,"refreshOnHistoryMiss":true}'>
+<script src="/static/htmx.min.js" defer></script>
+</head>
+<body>
+{{end}}
+
+{{define "nav"}}{{if .Nav}}<nav class="nav"><div class="wrap">
+  <a class="brand" href="/">Radar<b>&middot;</b>Console</a>
+  <a class="link {{if eq .Nav "home"}}on{{end}}" href="/">Overview</a>
+  <a class="link {{if eq .Nav "listings"}}on{{end}}" href="/listings">Listings</a>
+  <a class="link {{if eq .Nav "lists"}}on{{end}}" href="/lists">Lists</a>
+  <a class="link {{if eq .Nav "verdicts"}}on{{end}}" href="/verdicts">Verdicts</a>
+  <a class="link {{if eq .Nav "crawls"}}on{{end}}" href="/crawls">Crawls</a>
+  <span class="spacer"></span>
+  <button id="themebtn" class="themebtn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"></button>
+  <details class="help"><summary class="help-btn" title="Example things to ask" aria-label="Example prompts">?</summary><div class="helppanel">{{template "examplePrompts" .}}</div></details>
+  {{if .Write}}<a class="link {{if eq .Nav "settings"}}on{{end}}" href="/settings">Settings</a>{{else}}<span class="badge" title="This console is read-only; set CONSOLE_READONLY=false to enable edits">read-only</span>{{end}}
+  <form method="post" action="/logout"><button class="btn ghost sm" type="submit">Sign out</button></form>
+</div></nav>{{end}}{{end}}
+
+{{define "examplePrompts"}}
+<div class="k" style="margin-bottom:.55rem">Try asking the agent</div>
+<ul class="examples">
+  <li>Show me 5 homes I'd probably like, and tell me why.</li>
+  <li>Show me 10 apartments with big windows and a rooftop on the Upper West Side.</li>
+  <li>I love the second one — favorite it and start a &ldquo;big windows&rdquo; list.</li>
+  <li>What have I told you I like so far?</li>
+  <li>Find the weirdest-looking apartment in the whole corpus.</li>
+  <li>Crawl the West Village for rentals under $4,000.</li>
+  <li>Build a photo gallery of my favorites.</li>
+</ul>
+<p class="muted" style="font-size:.74rem;margin:.6rem 0 0">Ask these in Claude or ChatGPT connected to Property Radar. The agent uses the tools; this console shows the result.</p>
+{{end}}
+
+{{define "foot"}}
+<script>(function(){var b=document.getElementById('themebtn');if(!b)return;function r(){var t=document.documentElement.getAttribute('data-theme');return t||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}function i(){b.textContent=r()==='dark'?'☀︎':'☾';}i();b.addEventListener('click',function(){var n=r()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('pr-theme',n);}catch(e){}i();});})();</script>
+</body></html>{{end}}
+
+{{define "statusBadge"}}<span class="badge {{if eq . "active"}}good{{else if eq . "sold"}}bad{{else if eq . "rented"}}bad{{else}}warn{{end}}">{{.}}</span>{{end}}
+
+{{define "verdictBadge"}}<span class="badge {{if eq . "love"}}good{{else if eq . "dislike"}}bad{{else}}warn{{end}}">{{if eq . "love"}}♥ {{end}}{{.}}</span>{{end}}
+
+{{define "photoBadge"}}<span class="badge {{if eq .PhotosCached 0}}{{if gt .PhotoCount 0}}warn{{end}}{{else}}accent{{end}}">{{.PhotosCached}}/{{.PhotoCount}}</span>{{end}}
+
+{{define "rowsBody"}}{{range .}}<tr>
+  <td><a href="/listings/{{.ID}}">{{.Address}}</a>{{if .PriceDrop}} <span class="badge accent">drop</span>{{end}}</td>
+  <td class="muted">{{.Neighborhood}}</td>
+  <td class="num">{{money .Price}}{{if eq .ListingType "rent"}}<small class="muted">/mo</small>{{end}}</td>
+  <td class="num">{{num .Beds}}</td>
+  <td class="num">{{baths .Baths}}</td>
+  <td>{{template "photoBadge" .}}</td>
+  <td>{{template "statusBadge" .Status}}</td>
+</tr>{{else}}<tr><td colspan="7" class="muted" style="padding:1.3rem;text-align:center">No listings match.</td></tr>{{end}}{{end}}
+
+{{define "results"}}<div class="tablewrap">
+  <table>
+    <thead><tr><th>Address</th><th>Neighborhood</th><th class="num">Price</th><th class="num">Bd</th><th class="num">Ba</th><th>Photos</th><th>Status</th></tr></thead>
+    <tbody>{{template "rowsBody" .Res.Listings}}</tbody>
+  </table>
+</div>
+<div class="row" style="margin-top:.7rem">
+  <span class="muted" style="font-size:.82rem">Showing {{len .Res.Listings}} of {{.Res.Total}} &middot; offset {{.Offset}}</span>
+  <div class="pager">
+    {{if .HasPrev}}<a class="btn ghost sm" href="{{.PrevURL}}" hx-get="{{.PrevURL}}" hx-target="#results" hx-push-url="true">&larr; Prev</a>{{end}}
+    {{if .HasNext}}<a class="btn ghost sm" href="{{.NextURL}}" hx-get="{{.NextURL}}" hx-target="#results" hx-push-url="true">Next &rarr;</a>{{end}}
+  </div>
+</div>{{end}}

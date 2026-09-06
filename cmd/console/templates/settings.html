@@ -1,0 +1,15 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <h1>Settings</h1>
+  <p class="sub">Manage this instance's saved taste data.</p>
+
+  <div class="card" style="border-color:hsl(var(--bad)/.4);max-width:560px">
+    <h2 style="color:hsl(var(--bad));margin-bottom:.4rem">Reset taste data</h2>
+    <p class="muted" style="font-size:.88rem">Erases every verdict, the rubric, shown history, your profile filters, all lists except an empty favorites, and your crawl scopes (the areas the crawler refreshes). The listings already crawled are kept, but the crawler stops refreshing until you request a new area. This cannot be undone.</p>
+    <form method="post" action="/reset" onsubmit="return confirm('Really erase all taste data? This cannot be undone.')" style="margin-top:.9rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+      <input class="input" style="max-width:230px" name="confirm" placeholder="Type RESET to confirm" autocomplete="off" required>
+      <button class="btn" type="submit" style="background:hsl(var(--bad))">Reset data</button>
+    </form>
+  </div>
+</div></main>
+{{template "foot" .}}

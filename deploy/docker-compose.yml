@@ -1,0 +1,56 @@
+name: property-radar
+
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: property_radar
+      POSTGRES_USER: property_radar
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U property_radar -d property_radar"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    # Deliberately not published. The laptop crawler reaches Postgres through an
+    # SSH tunnel; see "Laptop side" in deploy/README.md before uncommenting.
+    # ports:
+    #   - "127.0.0.1:5432:5432"
+
+  mcpd:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    # Compose reads deploy/.env for interpolation only, so every documented
+    # optional knob is forwarded here explicitly; empty means "use the default".
+    environment:
+      DATABASE_URL: postgres://property_radar:${POSTGRES_PASSWORD}@db:5432/property_radar?sslmode=disable
+      THUMBS_DIR: /data/thumbs
+      MCP_BEARER_TOKEN: ${MCP_BEARER_TOKEN:?set MCP_BEARER_TOKEN in deploy/.env}
+      PUBLIC_IMG_TOKEN: ${PUBLIC_IMG_TOKEN:-}
+      URL_TOKEN_AUTH: ${URL_TOKEN_AUTH:-}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+      MIGRATE_ON_START: ${MIGRATE_ON_START:-}
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-}
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-}
+      S3_REGION: ${S3_REGION:-}
+      S3_USE_SSL: ${S3_USE_SSL:-}
+    volumes:
+      # rsync target on the host; mcpd only ever reads cached thumbnails.
+      - ${THUMBS_HOST_DIR:-./thumbs}:/data/thumbs:ro
+    ports:
+      - "${MCP_PUBLISH_ADDR:-0.0.0.0}:8787:8787"
+
+volumes:
+  db-data:

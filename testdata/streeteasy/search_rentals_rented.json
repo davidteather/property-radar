@@ -1,0 +1,145 @@
+{
+ "data": {
+  "searchRentals": {
+   "search": {
+    "criteria": "area:305,322|status:rented",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 18653,
+   "pageInfo": {
+    "currentPage": 1,
+    "hasNextPage": true,
+    "hasPreviousPage": false,
+    "totalPages": 55
+   },
+   "edges": [
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "9140",
+      "areaName": "Brooklyn Heights",
+      "street": "90 Sterling Street",
+      "unit": "6G",
+      "displayUnit": "#6G",
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/rental/9140",
+      "slug": null,
+      "status": "RENTED",
+      "buildingType": "CONDO",
+      "sourceType": "FEED",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 1500,
+      "totalMonthlyPrice": null,
+      "priceDelta": 100,
+      "priceChangedAt": "2008-09-05T18:14:44.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 0,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2008-09-01",
+      "offMarketAt": "2006-05-09",
+      "mediaAssetCount": 1,
+      "geoPoint": {
+       "latitude": 40.6922,
+       "longitude": -73.9914
+      },
+      "photos": null,
+      "leadMedia": null
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "53822",
+      "areaName": "Brooklyn Heights",
+      "street": "57 Braemar Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/rental/53822",
+      "slug": null,
+      "status": "RENTED",
+      "buildingType": "THREEFAMILY",
+      "sourceType": "FEED",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 4000,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2006-08-08T17:58:35.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 2,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2006-08-08",
+      "offMarketAt": "2006-09-07",
+      "mediaAssetCount": 0,
+      "geoPoint": {
+       "latitude": 40.69995,
+       "longitude": -73.993454
+      },
+      "photos": null,
+      "leadMedia": null
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "55741",
+      "areaName": "Cobble Hill",
+      "street": "100 Seabright Avenue",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/rental/55741",
+      "slug": null,
+      "status": "RENTED",
+      "buildingType": "RENTAL",
+      "sourceType": "FEED",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 3350,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2006-08-12T09:11:15.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2006-08-12",
+      "offMarketAt": "2006-09-13",
+      "mediaAssetCount": 0,
+      "geoPoint": {
+       "latitude": 40.6906,
+       "longitude": -73.9968
+      },
+      "photos": null,
+      "leadMedia": null
+     }
+    }
+   ]
+  }
+ }
+}

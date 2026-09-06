@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Architecture & how it works
+    url: https://github.com/davidteather/property-radar/blob/main/docs/decisions.md
+    about: The consolidated architecture decisions (the no-LLM boundary, provider seam, persistence, photos/transport). Read this before filing a bug for expected behavior.
+  - name: README & docs
+    url: https://github.com/davidteather/property-radar/blob/main/README.md
+    about: Product overview, tool surface, deploy guides, and Responsible use. Good place to start for setup and usage questions.

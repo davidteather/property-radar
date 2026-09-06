@@ -1,0 +1,296 @@
+{
+ "data": {
+  "searchSales": {
+   "search": {
+    "criteria": "area:135|status:open",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 651,
+   "pageInfo": {
+    "currentPage": 2,
+    "hasNextPage": false,
+    "hasPreviousPage": true,
+    "totalPages": 2
+   },
+   "edges": [
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1835985",
+      "areaName": "Upper West Side",
+      "street": "110 West Brenton Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/110-west-brenton-street-new_york/sale/1835985",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "OPEN HARBOR REALTY",
+      "price": 6500000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-29T19:41:20.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 0,
+      "fullBathroomCount": 10,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 6303,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": null,
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 6,
+      "geoPoint": {
+       "latitude": 40.780052,
+       "longitude": -73.97764
+      },
+      "photos": [
+       {
+        "key": "33d88f4ccff97f94b488efa2ad1961f8"
+       },
+       {
+        "key": "a500796edc84ef8df70d1602e16fdcb4"
+       },
+       {
+        "key": "9c83ba2deca82130265b5fae3e01ede3"
+       },
+       {
+        "key": "654fae7b4c86803febc896534dd25557"
+       },
+       {
+        "key": "9845db1f9cad8f21e36c1bdc2768176e"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1835989",
+      "areaName": "Upper West Side",
+      "street": "112 West Brenton Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/112-west-brenton-street-new_york/sale/1835989",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "OPEN HARBOR REALTY",
+      "price": 5500000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-29T19:51:59.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 0,
+      "fullBathroomCount": 10,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 6313,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": null,
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 7,
+      "geoPoint": {
+       "latitude": 40.78008,
+       "longitude": -73.9777
+      },
+      "photos": [
+       {
+        "key": "7af6b0ec8d0f7e6b8bd207caa5221411"
+       },
+       {
+        "key": "2e177af825862371c5a4d4fceeb4b922"
+       },
+       {
+        "key": "bf05252a2603717b0e28c3b57d233198"
+       },
+       {
+        "key": "f0bf6e5cda65a0f2efb7a5a7b15d9893"
+       },
+       {
+        "key": "4324bfa1add7b969977fc9313398b6d7"
+       },
+       {
+        "key": "83651f4e059d0e34e3c26c6e64b9f874"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1835999",
+      "areaName": "Lincoln Square",
+      "street": "120 Rivermist Boulevard",
+      "unit": "3P",
+      "displayUnit": "#3P",
+      "zipCode": "10069",
+      "state": "NY",
+      "urlPath": "/building/120-rivermist-boulevard/3p",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Hartwell Residential",
+      "price": 1100000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-29T20:32:49.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 1000,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 1364,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 725,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": null,
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 7,
+      "geoPoint": {
+       "latitude": 40.7764,
+       "longitude": -73.9891
+      },
+      "photos": [
+       {
+        "key": "86fd2ed97abff8fbdd2223f8708adb60"
+       },
+       {
+        "key": "9f764db3057bf33f6fc486d53d348ca7"
+       },
+       {
+        "key": "a39a1a38908abe14aca9fc24e0c3fdfd"
+       },
+       {
+        "key": "af6473e2cba56a0906682786b2f94bb5"
+       },
+       {
+        "key": "54def4a3560837fe148e10c9c54aa35b"
+       },
+       {
+        "key": "3abd40e7d1e7620193872be18ad201a2"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1836053",
+      "areaName": "Upper West Side",
+      "street": "44 West Brenton Street",
+      "unit": "2",
+      "displayUnit": "#2",
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/44-west-brenton-street-new_york/2",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Vale & Brenton",
+      "price": 850000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-30T15:09:52.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 657,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 893,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-20T11:56:58.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 15,
+      "geoPoint": {
+       "latitude": 40.77944,
+       "longitude": -73.97618
+      },
+      "photos": [
+       {
+        "key": "9a46febfb8d72d06fa70fc174b592631"
+       },
+       {
+        "key": "99b1a507d626a06338cdd9bafb805675"
+       },
+       {
+        "key": "1ee1e3c95b0c9989408eb2dead5f54e5"
+       },
+       {
+        "key": "3ca06b6307b98cda6b6344f933f4443f"
+       },
+       {
+        "key": "cdc3fad56bb65c996322a210cb8baebf"
+       },
+       {
+        "key": "58855be78ceca4c6ed7d807fa6a46460"
+       },
+       {
+        "key": "a30706860a16b08689404d188f1df937"
+       },
+       {
+        "key": "573ef7adffdfc8ddfe51e15038b15543"
+       },
+       {
+        "key": "efdf81b6cb0a3cfd55d2f02000fd02b7"
+       },
+       {
+        "key": "98201f5a6c06cd405f000754439cff9a"
+       },
+       {
+        "key": "693c68e51ca9d4067ed951a292798d7e"
+       },
+       {
+        "key": "3fdd39ed8592c0e3af4bdcbc5aa9a640"
+       },
+       {
+        "key": "dbec4e4aceb8cc604eff2d294dfa6506"
+       },
+       {
+        "key": "548da8f5ec5b3821e1be7e12f19229c7"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <div class="row">
+    <div>
+      <h1 style="margin-bottom:.15rem">Crawls</h1>
+      <p class="sub" style="margin:0">Areas of interest the crawler keeps filled, plus one-off requests. {{if .Refresh}}<span class="badge accent">● live — refreshing</span>{{end}}</p>
+    </div>
+  </div>
+
+  {{if .Queued}}<div class="card sectiongap" style="border-color:hsl(var(--accent));color:hsl(var(--accent))">Queued <b>{{.Queued}}</b>. The crawler picks it up shortly — this page updates as it runs.</div>{{end}}
+  {{if .Err}}<div class="card sectiongap" style="border-color:hsl(var(--bad));color:hsl(var(--bad))">{{.Err}}</div>{{end}}
+
+  <div class="grid cols sectiongap">
+    <div class="card stat"><div class="k">Listings</div><div class="v">{{.Corpus.Listings}} <small>{{.Corpus.ActiveListings}} active</small></div></div>
+    <div class="card stat"><div class="k">Active sale / rent</div><div class="v" style="font-size:1.3rem">{{.Corpus.ActiveSale}} <small>/ {{.Corpus.ActiveRent}}</small></div></div>
+    <div class="card stat"><div class="k">Photos cached</div><div class="v">{{.Corpus.PhotosCached}}</div></div>
+    <div class="card stat"><div class="k">Last crawl</div><div class="v" style="font-size:1.1rem">{{if .Corpus.LastCrawlAt}}{{date .Corpus.LastCrawlAt}}{{else}}<span class="muted">never</span>{{end}}</div></div>
+  </div>
+
+  {{if .Write}}
+  <h2 class="sectiongap">Queue a crawl</h2>
+  <form method="post" action="/crawls" class="filters">
+    <input class="input grow" name="areas" placeholder='Area: "Upper West Side", "Park Slope, Brooklyn", "all of Manhattan", or ids 305,319 (several names: separate with ;)' aria-label="areas" required>
+    <select class="input" name="listing_type" aria-label="listing type">
+      <option value="sale">Sale</option>
+      <option value="rent">Rent</option>
+    </select>
+    <input class="input" style="max-width:130px" name="max_price" type="number" min="0" placeholder="Max $" aria-label="max price">
+    <input class="input" style="max-width:110px" name="min_beds" type="number" min="0" placeholder="Min beds" aria-label="min beds">
+    <button class="btn" type="submit">Queue</button>
+  </form>
+  <p class="muted" style="font-size:.82rem;margin-top:-.5rem">Plain place names or numeric area ids. Filtering by price/beds keeps a big scope small and fast.</p>
+  {{end}}
+
+  <h2 class="sectiongap">Scopes &amp; requests</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th class="num">ID</th><th>Kind</th><th>Type</th><th>Areas</th><th>Filters</th><th>State</th><th>Last run</th><th>Note / last error</th>{{if .Write}}<th></th>{{end}}</tr></thead>
+    <tbody>{{range .Targets}}<tr>
+      <td class="num">{{.ID}}</td>
+      <td style="text-transform:capitalize">{{.Kind}}</td>
+      <td style="text-transform:capitalize">{{.ListingType}}</td>
+      <td class="muted">{{join .Areas ", "}}</td>
+      <td class="muted" style="font-size:.82rem">{{if .MaxPrice}}&le;{{money .MaxPrice}}{{end}}{{if .MinBeds}} {{num .MinBeds}}bd+{{end}}{{if and (not .MaxPrice) (not .MinBeds)}}—{{end}}</td>
+      <td>
+        {{if eq .Kind "standing"}}
+          {{if .Enabled}}<span class="badge good">active</span>{{else}}<span class="badge">paused</span>{{end}}
+          {{if eq .Status "running"}}<span class="badge accent">● running</span>{{else if eq .Status "failed"}}<span class="badge bad">last pass failed</span>{{end}}
+        {{else if eq .Status "running"}}<span class="badge accent">● running</span>
+        {{else if eq .Status "pending"}}<span class="badge warn">queued</span>
+        {{else if eq .Status "done"}}<span class="badge good">done</span>
+        {{else if eq .Status "failed"}}<span class="badge bad">failed</span>
+        {{else}}<span class="badge">{{.Status}}</span>{{end}}
+      </td>
+      <td class="muted">{{if .LastRunAt}}{{date .LastRunAt}}{{else}}<span class="muted">—</span>{{end}}</td>
+      <td class="muted">{{if .LastError}}<span style="color:hsl(var(--bad))">{{short .LastError 60}}</span>{{else}}{{short .Note 50}}{{end}}</td>
+      {{if $.Write}}<td style="white-space:nowrap">
+        {{if eq .Kind "standing"}}<form method="post" action="/crawls/{{.ID}}/enabled" style="display:inline"><input type="hidden" name="enabled" value="{{if .Enabled}}false{{else}}true{{end}}"><button class="btn ghost sm" type="submit">{{if .Enabled}}Pause{{else}}Resume{{end}}</button></form>{{else}}<form method="post" action="/crawls/{{.ID}}/recurring" style="display:inline" title="Keep re-crawling this scope to stay fresh"><button class="btn ghost sm" type="submit">Make recurring</button></form>{{end}}
+        <form method="post" action="/crawls/{{.ID}}/delete" style="display:inline" onsubmit="return confirm('Delete this crawl scope?')"><button class="btn ghost sm" type="submit" title="Delete">&times;</button></form>
+      </td>{{end}}
+    </tr>{{else}}<tr><td colspan="{{if .Write}}9{{else}}8{{end}}" class="muted" style="text-align:center;padding:1.3rem">No crawl scopes yet.{{if .Write}} Queue one above{{else}} Ask the model to crawl an area{{end}} to start filling the corpus.</td></tr>{{end}}</tbody>
+  </table></div>
+</div></main>
+{{if .Refresh}}<script>setInterval(function(){var a=document.activeElement;if(!(a&&a.form))location.reload();},10000);</script>{{end}}
+{{template "foot" .}}

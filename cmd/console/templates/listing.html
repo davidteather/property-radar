@@ -1,0 +1,89 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">{{with .L}}
+  <a class="link" href="/listings">&larr; Listings</a>
+  <div class="row" style="margin-top:.5rem">
+    <div>
+      <h1 style="margin-bottom:.15rem">{{.Address}}</h1>
+      <p class="sub" style="margin:0">{{.Neighborhood}}{{if .Zip}} &middot; {{.Zip}}{{end}} &middot; {{template "statusBadge" .Status}}</p>
+    </div>
+    <div style="text-align:right">
+      <div class="stat"><div class="v">{{money .Price}}{{if eq .ListingType "rent"}}<small class="muted">/mo</small>{{end}}</div></div>
+      {{if .Provenance.URL}}<a class="btn ghost sm" href="{{.Provenance.URL}}" target="_blank" rel="noopener">StreetEasy &#8599;</a>{{end}}
+    </div>
+  </div>
+
+  <div class="card sectiongap"><div class="fields">
+    <div><div class="k">Type</div><div class="v" style="text-transform:capitalize">{{.PropertyType}}</div></div>
+    <div><div class="k">Beds</div><div class="v">{{num .Beds}}</div></div>
+    <div><div class="k">Baths</div><div class="v">{{baths .Baths}}</div></div>
+    <div><div class="k">Sqft</div><div class="v">{{num .Sqft}}</div></div>
+    <div><div class="k">Maintenance</div><div class="v">{{money .Maintenance}}</div></div>
+    <div><div class="k">Common charges</div><div class="v">{{money .CommonCharges}}</div></div>
+    <div><div class="k">Taxes / mo</div><div class="v">{{money .TaxesMonthly}}</div></div>
+    <div><div class="k">Days on market</div><div class="v">{{num .DOM}}</div></div>
+    <div><div class="k">Photos cached</div><div class="v">{{.PhotosCached}}/{{.PhotoCount}}{{if .PhotoMissing}} <span class="badge warn">{{.PhotoMissing}} missing</span>{{end}}</div></div>
+    <div><div class="k">First seen</div><div class="v">{{date .FirstSeen}}</div></div>
+    <div><div class="k">Last seen</div><div class="v">{{date .LastSeen}}</div></div>
+  </div></div>
+
+  <h2 class="sectiongap">Lists</h2>
+  <div class="tags">
+    {{range .Lists}}<span class="chip accent">{{if .Emoji}}{{.Emoji}} {{end}}{{.Name}}{{if $.Write}} <form method="post" action="/listings/{{$.L.ID}}/lists/{{.ID}}/remove" style="display:inline"><button class="chipx" type="submit" title="Remove from list">&times;</button></form>{{end}}</span>
+    {{else}}<span class="muted" style="font-size:.85rem">Not in any list.</span>{{end}}
+  </div>
+  {{if and $.Write $.AddableLists}}
+  <form method="post" action="/listings/{{.ID}}/lists" class="filters" style="margin-top:.55rem">
+    <select class="input" style="max-width:230px" name="list_id" aria-label="list to add to">
+      {{range $.AddableLists}}<option value="{{.ID}}">{{if .Emoji}}{{.Emoji}} {{end}}{{.Name}}</option>{{end}}
+    </select>
+    <button class="btn sm" type="submit">Add to list</button>
+  </form>{{end}}
+
+  {{if .Photos}}<h2 class="sectiongap">Photos <span class="muted" style="font-weight:400;font-size:.85rem">({{len .Photos}} serveable)</span></h2>
+  <div class="shots">{{range .Photos}}<img src="{{.HostedImageURI}}" alt="photo {{.Position}}" loading="lazy" onerror="this.style.display='none'">{{end}}</div>{{end}}
+
+  {{if .Verdicts}}<h2 class="sectiongap">Verdicts</h2>
+  <div class="tablewrap"><table><thead><tr><th>Verdict</th><th>Note</th><th>When</th></tr></thead>
+  <tbody>{{range .Verdicts}}<tr><td>{{template "verdictBadge" .Verdict}}</td><td class="muted" style="max-width:40rem">{{if .Note}}{{.Note}}{{else}}&mdash;{{end}}</td><td class="muted">{{date .CreatedAt}}</td></tr>{{end}}</tbody></table></div>{{end}}
+
+  {{if .Description}}<h2 class="sectiongap">Description</h2><p class="muted" style="max-width:72ch;white-space:pre-wrap">{{.Description}}</p>{{end}}
+
+  {{if .PriceHistory}}<h2 class="sectiongap">Price history</h2>
+  <div class="tablewrap"><table><thead><tr><th>Date</th><th class="num">Price</th></tr></thead>
+  <tbody>{{range .PriceHistory}}<tr><td>{{date .ObservedAt}}</td><td class="num">{{money0 .Price}}</td></tr>{{end}}</tbody></table></div>{{end}}
+
+  {{if .Photos}}<div id="lightbox" class="lightbox" hidden>
+    <button class="lb-close" type="button" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+    <img alt="Full-size photo">
+    <button class="lb-nav lb-next" type="button" aria-label="Next photo">&#8250;</button>
+  </div>
+  <script>
+  (function(){
+    var lb=document.getElementById('lightbox'), im=lb.querySelector('img');
+    var prev=lb.querySelector('.lb-prev'), next=lb.querySelector('.lb-next');
+    var shots=[].slice.call(document.querySelectorAll('.shots img'));
+    var vis=[], i=0;
+    function show(n){ if(!vis.length)return; i=(n+vis.length)%vis.length; im.src=vis[i].src; }
+    function open(t){
+      vis=shots.filter(function(s){return s.style.display!=='none';}); // skip failed/hidden
+      var multi=vis.length>1;
+      prev.style.display=next.style.display=multi?'':'none';
+      var idx=vis.indexOf(t); show(idx<0?0:idx); lb.hidden=false;
+    }
+    function close(){ lb.hidden=true; im.removeAttribute('src'); }
+    shots.forEach(function(t){ t.addEventListener('click',function(){open(t);}); });
+    prev.addEventListener('click',function(e){e.stopPropagation();show(i-1);});
+    next.addEventListener('click',function(e){e.stopPropagation();show(i+1);});
+    lb.querySelector('.lb-close').addEventListener('click',function(e){e.stopPropagation();close();});
+    lb.addEventListener('click',function(e){ if(e.target===lb) close(); }); // backdrop only
+    document.addEventListener('keydown',function(e){
+      if(lb.hidden)return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowLeft'){e.preventDefault();show(i-1);}
+      else if(e.key==='ArrowRight'){e.preventDefault();show(i+1);}
+    });
+  })();
+  </script>{{end}}
+{{end}}</div></main>
+{{template "foot" .}}

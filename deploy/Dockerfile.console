@@ -1,0 +1,15 @@
+# Build context is the repository root: docker build -f deploy/Dockerfile.console .
+# The optional web console (cmd/console); calls the mcpd REST API.
+FROM golang:1.27-alpine AS build
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/console ./cmd/console
+
+FROM gcr.io/distroless/static-debian12:nonroot
+COPY --from=build /out/console /usr/local/bin/console
+USER nonroot:nonroot
+EXPOSE 8080
+ENTRYPOINT ["/usr/local/bin/console"]
+# No -addr: binds $PORT when Railway injects it, else :8080 (EXPOSE).

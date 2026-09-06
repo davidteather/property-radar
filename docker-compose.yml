@@ -1,0 +1,111 @@
+name: property-radar
+
+# Local full-stack mirror of the Railway deploy (docs/deploying/LOCAL.md): the
+# same four services, wired the same way. Profiles: none = db alone (make db-up);
+# --profile stack = the server (db+storage+mcpd); --profile crawl = one-shot crawl.
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: property-radar-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: property_radar
+      POSTGRES_USER: property_radar
+      POSTGRES_PASSWORD: property_radar
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - property-radar-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U property_radar -d property_radar"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  # S3 thumbnail store shared by mcpd (reads) and crawler (writes), so it must be
+  # up for either profile (docs/decisions.md §4).
+  storage:
+    build:
+      context: .
+      dockerfile: deploy/versitygw/Dockerfile
+    profiles: ["stack", "crawl"]
+    restart: unless-stopped
+    ports:
+      # Loopback only, so a stdio mcpd on the host (Claude Desktop) reads the
+      # same thumbnails the crawler writes.
+      - "127.0.0.1:9000:9000"
+    environment:
+      ROOT_ACCESS_KEY: ${S3_ACCESS_KEY:-radar}
+      ROOT_SECRET_KEY: ${S3_SECRET_KEY:-}
+      GOMEMLIMIT: "64MiB"
+      GOGC: "50"
+      GODEBUG: "madvdontneed=1"
+    volumes:
+      - storage-data:/data
+
+  mcpd:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    profiles: ["stack"]
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      storage:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgres://property_radar:property_radar@db:5432/property_radar?sslmode=disable
+      STORAGE_BACKEND: s3
+      S3_ENDPOINT: storage:9000
+      S3_BUCKET: thumbs
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-radar}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-}
+      S3_REGION: us-east-1
+      S3_USE_SSL: "false"
+      MCP_BEARER_TOKEN: ${MCP_BEARER_TOKEN:-}
+      PUBLIC_IMG_TOKEN: ${PUBLIC_IMG_TOKEN:-}
+      SEED_CRAWL_AREAS: ${SEED_CRAWL_AREAS:-}
+      # Optional knobs from .env; empty means the binary's default.
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+      URL_TOKEN_AUTH: ${URL_TOKEN_AUTH:-}
+      CONSOLE_URL: ${CONSOLE_URL:-}
+      MIGRATE_ON_START: ${MIGRATE_ON_START:-}
+    ports:
+      # Loopback only: plaintext bearer endpoint, front it with TLS before exposing.
+      - "127.0.0.1:8787:8787"
+
+  # One-shot crawl (the Railway crawler runs the same binary as a watch loop):
+  #   docker compose --profile crawl run --rm crawler
+  crawler:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.ingest
+    profiles: ["crawl"]
+    restart: "no"
+    depends_on:
+      db:
+        condition: service_healthy
+      storage:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgres://property_radar:property_radar@db:5432/property_radar?sslmode=disable
+      STORAGE_BACKEND: s3
+      S3_ENDPOINT: storage:9000
+      S3_BUCKET: thumbs
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-radar}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-}
+      S3_REGION: us-east-1
+      S3_USE_SSL: "false"
+      WEBSHARE_API_KEY: ${WEBSHARE_API_KEY:-}
+      PHOTO_TTL_DAYS: ${PHOTO_TTL_DAYS:-30}
+    # One-shot drain (overrides the image's always-on -watch CMD). Proxy mode
+    # defaults to off: from a home IP the API works directly and no Webshare key
+    # is needed; set CRAWL_PROXY_MODE=split (with WEBSHARE_API_KEY) to opt in.
+    command: ["-from-targets", "-proxy-mode", "${CRAWL_PROXY_MODE:-off}"]
+
+volumes:
+  property-radar-db-data:
+  storage-data:

@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# One run per branch/PR; a newer push cancels the older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: fmt · vet · lint · test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Install golangci-lint
+        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b "$(go env GOPATH)/bin" v2.13.1
+
+      - name: Download modules
+        run: go mod download
+
+      # `make ci` = fmt + vet + lint + test, then check-generated (mockery +
+      # `git diff --exit-code`), so a stale gofmt/mock fails the build. The store,
+      # mcp, photostore, and cmd suites spin up Postgres via testcontainers; the
+      # runner's Docker daemon serves it, and PGTEST_REQUIRED turns the
+      # "Docker unavailable" skip into a failure so those suites cannot be
+      # silently bypassed.
+      - name: CI gate
+        run: make ci
+        env:
+          PGTEST_REQUIRED: "1"
+
+      # The Railway IaC file must keep type-checking against the SDK it pins.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Type-check .railway/railway.ts
+        run: npm ci && npx tsc --noEmit
+        working-directory: .railway
+
+  # Railway builds these images on deploy; a Dockerfile break (renamed cmd dir,
+  # a missing embed) must surface here, not at deploy time.
+  images:
+    name: docker build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile: [deploy/Dockerfile, deploy/Dockerfile.ingest, deploy/Dockerfile.console]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

@@ -1,0 +1,10 @@
+{
+  "name": "property-radar-railway-iac",
+  "private": true,
+  "type": "module",
+  "description": "Type-checking scaffold for railway.ts. Not part of the Go build; `railway config plan` bundles its own runtime.",
+  "devDependencies": {
+    "railway": "^3.11.0",
+    "typescript": "^5.9.0"
+  }
+}

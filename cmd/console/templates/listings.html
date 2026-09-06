@@ -1,0 +1,20 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <h1>Listings</h1>
+  <p class="sub">Filter the corpus. Text search matches address / neighborhood within the loaded page.</p>
+
+  <form class="filters" hx-get="/listings" hx-target="#results" hx-push-url="true" hx-trigger="submit, input from:.grow delay:300ms, change from:input[type=checkbox], change from:select">
+    <input class="input grow" type="search" name="q" value="{{.Q}}" placeholder="Search address or neighborhood…">
+    <select class="input" name="listing_type" style="width:110px">
+      <option value="sale" {{if ne .ListingType "rent"}}selected{{end}}>For sale</option>
+      <option value="rent" {{if eq .ListingType "rent"}}selected{{end}}>Rentals</option>
+    </select>
+    <input class="input" style="width:130px" type="number" name="min_beds" value="{{.MinBeds}}" placeholder="Min beds" min="0">
+    <input class="input" style="width:150px" type="number" name="max_price" value="{{.MaxPrice}}" placeholder="Max price" min="0">
+    <label class="chk"><input type="checkbox" name="include_inactive" {{if .Inactive}}checked{{end}}> Include inactive</label>
+    <button class="btn sm" type="submit">Apply</button>
+  </form>
+
+  <div id="results">{{template "results" .}}</div>
+</div></main>
+{{template "foot" .}}

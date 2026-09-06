@@ -1,0 +1,498 @@
+{
+ "availableAt": "2026-07-22",
+ "buildingId": "54750",
+ "createdAt": "2025-09-19T12:17:48.000-04:00",
+ "daysOnMarket": 338,
+ "description": "Canal House is a brand-new collection of thoughtfully designed rental residences set along a quiet, tree-lined stretch of the neighborhood. Each apartment pairs an open, light-filled layout with warm natural finishes, oversized windows, and generous closet space, creating a calm and flexible backdrop for everyday living.\n\nResidences\n\nHomes feature open island kitchens with paneled appliances, quartz countertops, and wide-plank flooring throughout. Spa-inspired bathrooms, in-unit washer and dryers, and central heating and cooling come standard, while select layouts add private balconies and skyline outlooks.\n\nAmenities\n\nResidents enjoy an attended lobby, a landscaped roof deck, a fully equipped fitness center, a resident lounge with a work-from-home space, on-site parking, and secure package and bike rooms. Thoughtful service and a welcoming community round out the experience.\n\nIdeally located near multiple subway lines, Canal House places parks, restaurants, and everyday conveniences just steps from your door. Pricing reflects a net effective rent; please inquire for current availability, lease terms, and any move-in incentives.",
+ "id": "4864627",
+ "interestingChangeAt": "2026-08-03T22:10:12.000-04:00",
+ "isPremiumHdpEnabled": true,
+ "latestListing": {
+  "id": "4864627",
+  "pricing": {
+   "price": 7995
+  },
+  "status": "ACTIVE"
+ },
+ "legacy": {
+  "license": {
+   "address": {
+    "city": "Long Island City",
+    "displayUnit": "Ste 2a",
+    "state": "NY",
+    "street": "100 Harbor Court",
+    "zipCode": "11101"
+   },
+   "businessName": "Riverbend Living Llc",
+   "licenseType": "Real Estate Principal Office"
+  },
+  "sourceGroupLabel": "Riverbend Living LLC"
+ },
+ "listingAddress": "118 Canalside Avenue #9AS",
+ "listingSource": {
+  "sourceListingId": null,
+  "sourceType": "PARTNER"
+ },
+ "media": {
+  "floorPlans": [
+   {
+    "key": "1505eb206b65f8ebafb6152fa15594a7"
+   }
+  ],
+  "photos": [
+   {
+    "key": "27892abed0a7c4e9993f41ca850b643f"
+   },
+   {
+    "key": "e741bac72679561b880d1a629079e0a5"
+   },
+   {
+    "key": "3f26e8907c75edf5399c04772166b9d3"
+   },
+   {
+    "key": "926a025714638ca32ada77384a6377d7"
+   },
+   {
+    "key": "6b8d49c9f68839bde0a5a59832fe2963"
+   },
+   {
+    "key": "64b80b38aed8957d518836413d99c71a"
+   },
+   {
+    "key": "7022d677e624fdbed3649e92eb06a0b5"
+   },
+   {
+    "key": "3fd3e5d22e9411e9380a4ec15bfe3dfe"
+   },
+   {
+    "key": "8cc967a58ec6ad028a3bfa351aa25733"
+   },
+   {
+    "key": "8ff92160a703e43ecdc97fc59ab8e918"
+   },
+   {
+    "key": "84d218eb2d40e0e1ac6f754ccd9b4bd0"
+   },
+   {
+    "key": "6999d51f1262e556f23c3b235a39aec7"
+   },
+   {
+    "key": "ea2236c5d77a29d70fab4076f462f940"
+   },
+   {
+    "key": "fa1a208a62d240f0f7c61d61fd599ce9"
+   },
+   {
+    "key": "a2b4a3096ba33136220281ff48c10c86"
+   },
+   {
+    "key": "93544b3aadb3b4ce50691321db6eee98"
+   },
+   {
+    "key": "762061c9d38592788f1e0eb17daf94f2"
+   },
+   {
+    "key": "a366d79c33da902544f58c182fd562d9"
+   },
+   {
+    "key": "fa8326c4ae9d31ec2ea21c125f6b1311"
+   },
+   {
+    "key": "955f72b915fb60734521ce75a92e0ebf"
+   },
+   {
+    "key": "e7cb459a83b8fe8799ea2762b475f3e7"
+   },
+   {
+    "key": "f1dd31e05d5f193572553064066ae925"
+   },
+   {
+    "key": "c64bfda7042e4f32e1d7b34400a5315a"
+   },
+   {
+    "key": "4c65aa486191ad0e447843479112fbb8"
+   },
+   {
+    "key": "03859465da4e68e60b34847cd2227a32"
+   },
+   {
+    "key": "5f65be69dcf55c094b26d01f933bc33e"
+   },
+   {
+    "key": "0e3a6154016ec97b7ee3ad1d18e93b91"
+   }
+  ],
+  "tour3dUrl": null,
+  "videos": []
+ },
+ "mlsNumber": null,
+ "offMarketAt": null,
+ "onMarketAt": "2025-09-19",
+ "pricing": {
+  "additionalFees": [],
+  "dueUpFront": null,
+  "furnishedRent": null,
+  "interestingPriceDelta": -155,
+  "leaseTermMonths": 20,
+  "monthlyFees": [],
+  "monthsFree": 3,
+  "moveInFees": [
+   {
+    "calculation": {
+     "calculationType": "FLAT_FEE",
+     "feeQuantifier": 20,
+     "maxQuantifier": null
+    },
+    "refundability": {
+     "type": "NON_REFUNDABLE"
+    },
+    "requirement": "REQUIRED",
+    "schedule": {
+     "occurrenceType": "ONE_TIME",
+     "timing": "APPLICATION_SUBMISSION"
+    },
+    "typeLabel": "Application fee"
+   },
+   {
+    "calculation": {
+     "calculationType": "FLAT_FEE",
+     "feeQuantifier": 1000,
+     "maxQuantifier": null
+    },
+    "refundability": {
+     "type": "REFUNDABLE"
+    },
+    "requirement": "REQUIRED",
+    "schedule": {
+     "occurrenceType": "ONE_TIME",
+     "timing": "MOVE_IN"
+    },
+    "typeLabel": "Security deposit"
+   }
+  ],
+  "netEffectiveRent": 6796,
+  "price": 7995,
+  "priceChanges": [
+   {
+    "changedAt": "2025-09-19T12:39:56.000-04:00",
+    "price": 8150
+   },
+   {
+    "changedAt": "2026-07-28T14:21:31.000-04:00",
+    "price": 8095
+   },
+   {
+    "changedAt": "2026-08-18T09:36:58.000-04:00",
+    "price": 7995
+   }
+  ],
+  "priceDelta": -100,
+  "rentedPrice": null,
+  "securityDeposit": null,
+  "totalMonthlyPrice": null
+ },
+ "propertyDetails": {
+  "address": {
+   "city": "BROOKLYN",
+   "displayUnit": "#9AS",
+   "state": "NY",
+   "street": "118 Canalside Avenue",
+   "zipCode": "11217"
+  },
+  "amenities": {
+   "doormanTypes": [],
+   "list": [
+    "BIKE_ROOM",
+    "CONCIERGE",
+    "SHARED_OUTDOOR_SPACE",
+    "DOORMAN",
+    "ELEVATOR",
+    "PARKING",
+    "GYM",
+    "LAUNDRY",
+    "LIVE_IN_SUPER",
+    "STORAGE_SPACE",
+    "MEDIA_ROOM",
+    "PACKAGE_ROOM",
+    "POOL",
+    "WHEELCHAIR_ACCESS"
+   ],
+   "parkingTypes": [
+    "GARAGE"
+   ],
+   "sharedOutdoorSpaceTypes": [
+    "DECK",
+    "GARDEN",
+    "ROOF_DECK"
+   ],
+   "storageSpaceTypes": [
+    "LOCKER_CAGE"
+   ]
+  },
+  "bedroomCount": 2,
+  "features": {
+   "fireplaceTypes": [],
+   "list": [
+    "CENTRAL_AC",
+    "DISHWASHER",
+    "WASHER_DRYER"
+   ],
+   "privateOutdoorSpaceTypes": [],
+   "views": []
+  },
+  "fullBathroomCount": 2,
+  "halfBathroomCount": 0,
+  "livingAreaSize": null,
+  "lotAreaSize": 0,
+  "roomCount": 4
+ },
+ "propertyHistory": [
+  {
+   "listingId": "4864627",
+   "photos": [
+    {
+     "key": "27892abed0a7c4e9993f41ca850b643f"
+    },
+    {
+     "key": "e741bac72679561b880d1a629079e0a5"
+    },
+    {
+     "key": "3f26e8907c75edf5399c04772166b9d3"
+    },
+    {
+     "key": "926a025714638ca32ada77384a6377d7"
+    },
+    {
+     "key": "6b8d49c9f68839bde0a5a59832fe2963"
+    },
+    {
+     "key": "64b80b38aed8957d518836413d99c71a"
+    },
+    {
+     "key": "7022d677e624fdbed3649e92eb06a0b5"
+    },
+    {
+     "key": "3fd3e5d22e9411e9380a4ec15bfe3dfe"
+    },
+    {
+     "key": "8cc967a58ec6ad028a3bfa351aa25733"
+    },
+    {
+     "key": "8ff92160a703e43ecdc97fc59ab8e918"
+    },
+    {
+     "key": "84d218eb2d40e0e1ac6f754ccd9b4bd0"
+    },
+    {
+     "key": "6999d51f1262e556f23c3b235a39aec7"
+    },
+    {
+     "key": "ea2236c5d77a29d70fab4076f462f940"
+    },
+    {
+     "key": "fa1a208a62d240f0f7c61d61fd599ce9"
+    },
+    {
+     "key": "a2b4a3096ba33136220281ff48c10c86"
+    },
+    {
+     "key": "93544b3aadb3b4ce50691321db6eee98"
+    },
+    {
+     "key": "762061c9d38592788f1e0eb17daf94f2"
+    },
+    {
+     "key": "a366d79c33da902544f58c182fd562d9"
+    },
+    {
+     "key": "fa8326c4ae9d31ec2ea21c125f6b1311"
+    },
+    {
+     "key": "955f72b915fb60734521ce75a92e0ebf"
+    },
+    {
+     "key": "e7cb459a83b8fe8799ea2762b475f3e7"
+    },
+    {
+     "key": "f1dd31e05d5f193572553064066ae925"
+    },
+    {
+     "key": "c64bfda7042e4f32e1d7b34400a5315a"
+    },
+    {
+     "key": "4c65aa486191ad0e447843479112fbb8"
+    },
+    {
+     "key": "03859465da4e68e60b34847cd2227a32"
+    },
+    {
+     "key": "5f65be69dcf55c094b26d01f933bc33e"
+    },
+    {
+     "key": "0e3a6154016ec97b7ee3ad1d18e93b91"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2026-08-18",
+     "price": 7995,
+     "pricePercentChange": -1.2353304624557495
+    },
+    {
+     "date": "2026-07-28",
+     "price": 8095,
+     "pricePercentChange": -0.6748466491699219
+    },
+    {
+     "date": "2025-09-19",
+     "price": 8150,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Riverbend Living LLC"
+  }
+ ],
+ "recentListingsPriceStats": {
+  "bedroomCount": 2,
+  "rentalPriceStats": {
+   "maxPrice": 10900,
+   "medianPrice": 6125,
+   "minPrice": 2975,
+   "numListings": 127
+  },
+  "salePriceStats": {
+   "maxPrice": 1800000,
+   "medianPrice": 1250000,
+   "minPrice": 680000,
+   "numListings": 9
+  }
+ },
+ "saleType": null,
+ "signatureMediaGallery": {
+  "featuredMedia": [
+   {
+    "displayLabel": "Other photos",
+    "key": "27892abed0a7c4e9993f41ca850b643f"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "e741bac72679561b880d1a629079e0a5"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "3f26e8907c75edf5399c04772166b9d3"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "926a025714638ca32ada77384a6377d7"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "6b8d49c9f68839bde0a5a59832fe2963"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "64b80b38aed8957d518836413d99c71a"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "7022d677e624fdbed3649e92eb06a0b5"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "3fd3e5d22e9411e9380a4ec15bfe3dfe"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "8cc967a58ec6ad028a3bfa351aa25733"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "8ff92160a703e43ecdc97fc59ab8e918"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "84d218eb2d40e0e1ac6f754ccd9b4bd0"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "6999d51f1262e556f23c3b235a39aec7"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "ea2236c5d77a29d70fab4076f462f940"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "fa1a208a62d240f0f7c61d61fd599ce9"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "a2b4a3096ba33136220281ff48c10c86"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "93544b3aadb3b4ce50691321db6eee98"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "762061c9d38592788f1e0eb17daf94f2"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "a366d79c33da902544f58c182fd562d9"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "fa8326c4ae9d31ec2ea21c125f6b1311"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "955f72b915fb60734521ce75a92e0ebf"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "e7cb459a83b8fe8799ea2762b475f3e7"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "f1dd31e05d5f193572553064066ae925"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "c64bfda7042e4f32e1d7b34400a5315a"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "4c65aa486191ad0e447843479112fbb8"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "03859465da4e68e60b34847cd2227a32"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "5f65be69dcf55c094b26d01f933bc33e"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "0e3a6154016ec97b7ee3ad1d18e93b91"
+   }
+  ]
+ },
+ "slug": "9as",
+ "status": "ACTIVE",
+ "statusChanges": [
+  {
+   "changedAt": "2025-09-19T12:17:48.000-04:00",
+   "status": "DRAFT"
+  },
+  {
+   "changedAt": "2025-09-19T12:39:57.000-04:00",
+   "status": "ACTIVE"
+  }
+ ],
+ "upcomingOpenHouses": [],
+ "updatedAt": "2026-08-18T09:36:58.000-04:00",
+ "urlPath": "/building/canal-house/9as"
+}

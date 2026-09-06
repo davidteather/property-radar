@@ -1,0 +1,377 @@
+{
+ "id": "1832614",
+ "soldDate": null,
+ "verifiedUpToDate": false,
+ "daysOnMarket": 69,
+ "onMarketAt": "2026-06-12",
+ "propertyId": "187126",
+ "advertisedOnSe": true,
+ "offMarketAt": null,
+ "buildingId": "111045",
+ "status": "ACTIVE",
+ "preview": {
+  "daysIn": null,
+  "hideDays": null,
+  "hidePriceChanges": null
+ },
+ "legacy": {
+  "closingId": null,
+  "sourceGroupLabel": "NORTHSTAR.",
+  "license": {
+   "address": {
+    "street": "250 Commerce Street",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10012",
+    "displayUnit": null
+   },
+   "businessName": "Northstar",
+   "licenseType": "Limited Liability Broker"
+  },
+  "sourceGroup": {
+   "brokeragePhoto": null
+  }
+ },
+ "statusChanges": [
+  {
+   "status": "DRAFT",
+   "changedAt": "2026-06-08T17:27:15.000-04:00"
+  },
+  {
+   "status": "IN_STREETEASY_REVIEW",
+   "changedAt": "2026-06-11T11:04:57.000-04:00"
+  },
+  {
+   "status": "ACTIVE",
+   "changedAt": "2026-06-12T15:12:13.000-04:00"
+  },
+  {
+   "status": "TEMPORARILY_OFF_MARKET",
+   "changedAt": "2026-06-12T15:22:55.000-04:00"
+  },
+  {
+   "status": "ACTIVE",
+   "changedAt": "2026-06-15T16:24:49.000-04:00"
+  }
+ ],
+ "createdAt": "2026-06-08T17:27:15.000-04:00",
+ "updatedAt": "2026-08-20T10:04:43.000-04:00",
+ "interestingChangeAt": "2026-08-20T10:04:42.000-04:00",
+ "saleType": "Resale",
+ "description": "A thoughtfully renovated townhouse offering the privacy, flexibility, and outdoor space of single-family living. With a private backyard, an expansive upper terrace, and notably low carrying costs, this home is a compelling alternative to condominium living in one of the borough's most sought-after neighborhoods.\n\nSpanning roughly 1,320 square feet, the residence pairs flexible living spaces with generous natural light. Approximately ten-foot ceilings on the main level and eleven-foot ceilings above create an open, airy feel, while a skylight over the staircase brightens the center of the home.\n\nThe main floor flows from a welcoming front living room to a rear living and dining area anchored by a renovated kitchen, with large glass doors opening directly to the backyard. The layout easily converts to a true three-bedroom configuration. Upstairs, two spacious bedrooms share a central full bath, and the primary opens onto a large private terrace.\n\nAdditional features include an in-unit washer and dryer, ample storage, and a recent renovation ready for immediate occupancy, all moments from local dining, coffee shops, and multiple subway lines.",
+ "propertyDetails": {
+  "address": {
+   "state": "NY",
+   "street": "742 Aldergrove Street",
+   "city": "BROOKLYN",
+   "zipCode": "11238",
+   "displayUnit": null
+  },
+  "roomCount": 5,
+  "bedroomCount": 3,
+  "fullBathroomCount": 2,
+  "halfBathroomCount": 0,
+  "livingAreaSize": 1320,
+  "lotAreaSize": 0,
+  "amenities": {
+   "list": [
+    "FIOS_AVAILABLE"
+   ],
+   "doormanTypes": [],
+   "parkingTypes": [],
+   "sharedOutdoorSpaceTypes": [],
+   "storageSpaceTypes": []
+  },
+  "features": {
+   "list": [
+    "PRIVATE_OUTDOOR_SPACE",
+    "DISHWASHER",
+    "WASHER_DRYER"
+   ],
+   "fireplaceTypes": [],
+   "privateOutdoorSpaceTypes": [
+    "BALCONY",
+    "GARDEN",
+    "TERRACE"
+   ],
+   "views": []
+  }
+ },
+ "propertyHistory": [
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1832614",
+   "offMarketAt": null,
+   "soldDate": null,
+   "sourceGroupLabel": "NORTHSTAR.",
+   "saleEventsOfInterest": [
+    {
+     "date": "2026-06-15",
+     "price": 1850000,
+     "status": "ACTIVE"
+    },
+    {
+     "date": "2026-06-12",
+     "price": 1850000,
+     "status": "TEMPORARILY_OFF_MARKET"
+    },
+    {
+     "date": "2026-06-12",
+     "price": 1850000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "583ec1a5a18948d4c35282436e89296a"
+    },
+    {
+     "key": "a5547a8736218c50d9a194568d0df627"
+    },
+    {
+     "key": "adf583c910f0f730004e0d7b8d3f4fa5"
+    },
+    {
+     "key": "8ffc9cc49ee05491eaa2148899112a02"
+    },
+    {
+     "key": "47f7a38430e2315bcbc45cbb1e01f85b"
+    },
+    {
+     "key": "461633393d074670b98febe94205b282"
+    },
+    {
+     "key": "76fcc03cdd9835b809f0dc2d5ba4996b"
+    },
+    {
+     "key": "d9f81bab3bea939327a6813ee5cf2bbe"
+    },
+    {
+     "key": "910892b8b49db186c158934c31bc3e68"
+    },
+    {
+     "key": "f2319b2b6bfba48211438209d8f84a45"
+    },
+    {
+     "key": "ecbff4dd8246ad1fc44ca41abf048b37"
+    }
+   ]
+  },
+  {
+   "advertisedOnSe": true,
+   "closingId": null,
+   "listingId": "1802695",
+   "offMarketAt": "2026-05-12",
+   "soldDate": null,
+   "sourceGroupLabel": "Trailhead Realty",
+   "saleEventsOfInterest": [
+    {
+     "date": "2026-05-12",
+     "price": 1899000,
+     "status": "DELISTED"
+    },
+    {
+     "date": "2026-03-27",
+     "price": 1899000,
+     "pricePercentChange": -1.350649356842041
+    },
+    {
+     "date": "2026-03-07",
+     "price": 1925000,
+     "pricePercentChange": -2.5316455364227295
+    },
+    {
+     "date": "2025-12-05",
+     "price": 1975000,
+     "status": "ACTIVE"
+    }
+   ],
+   "photos": [
+    {
+     "key": "de52474bc7f6f0101af8b2a7d5769c47"
+    },
+    {
+     "key": "eb2c97861a38e620c1b1d7c99eccb945"
+    },
+    {
+     "key": "eba6c87cb3886c2639c0894f3d274211"
+    },
+    {
+     "key": "aff31c7a95bb30b3f01756e2f9c1385d"
+    },
+    {
+     "key": "2481606ced292ed4b5baf7de360651a4"
+    },
+    {
+     "key": "77d638ef82fa4cb5da0fbf3943980f90"
+    },
+    {
+     "key": "fc8ab6eebde253c04aa8041635312593"
+    },
+    {
+     "key": "3ee4bd457b40ec7ce4f93ff164ae1b90"
+    },
+    {
+     "key": "5fc6871922e24fb715322ebae20ca3c0"
+    },
+    {
+     "key": "7304b538f4f586d705b5582a73abea7f"
+    },
+    {
+     "key": "9652174262084da15733b422fca619fb"
+    },
+    {
+     "key": "653c342bf70a6323751660f3ba092787"
+    }
+   ]
+  }
+ ],
+ "pricing": {
+  "monthlyMaintenance": null,
+  "monthlyTaxes": 211,
+  "monthlyCommonCharges": 0,
+  "maxFinancing": 0,
+  "taxDeduction": 0,
+  "price": 1850000,
+  "priceDelta": null,
+  "soldPrice": null,
+  "estimatedMonthlyPayment": 9566,
+  "interestingPriceDelta": null,
+  "priceChanges": [
+   {
+    "price": 1850000,
+    "changedAt": "2026-06-08T17:30:35.000-04:00"
+   }
+  ]
+ },
+ "upcomingOpenHouses": [],
+ "slug": null,
+ "listingSource": {
+  "sourceType": "PARTNER",
+  "sourceListingId": null
+ },
+ "mlsNumber": null,
+ "media": {
+  "photos": [
+   {
+    "key": "583ec1a5a18948d4c35282436e89296a"
+   },
+   {
+    "key": "a5547a8736218c50d9a194568d0df627"
+   },
+   {
+    "key": "adf583c910f0f730004e0d7b8d3f4fa5"
+   },
+   {
+    "key": "8ffc9cc49ee05491eaa2148899112a02"
+   },
+   {
+    "key": "47f7a38430e2315bcbc45cbb1e01f85b"
+   },
+   {
+    "key": "461633393d074670b98febe94205b282"
+   },
+   {
+    "key": "76fcc03cdd9835b809f0dc2d5ba4996b"
+   },
+   {
+    "key": "d9f81bab3bea939327a6813ee5cf2bbe"
+   },
+   {
+    "key": "910892b8b49db186c158934c31bc3e68"
+   },
+   {
+    "key": "f2319b2b6bfba48211438209d8f84a45"
+   },
+   {
+    "key": "ecbff4dd8246ad1fc44ca41abf048b37"
+   }
+  ],
+  "videos": [],
+  "tour3dUrl": null,
+  "floorPlans": [
+   {
+    "key": "f9d510e806896a879016bee071faf816"
+   },
+   {
+    "key": "1129afbe938b1738ae5985cd077d393f"
+   }
+  ]
+ },
+ "signatureMediaGallery": {
+  "featuredMedia": [
+   {
+    "displayLabel": "Other photos",
+    "key": "583ec1a5a18948d4c35282436e89296a"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "a5547a8736218c50d9a194568d0df627"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "adf583c910f0f730004e0d7b8d3f4fa5"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "8ffc9cc49ee05491eaa2148899112a02"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "47f7a38430e2315bcbc45cbb1e01f85b"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "461633393d074670b98febe94205b282"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "76fcc03cdd9835b809f0dc2d5ba4996b"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "d9f81bab3bea939327a6813ee5cf2bbe"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "910892b8b49db186c158934c31bc3e68"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "f2319b2b6bfba48211438209d8f84a45"
+   },
+   {
+    "displayLabel": "Other photos",
+    "key": "ecbff4dd8246ad1fc44ca41abf048b37"
+   }
+  ]
+ },
+ "recentListingsPriceStats": {
+  "bedroomCount": 3,
+  "rentalPriceStats": {
+   "maxPrice": 12950,
+   "medianPrice": 5450,
+   "minPrice": 3600,
+   "numListings": 39
+  },
+  "salePriceStats": {
+   "maxPrice": 3850000,
+   "medianPrice": 1875000,
+   "minPrice": 1500000,
+   "numListings": 12
+  }
+ },
+ "latestListing": {
+  "id": "1832614",
+  "status": "ACTIVE",
+  "pricing": {
+   "price": 1850000
+  }
+ },
+ "urlPath": "/building/742-aldergrove-street-brooklyn/sale/1832614",
+ "hasSignatureEnabled": true,
+ "isPremiumHdpEnabled": true,
+ "showHdpProfileBadging": true,
+ "listingAddress": "742 Aldergrove Street"
+}

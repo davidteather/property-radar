@@ -1,0 +1,59 @@
+name: Feature request
+description: Propose a new capability — a new data source, MCP tool, crawler behavior, or console feature.
+title: "[feat]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Property Radar's provider layer is designed to be
+        extended: a new platform is a **new adapter behind the existing
+        `ingest.Source` seam** (see `docs/decisions.md §3`, with
+        `internal/streeteasy` as the reference adapter). Cross-provider dedup is
+        a separate, later piece of work, not a per-adapter concern. Keep in mind the hard
+        boundary — the backend stays deterministic and never calls a model
+        (`docs/decisions.md §1`).
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of feature?
+      options:
+        - New data source / listing platform (e.g. Zillow, Redfin, Apartments.com)
+        - New MCP tool / API capability
+        - Crawler / ingestion
+        - Web console / UI
+        - Deployment / hosting
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences — what should this do?
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Problem / motivation
+      description: What are you trying to accomplish? What's missing or painful today?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: |
+        How might it work? For a new data source, note that it's a new adapter
+        implementing the same seam as `internal/streeteasy`, with canonical
+        `internal/domain` types unchanged.
+    validations:
+      required: false
+  - type: checkboxes
+    id: no-llm
+    attributes:
+      label: Architecture boundary
+      options:
+        - label: This stays within the no-LLM boundary — the backend stays deterministic (no model SDKs / embeddings / ML ranking); model judgment stays caller-side (`docs/decisions.md §1`).
+          required: true

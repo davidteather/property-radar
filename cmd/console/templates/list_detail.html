@@ -1,0 +1,13 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <a class="link" href="/lists">&larr; Lists</a>
+  <h1 style="margin-top:.4rem">{{if .List.Emoji}}{{.List.Emoji}} {{end}}{{.List.Name}}</h1>
+  <p class="sub">{{.List.Count}} listing{{if ne .List.Count 1}}s{{end}} in this list, most-recently-added first.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Address</th><th>Neighborhood</th><th class="num">Price</th><th class="num">Bd</th><th class="num">Ba</th><th>Photos</th><th>Status</th></tr></thead>
+      <tbody>{{template "rowsBody" .Res.Listings}}</tbody>
+    </table>
+  </div>
+</div></main>
+{{template "foot" .}}

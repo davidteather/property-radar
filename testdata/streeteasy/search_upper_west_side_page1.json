@@ -1,0 +1,715 @@
+{
+ "data": {
+  "searchSales": {
+   "search": {
+    "criteria": "area:135|status:open",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 651,
+   "pageInfo": {
+    "currentPage": 1,
+    "hasNextPage": true,
+    "hasPreviousPage": false,
+    "totalPages": 2
+   },
+   "edges": [
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1601930",
+      "areaName": "Lincoln Square",
+      "street": "25 Meridian Circle",
+      "unit": "75CE",
+      "displayUnit": "#75CE",
+      "zipCode": "10019",
+      "state": "NY",
+      "urlPath": "/building/meridian-circle-towers/75ce",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Beacon Vale Realty",
+      "price": 32000000,
+      "soldPrice": 0,
+      "priceDelta": 2100000,
+      "priceChangedAt": "2024-11-27T14:12:16.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 8666,
+      "bedroomCount": 5,
+      "fullBathroomCount": 6,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 4540,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-06-23T09:23:35.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 47,
+      "geoPoint": {
+       "latitude": 40.7682,
+       "longitude": -73.9823
+      },
+      "photos": [
+       {
+        "key": "fa095ccf4beb9c33e59ba5270aea1f3c"
+       },
+       {
+        "key": "86d683645502453399c8f1e1c36e7125"
+       },
+       {
+        "key": "24b3d056973f9c4e4f0a28467c804c4c"
+       },
+       {
+        "key": "ff6323173f2f28b04473751d6ee848b9"
+       },
+       {
+        "key": "ea345e460ed1b29a0a3c14ef39a5cc02"
+       },
+       {
+        "key": "6cd8400bc35189fc33966419fade40f2"
+       },
+       {
+        "key": "129ef83266fff0efbb126af6bd39a36a"
+       },
+       {
+        "key": "95e0b1fe64c476e2b760b1b502f64da3"
+       },
+       {
+        "key": "d8298eab877daca2df1511f36f7babaf"
+       },
+       {
+        "key": "881c0a1ddf865daaf61baca7dea79d5f"
+       },
+       {
+        "key": "b3d2cb59fa55dea6f42ae1a410f6e0b8"
+       },
+       {
+        "key": "b144b1cd89c71d6bd65d57ce1aae571b"
+       },
+       {
+        "key": "2db447cbb591900481e78c6256d04c85"
+       },
+       {
+        "key": "e2169e8dde8fba71bf8df71dea6defa1"
+       },
+       {
+        "key": "269531f2fa5e4a7d0bcaba318c7cfbdd"
+       },
+       {
+        "key": "0e8d7640d8d46eb42717a60d267fd8c4"
+       },
+       {
+        "key": "a61f25d1d6e26aa3bffffb541e43b225"
+       },
+       {
+        "key": "597dc9e491d6b92458da04f2cb561f39"
+       },
+       {
+        "key": "d8edc5292c18e3edc39279a4ed63f7bb"
+       },
+       {
+        "key": "d42627400befd3c31b99eefe45b39a59"
+       },
+       {
+        "key": "0e799e8b6723673658dd3fa4405509ff"
+       },
+       {
+        "key": "ce8b5cd787db4e4c4738c150390cfe5a"
+       },
+       {
+        "key": "1dd70528c1c984801af5c99e1a9c7f54"
+       },
+       {
+        "key": "187b76be37c3620bb8123600b4394c35"
+       },
+       {
+        "key": "4ecb2489c1f05a25ff7a8966fee7df27"
+       },
+       {
+        "key": "b34f668e020a37e2b403bd2d35e4c539"
+       },
+       {
+        "key": "49edfe779183afa979b3d268cad4f575"
+       },
+       {
+        "key": "758c49a92789041dd790d6e4c76299fb"
+       },
+       {
+        "key": "757570d58cd50ec1d12888c6ecf40ebe"
+       },
+       {
+        "key": "af53e4722b092217d6ec0bb5950036e4"
+       },
+       {
+        "key": "f08d22bd1f65556037a3230c2ff829c4"
+       },
+       {
+        "key": "6f3c267ac64583f6ec2c1a3e46dca65e"
+       },
+       {
+        "key": "20f617d904a67ffcf1d2252ab1c4dbce"
+       },
+       {
+        "key": "9027b30871031bd321acdaa53076dc69"
+       },
+       {
+        "key": "a01557a00fa8856fab0a9cb778c122ab"
+       },
+       {
+        "key": "e9adb29e9499b3c7a1936163248b77aa"
+       },
+       {
+        "key": "6f5db2d679d1ac6f11f81833e9e2cdd4"
+       },
+       {
+        "key": "e3010e55f5cfc05bf1be5552c81e90a4"
+       },
+       {
+        "key": "61706d2284f2d2413542dde0628d35be"
+       },
+       {
+        "key": "f2af75b828ddbf1dad9e0e5eea52531c"
+       },
+       {
+        "key": "9bd9157454952b791c495b98c0caa4d2"
+       },
+       {
+        "key": "6e9e938d75015543a5580ffbf99eab3c"
+       },
+       {
+        "key": "67ffa2e2a73799ddc27ad2f57d507fc2"
+       },
+       {
+        "key": "f784ca852d9d1c4dc489cf379a82ae42"
+       },
+       {
+        "key": "a3052a74f8340759ac58bb4ada56aaa7"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1642544",
+      "areaName": "Upper West Side",
+      "street": "253 West Kingsley Street",
+      "unit": "3E",
+      "displayUnit": "#3E",
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/kingsley-house-condo/3e",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "The Bureau",
+      "price": 1150000,
+      "soldPrice": 0,
+      "priceDelta": 50000,
+      "priceChangedAt": "2023-10-21T22:46:20.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 1113,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 1180,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 741,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-22T10:19:57.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 8,
+      "geoPoint": {
+       "latitude": 40.7803,
+       "longitude": -73.983
+      },
+      "photos": [
+       {
+        "key": "8a955f3b81d90bc249e34ebe6a73b77e"
+       },
+       {
+        "key": "e3802148cc5f85763a8c537e849f1261"
+       },
+       {
+        "key": "711f8c64b8eee5eab69d35b6adbfe1bd"
+       },
+       {
+        "key": "9d842862a9310404e33251991e05522a"
+       },
+       {
+        "key": "7b9d0decf6b27b8d7d76793e0241effd"
+       },
+       {
+        "key": "1ff35a277a06200f90790b06d6a657bf"
+       },
+       {
+        "key": "1205aa530ccd67f2c9938e6a0587cc6d"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1654129",
+      "areaName": "Upper West Side",
+      "street": "328 West Halstead Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "10025",
+      "state": "NY",
+      "urlPath": "/building/328-west-halstead-street-new_york/sale/1654129",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "HOUSE",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Beacon Vale Realty",
+      "price": 10600000,
+      "soldPrice": 0,
+      "priceDelta": -300000,
+      "priceChangedAt": "2026-03-02T22:50:02.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 6385,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 6,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 3,
+      "livingAreaSize": 9075,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-05-14T16:45:58.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 38,
+      "geoPoint": {
+       "latitude": 40.803173,
+       "longitude": -73.96874
+      },
+      "photos": [
+       {
+        "key": "ed5962b5aa614263511df59feb8d7a71"
+       },
+       {
+        "key": "e4dba7076bc1059b05a8c1d0f29acaf2"
+       },
+       {
+        "key": "bd747c99dd8c7cd989838d2091ecb769"
+       },
+       {
+        "key": "2b6b3fd343d5d139a0909e72318ee910"
+       },
+       {
+        "key": "0ba0e07922aaeef088f4b418a68bc684"
+       },
+       {
+        "key": "3a1a86e1ef66ee20e3cc313b06b4332d"
+       },
+       {
+        "key": "6168a57f3f5eefbecf117b68cf216a7d"
+       },
+       {
+        "key": "9f9cee9296279998b8b358d100b1ef37"
+       },
+       {
+        "key": "605130dd3948d3797a620706f010af33"
+       },
+       {
+        "key": "841dbba3785ff2f701f9f67329fdaeb7"
+       },
+       {
+        "key": "ae0702931f46ee0bc2994de34f3744e9"
+       },
+       {
+        "key": "8c79965b5aa1eb600e8003c1f50659c9"
+       },
+       {
+        "key": "32080a8b171283061873d8f81fd35f16"
+       },
+       {
+        "key": "c7c5803c277bb3368e69e693185e1792"
+       },
+       {
+        "key": "a4151e4f1a15f7e3d322c173866f57e1"
+       },
+       {
+        "key": "ea0c89f87848c2c0e8a6098b642ca860"
+       },
+       {
+        "key": "d38cf38532d78f84224a8f7e3a0d21f1"
+       },
+       {
+        "key": "486fc3f69384620d76b69be0eb1a0b74"
+       },
+       {
+        "key": "e6d4b987ac8842fbde557a35c829a2a4"
+       },
+       {
+        "key": "dc5bb83a042b046c6421586c831ffe4a"
+       },
+       {
+        "key": "5c2b47c7738de80de79897d40fa1baea"
+       },
+       {
+        "key": "d31d32210b1fc7fd3cfbbb880670b61c"
+       },
+       {
+        "key": "2cc41a14d7fe304776dafa4fd28b2637"
+       },
+       {
+        "key": "c0887b9ae9db13bd98ecb96707a191bb"
+       },
+       {
+        "key": "4b012a33cc67aa6a7aec3b516809995e"
+       },
+       {
+        "key": "d9144fea88bbcd53957632687727b425"
+       },
+       {
+        "key": "575cf108a4c26f200a3eae8a349d9a69"
+       },
+       {
+        "key": "04aeb77b100b4a4e3a5b3dc7cb1024df"
+       },
+       {
+        "key": "36a6929ca30e6d473b4ca9153e3c5f9d"
+       },
+       {
+        "key": "e356c10db7f9b1c7cd86ea5d8b988f97"
+       },
+       {
+        "key": "1b97a386b303e3cbace197bf2238dddd"
+       },
+       {
+        "key": "a3beb41f28e54b15aec7e4990b012e7d"
+       },
+       {
+        "key": "2a19398c0a2f608cd599d585d96c23a7"
+       },
+       {
+        "key": "9d664f4f62c59bfa8b9247f75c740b39"
+       },
+       {
+        "key": "4dc142139f8490be814728922f620cff"
+       },
+       {
+        "key": "ef659b08b217468192f0a719fd11d39b"
+       },
+       {
+        "key": "3c3542d847f0ad9b834048959ac99463"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1676891",
+      "areaName": "Lincoln Square",
+      "street": "2 Meridian Avenue",
+      "unit": "31C",
+      "displayUnit": "#31C",
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/2-meridian-avenue-new_york/31c",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 2770000,
+      "soldPrice": 0,
+      "priceDelta": -30000,
+      "priceChangedAt": "2026-07-08T15:58:57.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 2726,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 2100,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 1447,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-17T09:54:39.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 11,
+      "geoPoint": {
+       "latitude": 40.76952,
+       "longitude": -73.98498
+      },
+      "photos": [
+       {
+        "key": "2a401d876eef90b7e4d681e196c67297"
+       },
+       {
+        "key": "a05bfb11adb03be641b85bbdcd186203"
+       },
+       {
+        "key": "268494b9b278b5ade4ebc6817b19e9ff"
+       },
+       {
+        "key": "438a1ade66d126c4436eec75d77e92d7"
+       },
+       {
+        "key": "eba98b1f669916b9972708ec6c264e77"
+       },
+       {
+        "key": "a76bb9dc7ff161ba239dff30b9eb2324"
+       },
+       {
+        "key": "cbd925671a1203b377dcf9e7147eebc5"
+       },
+       {
+        "key": "8646fa104106310fa24ae89ada95ba01"
+       },
+       {
+        "key": "9044d704945d04cb47fa978d8f43452a"
+       },
+       {
+        "key": "87253560fc8c796c26d7bb52378adf46"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1680613",
+      "areaName": "Lincoln Square",
+      "street": "212 West Danforth Street",
+      "unit": "16B",
+      "displayUnit": "#16B",
+      "zipCode": "10023",
+      "state": "NY",
+      "urlPath": "/building/212-west-danforth-street-new_york/16b",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "SPONSOR_UNIT",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Hartwell Residential",
+      "price": 5995000,
+      "soldPrice": 0,
+      "priceDelta": -500000,
+      "priceChangedAt": "2024-09-23T16:43:21.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 5672,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 4018,
+      "bedroomCount": 4,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 2536,
+      "isNewDevelopment": true,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-01-05T13:14:52.000-05:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 15,
+      "geoPoint": {
+       "latitude": 40.778633,
+       "longitude": -73.98245
+      },
+      "photos": [
+       {
+        "key": "7b78f481de4817d4cefee83e0023e871"
+       },
+       {
+        "key": "abce6acb24a7908b1119233efe405c39"
+       },
+       {
+        "key": "18e0d25b0f9ee6dba8e79cc88c64b489"
+       },
+       {
+        "key": "c0a3cef935dc7edc18efef1c21318d3c"
+       },
+       {
+        "key": "c3632924fe0f3120c14d58d5d6b9e666"
+       },
+       {
+        "key": "b2e06026a23309534240d2d240ad8b13"
+       },
+       {
+        "key": "e9f014f14395142e123dcf56a9deffd1"
+       },
+       {
+        "key": "93a634babeef073c159e383bf81ef920"
+       },
+       {
+        "key": "e3208d9a0f2e75fd55891fffaecad2bc"
+       },
+       {
+        "key": "50a07966e1a7083ba233b52d27d24349"
+       },
+       {
+        "key": "c27d634ac18c59f4fa5b08065a764090"
+       },
+       {
+        "key": "1f191776d53bfe7d1b37aef071d7a9a7"
+       },
+       {
+        "key": "1594a562bfd80eaa39610ed5fa197b02"
+       },
+       {
+        "key": "6f79b0befff6990e4235877d0f0a442e"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1688631",
+      "areaName": "Upper West Side",
+      "street": "251 West Ashcombe Street",
+      "unit": "PHB",
+      "displayUnit": "#PHB",
+      "zipCode": "10024",
+      "state": "NY",
+      "urlPath": "/building/the-ashcombe/phb",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "SPONSOR_UNIT",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Larkfield LLC",
+      "price": 11500000,
+      "soldPrice": 0,
+      "priceDelta": -495000,
+      "priceChangedAt": "2025-11-13T22:40:25.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 7889,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 9839,
+      "bedroomCount": 4,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 3059,
+      "isNewDevelopment": true,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-18T10:12:26.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 29,
+      "geoPoint": {
+       "latitude": 40.79173,
+       "longitude": -73.97444
+      },
+      "photos": [
+       {
+        "key": "7177fd2e2b5954ea5b9539e60a3bae8e"
+       },
+       {
+        "key": "983dcc83181d27bee2b54197bba0ef4e"
+       },
+       {
+        "key": "4acf4c7d7f76fb9cac97aed7cd97093f"
+       },
+       {
+        "key": "97e46672710b8498cd454a0e6ca64a83"
+       },
+       {
+        "key": "f557e21fd20e98670e8db384b165b37f"
+       },
+       {
+        "key": "8a67c9288a46a050e0cb5359606451e9"
+       },
+       {
+        "key": "a5cb5eb4aebb75983933894754f03eee"
+       },
+       {
+        "key": "fc482a41b625d263c5728a28da35d3ad"
+       },
+       {
+        "key": "3e39b1246094db0afb5abffac8177eae"
+       },
+       {
+        "key": "ca052c20aae0d0f21241a2cace3516d4"
+       },
+       {
+        "key": "5415b70e8c16caeb3fcb3257b13f4f8d"
+       },
+       {
+        "key": "3d5b300ed524517f6b18bdaad89f5efa"
+       },
+       {
+        "key": "338aca3df660d27dd754383a03ac331e"
+       },
+       {
+        "key": "b295655dad8a171a179391db199facc1"
+       },
+       {
+        "key": "8a93ef83a146a88758039642d14dd7e3"
+       },
+       {
+        "key": "d4cd7ceea78935804acad58cdb67007f"
+       },
+       {
+        "key": "8b94d46f64da586f6d83fa62f86ae249"
+       },
+       {
+        "key": "f75d58c0e136cb12c1a8301d4a5022cd"
+       },
+       {
+        "key": "1c681d55210dd9da91aa56fe00dd06e3"
+       },
+       {
+        "key": "27da9004539f0b3f3a144eb7bedc8b15"
+       },
+       {
+        "key": "0b9a20682f74cfa994e8c00c3429852d"
+       },
+       {
+        "key": "af782c8cc6f38f4218e604db02309586"
+       },
+       {
+        "key": "e1928018e2721a4e68c24a18d28cdf88"
+       },
+       {
+        "key": "f05f86e3a404b7ef90bae6ab40e7a912"
+       },
+       {
+        "key": "474a7907e9a530457c6ec3bfdf167177"
+       },
+       {
+        "key": "0c5b22a2d8a8b2c25f13606d4932142b"
+       },
+       {
+        "key": "63ece11e959400174502e5dffa28cfd3"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

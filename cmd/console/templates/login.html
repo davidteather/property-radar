@@ -1,0 +1,16 @@
+{{template "head" .}}
+<div class="wrap login"><div class="card">
+  <h1>Radar&middot;Console</h1>
+  <p class="sub" style="margin-bottom:1.1rem">Sign in to browse the live corpus.</p>
+  {{if .Error}}<div class="err">{{.Error}}</div>{{end}}
+  <form method="post" action="/login">
+    <div class="k">API bearer token</div>
+    <input class="input" type="password" name="token" placeholder="Paste your token" autocomplete="off" autofocus required style="margin:.35rem 0 .5rem">
+    <p class="muted" style="font-size:.78rem;margin:0 0 1rem">
+      Your mcpd <code style="font-size:.75rem">MCP_BEARER_TOKEN</code> — in Railway, open the <b>mcpd</b> service &rarr; <b>Variables</b>.
+    </p>
+    <button class="btn" type="submit" style="width:100%">Sign in</button>
+  </form>
+  <p class="muted" style="font-size:.75rem;margin:1rem 0 0">Held server-side in a secure, http-only cookie. It never reaches page scripts.</p>
+</div></div>
+{{template "foot" .}}

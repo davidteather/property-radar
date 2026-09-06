@@ -1,0 +1,33 @@
+version: "2"
+
+formatters:
+  enable:
+    - gofmt
+
+linters:
+  default: standard
+  enable:
+    - depguard
+  settings:
+    depguard:
+      rules:
+        # The no-LLM boundary (docs/decisions.md §1): the backend never calls a model.
+        no-model-sdks:
+          deny:
+            - pkg: github.com/anthropics/anthropic-sdk-go
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: github.com/openai/openai-go
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: github.com/sashabaranov/go-openai
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: google.golang.org/genai
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: github.com/google/generative-ai-go
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: github.com/tmc/langchaingo
+              desc: the backend never calls a model; the model is the MCP client
+            - pkg: github.com/ollama/ollama/api
+              desc: the backend never calls a model; the model is the MCP client
+  exclusions:
+    paths:
+      - '.*/mocks/.*'

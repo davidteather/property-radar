@@ -1,0 +1,34 @@
+# binaries
+/bin/
+/ingest
+/mcpd
+/lst
+/api
+cmd/ingest/ingest
+cmd/mcpd/mcpd
+cmd/lst/lst
+
+# local data / caches
+/data/
+*.env
+.env*
+
+# railway IaC typecheck scaffold (types only; not part of the Go build)
+.railway/node_modules/
+
+# operator-private folder: notes, instance runbooks, scratch — never committed,
+# so it can never reach the public template (ignored in both repos).
+/_private/
+
+# OS noise
+.DS_Store
+
+# editor
+.idea/
+.vscode/
+
+# stray local S3 test dirs
+/v[0-9]*/
+/vn/
+/vw/
+/console

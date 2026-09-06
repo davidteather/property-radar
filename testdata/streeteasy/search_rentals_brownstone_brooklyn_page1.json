@@ -1,0 +1,965 @@
+{
+ "data": {
+  "searchRentals": {
+   "search": {
+    "criteria": "area:304,305,306,319,320,321,322,324,326,364|status:open",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 826,
+   "pageInfo": {
+    "currentPage": 1,
+    "hasNextPage": true,
+    "hasPreviousPage": false,
+    "totalPages": 2
+   },
+   "edges": [
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "4864627",
+      "areaName": "Gowanus",
+      "street": "118 Canalside Avenue",
+      "unit": "9AS",
+      "displayUnit": "#9AS",
+      "zipCode": "11217",
+      "state": "NY",
+      "urlPath": "/building/canal-house/9as",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Riverbend Living LLC",
+      "price": 7995,
+      "totalMonthlyPrice": null,
+      "priceDelta": -100,
+      "priceChangedAt": "2026-08-18T13:36:58.000Z",
+      "interestingPriceDelta": -155,
+      "noFee": false,
+      "leaseTermMonths": 20.0,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-07-22",
+      "offMarketAt": null,
+      "mediaAssetCount": 28,
+      "geoPoint": {
+       "latitude": 40.678787,
+       "longitude": -73.985596
+      },
+      "photos": [
+       {
+        "key": "27892abed0a7c4e9993f41ca850b643f"
+       },
+       {
+        "key": "e741bac72679561b880d1a629079e0a5"
+       },
+       {
+        "key": "3f26e8907c75edf5399c04772166b9d3"
+       },
+       {
+        "key": "926a025714638ca32ada77384a6377d7"
+       },
+       {
+        "key": "6b8d49c9f68839bde0a5a59832fe2963"
+       },
+       {
+        "key": "64b80b38aed8957d518836413d99c71a"
+       },
+       {
+        "key": "7022d677e624fdbed3649e92eb06a0b5"
+       },
+       {
+        "key": "3fd3e5d22e9411e9380a4ec15bfe3dfe"
+       },
+       {
+        "key": "8cc967a58ec6ad028a3bfa351aa25733"
+       },
+       {
+        "key": "8ff92160a703e43ecdc97fc59ab8e918"
+       },
+       {
+        "key": "84d218eb2d40e0e1ac6f754ccd9b4bd0"
+       },
+       {
+        "key": "6999d51f1262e556f23c3b235a39aec7"
+       },
+       {
+        "key": "ea2236c5d77a29d70fab4076f462f940"
+       },
+       {
+        "key": "fa1a208a62d240f0f7c61d61fd599ce9"
+       },
+       {
+        "key": "a2b4a3096ba33136220281ff48c10c86"
+       },
+       {
+        "key": "93544b3aadb3b4ce50691321db6eee98"
+       },
+       {
+        "key": "762061c9d38592788f1e0eb17daf94f2"
+       },
+       {
+        "key": "a366d79c33da902544f58c182fd562d9"
+       },
+       {
+        "key": "fa8326c4ae9d31ec2ea21c125f6b1311"
+       },
+       {
+        "key": "955f72b915fb60734521ce75a92e0ebf"
+       },
+       {
+        "key": "e7cb459a83b8fe8799ea2762b475f3e7"
+       },
+       {
+        "key": "f1dd31e05d5f193572553064066ae925"
+       },
+       {
+        "key": "c64bfda7042e4f32e1d7b34400a5315a"
+       },
+       {
+        "key": "4c65aa486191ad0e447843479112fbb8"
+       },
+       {
+        "key": "03859465da4e68e60b34847cd2227a32"
+       },
+       {
+        "key": "5f65be69dcf55c094b26d01f933bc33e"
+       },
+       {
+        "key": "0e3a6154016ec97b7ee3ad1d18e93b91"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "27892abed0a7c4e9993f41ca850b643f"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5056345",
+      "areaName": "Brooklyn Heights",
+      "street": "55 Wexford Street",
+      "unit": "4D",
+      "displayUnit": "#4D",
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/building/55-wexford-street-brooklyn/4d",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CO_OP",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "CG Realty",
+      "price": 3000,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-05-29T17:02:46.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 0,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-05-29",
+      "offMarketAt": null,
+      "mediaAssetCount": 27,
+      "geoPoint": {
+       "latitude": 40.697365,
+       "longitude": -73.993385
+      },
+      "photos": [
+       {
+        "key": "58955400cf00528a3263e32f36dd5342"
+       },
+       {
+        "key": "ea4c409f79df76dd7cdd3e935b06503a"
+       },
+       {
+        "key": "62e8d21b929ec4c33423725b99392498"
+       },
+       {
+        "key": "eb2516f39d445c2bc0f22bb1b14ba490"
+       },
+       {
+        "key": "080e3bf82598c6f21aa914fb9c512eca"
+       },
+       {
+        "key": "6875a2e7f597d1697c383e8c36c071d1"
+       },
+       {
+        "key": "1c9290b6b299f61b58e072d0525490fb"
+       },
+       {
+        "key": "0bcfe1041d9729b96ceafe0de144c58b"
+       },
+       {
+        "key": "5e40e6fe14313e9757a6acb0f2f71127"
+       },
+       {
+        "key": "96d87a147911284a73eef37e204eae3d"
+       },
+       {
+        "key": "3843b6e3b209af93396eec927123cbad"
+       },
+       {
+        "key": "03ae5db0b3c77bdc328e50dbc9c9b4ba"
+       },
+       {
+        "key": "f9c1ba37351c9fa42acceb4a07b9ca38"
+       },
+       {
+        "key": "111989dd459ea96cd82bb80410f4e8fa"
+       },
+       {
+        "key": "aeda4a49b9983aa3b4f949398f2c9107"
+       },
+       {
+        "key": "e738e503c02d3f83db42af2d18ceb537"
+       },
+       {
+        "key": "ec76699f676169a24562d4f741bd7422"
+       },
+       {
+        "key": "f1697667fb91812e1c5bb331a0bfadb0"
+       },
+       {
+        "key": "e88e66fce716c1ed655a5cd9c770be20"
+       },
+       {
+        "key": "87e4a2a70621b3d6edaea3603a459f55"
+       },
+       {
+        "key": "bb46e56ebe0d19932dc45c0aa26ab2c3"
+       },
+       {
+        "key": "0a509c1480af0308b532bc9a82db4e39"
+       },
+       {
+        "key": "9a2935f2e0ed4a5b98e19fd9c25da1b2"
+       },
+       {
+        "key": "170f05b0c6a2499503adce12d5acfc77"
+       },
+       {
+        "key": "76769706e7131c71580363aa228416af"
+       },
+       {
+        "key": "e51153c7718b0184f616f39f45152986"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "58955400cf00528a3263e32f36dd5342"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5063200",
+      "areaName": "Park Slope",
+      "street": "163 Thornbury Avenue",
+      "unit": "2",
+      "displayUnit": "#2",
+      "zipCode": "11217",
+      "state": "NY",
+      "urlPath": "/building/163-thornbury-avenue-brooklyn/2",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "TWOFAMILY",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 19500,
+      "totalMonthlyPrice": null,
+      "priceDelta": -3000,
+      "priceChangedAt": "2026-07-16T21:31:55.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 5,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-07-01",
+      "offMarketAt": null,
+      "mediaAssetCount": 16,
+      "geoPoint": {
+       "latitude": 40.677017,
+       "longitude": -73.976555
+      },
+      "photos": [
+       {
+        "key": "49ccb4a1b1cf94043b1cb54030e8b698"
+       },
+       {
+        "key": "90852021c8b6eb48e463023916a87fa8"
+       },
+       {
+        "key": "a5c5c912d09b57e2b9f8045b1d66583d"
+       },
+       {
+        "key": "7ae2757a245921a66c8d3d6005de45c6"
+       },
+       {
+        "key": "4efb418f9aa11bdec7281a2ca59c2b92"
+       },
+       {
+        "key": "e7f723160bab0761ba09a2e8eadb2945"
+       },
+       {
+        "key": "b2fb6ea8406d69c7787df6a791cfe937"
+       },
+       {
+        "key": "9dd04b583b97cee501a0a26a71aa38b4"
+       },
+       {
+        "key": "905db25910a8d1230e9ea2183eced523"
+       },
+       {
+        "key": "bfdd55f7ee925e9d271a78eafee67975"
+       },
+       {
+        "key": "8782e3204253a32c4c5adbf0ee49805a"
+       },
+       {
+        "key": "e9f23dad6b17d6160d20daa8c4ad6a25"
+       },
+       {
+        "key": "d2f4ce3c404267d6ea430df47e985af6"
+       },
+       {
+        "key": "f22abb50c82c916785a5de031a754580"
+       },
+       {
+        "key": "aaa6cb9c987405cc1f5784ca247c0199"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "49ccb4a1b1cf94043b1cb54030e8b698"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5064580",
+      "areaName": "Gowanus",
+      "street": "147 Marisol Street",
+      "unit": "3",
+      "displayUnit": "#3",
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/147-marisol-street-brooklyn/3",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Trailhead Realty",
+      "price": 10000,
+      "totalMonthlyPrice": null,
+      "priceDelta": -1000,
+      "priceChangedAt": "2026-08-19T00:45:23.000Z",
+      "interestingPriceDelta": -1000,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 3,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 1619,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-01",
+      "offMarketAt": null,
+      "mediaAssetCount": 13,
+      "geoPoint": {
+       "latitude": 40.66824,
+       "longitude": -73.99257
+      },
+      "photos": [
+       {
+        "key": "5b3ccdc773d21872f49bf419d6216f3d"
+       },
+       {
+        "key": "f602e75992932dd565908dc3bd23149c"
+       },
+       {
+        "key": "da83b9c109597bed9de978bd15d0857e"
+       },
+       {
+        "key": "6245b78a27e589cb7df1c5ff003fe6eb"
+       },
+       {
+        "key": "1441352678a8103a1df3d0756018f224"
+       },
+       {
+        "key": "7bc745c16374de5c95f92512c9eb98c3"
+       },
+       {
+        "key": "9f77a4ca0580966d32af59a2b4d3527c"
+       },
+       {
+        "key": "ad95cf76e15565cd0ccc3346e4588612"
+       },
+       {
+        "key": "da7131c8edd622a98bc62ec6316faab9"
+       },
+       {
+        "key": "3513fba2a51bf1aa8f0f16f045ecbb95"
+       },
+       {
+        "key": "a4dae9511cbfa98718e1348aa2ae3b5b"
+       },
+       {
+        "key": "381f66e1bf02f42d2a7d417fc3d029d0"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "5b3ccdc773d21872f49bf419d6216f3d"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5066799",
+      "areaName": "Cobble Hill",
+      "street": "487 Aldous Street",
+      "unit": "TWNHSE",
+      "displayUnit": "#TWNHSE",
+      "zipCode": "11231",
+      "state": "NY",
+      "urlPath": "/building/487-aldous-street-brooklyn/twnhse",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "HOUSE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Meadow Property Advisors",
+      "price": 69500,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-09T01:12:10.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 5,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 2,
+      "livingAreaSize": 6271,
+      "isNewDevelopment": false,
+      "furnished": true,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "availableAt": "2026-06-22",
+      "offMarketAt": null,
+      "mediaAssetCount": 13,
+      "geoPoint": {
+       "latitude": 40.68503,
+       "longitude": -73.99867
+      },
+      "photos": [
+       {
+        "key": "3eab74bb2a5ad3ddda767933d44bc6cb"
+       },
+       {
+        "key": "4605140bc63f2d42f516bb07e09f76a0"
+       },
+       {
+        "key": "d64b1b71f2d43a1eea70d4f384390b59"
+       },
+       {
+        "key": "2e0177954931a4cc1e4fd1dd95a58ddf"
+       },
+       {
+        "key": "c419c5f22f5203241ea9b0d4755d56ff"
+       },
+       {
+        "key": "66ff3b8ea1ab24d82e6b8ac57b3a54f5"
+       },
+       {
+        "key": "1f407710e3e66a9f56d8d977665e7294"
+       },
+       {
+        "key": "7ba481748b9f420a3a71a7ad9c91a940"
+       },
+       {
+        "key": "84cfc8985fd3831f9b13c1817346cb59"
+       },
+       {
+        "key": "a1076dc8ba34870475fef48df38d644f"
+       },
+       {
+        "key": "be1bb4f96c65c2a87724d500e252d468"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "3eab74bb2a5ad3ddda767933d44bc6cb"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5077845",
+      "areaName": "Carroll Gardens",
+      "street": "577 Braemar Street",
+      "unit": "3",
+      "displayUnit": "#3",
+      "zipCode": "11231",
+      "state": "NY",
+      "urlPath": "/building/577-braemar-street-brooklyn/3",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "MIXED_USE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Waypoint Real Estate",
+      "price": 4500,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-08-11T02:35:09.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 0,
+      "fullBathroomCount": 0,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-09-01",
+      "offMarketAt": null,
+      "mediaAssetCount": 1,
+      "geoPoint": {
+       "latitude": 40.683304,
+       "longitude": -74.001335
+      },
+      "photos": [
+       {
+        "key": "bec1f4cd9ded8ef61f28f13b8e101603"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "bec1f4cd9ded8ef61f28f13b8e101603"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5078708",
+      "areaName": "Clinton Hill",
+      "street": "348 Whitlock Avenue",
+      "unit": "2",
+      "displayUnit": "#2",
+      "zipCode": "11238",
+      "state": "NY",
+      "urlPath": "/building/348-whitlock-avenue-brooklyn/2",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "THREEFAMILY",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Summit Peak NYC",
+      "price": 8350,
+      "totalMonthlyPrice": null,
+      "priceDelta": -150,
+      "priceChangedAt": "2026-07-08T14:31:43.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 3,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 1150,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-06-19",
+      "offMarketAt": null,
+      "mediaAssetCount": 13,
+      "geoPoint": {
+       "latitude": 40.688484,
+       "longitude": -73.96144
+      },
+      "photos": [
+       {
+        "key": "bbc39517e5c0f858db6802b0a359edc5"
+       },
+       {
+        "key": "442b6342f9a3c649b0b96f7c47c71424"
+       },
+       {
+        "key": "1ea53bfe68912caf16675b816d6c6ae6"
+       },
+       {
+        "key": "544d8e37bb5863fbdcbe2b7d4249577a"
+       },
+       {
+        "key": "0498671350b59ab3f93fe1e2310eff90"
+       },
+       {
+        "key": "2d4c1b719ec6ca4171b28779911bf527"
+       },
+       {
+        "key": "5b3e27d46aa0bd11016ee463fdc70749"
+       },
+       {
+        "key": "7a0aed6c06413c67c4e815befe3ebe59"
+       },
+       {
+        "key": "4f762deca559668f428e964c80402548"
+       },
+       {
+        "key": "87c5b9ec4f5950a48a9f90770e17c470"
+       },
+       {
+        "key": "fac184b1a1032847c4d465f0b5881890"
+       },
+       {
+        "key": "f646892edcd564b539a1000f435117cd"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "bbc39517e5c0f858db6802b0a359edc5"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5092091",
+      "areaName": "Brooklyn Heights",
+      "street": "56 Ambrose Street",
+      "unit": "GARDEN APT",
+      "displayUnit": "GARDEN-APT",
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/building/56-ambrose-street-brooklyn/garden-apt",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "FOURFAMILY",
+      "sourceType": "OWNER",
+      "sourceGroupLabel": "Owner",
+      "price": 7250,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-07-05T02:08:48.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-09-18",
+      "offMarketAt": null,
+      "mediaAssetCount": 10,
+      "geoPoint": {
+       "latitude": 40.693394,
+       "longitude": -73.9975
+      },
+      "photos": [
+       {
+        "key": "e6880450e85f7bcda93bf61a4eaa5ac2"
+       },
+       {
+        "key": "dd695740c0cdf7c9b4b35545fdad5694"
+       },
+       {
+        "key": "cc17a2e94df8d16e430296dad98248b4"
+       },
+       {
+        "key": "45bea646312bca7b978a643361e21ab3"
+       },
+       {
+        "key": "64449da862d35121bceff560ed76586f"
+       },
+       {
+        "key": "fa74215bc449d36c60ed7597906f8f4e"
+       },
+       {
+        "key": "bc65f498e48d06b206f5fddcab1cc5e7"
+       },
+       {
+        "key": "2000aa8bebfe9160a5fb228a1e55299c"
+       },
+       {
+        "key": "71808232f2dfdedc7c36cd003cd65773"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "e6880450e85f7bcda93bf61a4eaa5ac2"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5114623",
+      "areaName": "Park Slope",
+      "street": "161 Parkmeadow West",
+      "unit": "1L",
+      "displayUnit": "#1L",
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/161-parkmeadow-west-brooklyn/1l",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "MULTIFAMILY",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Riverside Realty Group",
+      "price": 10900,
+      "totalMonthlyPrice": null,
+      "priceDelta": -300,
+      "priceChangedAt": "2026-08-07T12:33:18.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 5,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-03",
+      "offMarketAt": null,
+      "mediaAssetCount": 14,
+      "geoPoint": {
+       "latitude": 40.663628,
+       "longitude": -73.97804
+      },
+      "photos": [
+       {
+        "key": "563cfe67ca24d3e9d3864081fa98d75f"
+       },
+       {
+        "key": "e99135820725d2dee0954a5df7f7dc11"
+       },
+       {
+        "key": "8e98978ff6b8fa534cc0b0749826ede4"
+       },
+       {
+        "key": "a68ad35adb1ebab742e1a095f780e698"
+       },
+       {
+        "key": "017930d3285839937652d55e7b7d5295"
+       },
+       {
+        "key": "94f523654334d1ae7419f5cdc8398d52"
+       },
+       {
+        "key": "0240f35f57a815995312203639c25a4e"
+       },
+       {
+        "key": "87a94a31f451a2be135f927dd0e25c58"
+       },
+       {
+        "key": "2a12e1f68a1ceb891be04556862de357"
+       },
+       {
+        "key": "53a1014fd0ec1edc9044af0b4dbed010"
+       },
+       {
+        "key": "a1f13cae3e6a6064705b0e298aeb3d60"
+       },
+       {
+        "key": "af164e9603d2db190d71b12c71fb3df9"
+       },
+       {
+        "key": "2699bda0d300868e1cf2a71b47f2a23f"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "563cfe67ca24d3e9d3864081fa98d75f"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5124681",
+      "areaName": "Park Slope",
+      "street": "369 Cedarhill Avenue",
+      "unit": "2A",
+      "displayUnit": "#2A",
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/369-cedarhill-avenue-brooklyn/2a",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "HYBRID",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "KESTREL",
+      "price": 5295,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-08-05T15:46:03.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 2,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-05",
+      "offMarketAt": null,
+      "mediaAssetCount": 3,
+      "geoPoint": {
+       "latitude": 40.665443,
+       "longitude": -73.982574
+      },
+      "photos": [
+       {
+        "key": "01a0e7d8eca9808aacf619b9fb6c4bd0"
+       },
+       {
+        "key": "c589020ad800a074b8d6cb6c0d22658e"
+       },
+       {
+        "key": "d85982e3fc49d5b068f6bd320388e50f"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "01a0e7d8eca9808aacf619b9fb6c4bd0"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5131872",
+      "areaName": "Cobble Hill",
+      "street": "311 Marlowe Street",
+      "unit": "RESIDENTIAL",
+      "displayUnit": "RESIDENTIAL",
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/building/311-marlowe-street-brooklyn/residential",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "TOWNHOUSE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Trailhead Realty",
+      "price": 25000,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-08-12T18:55:33.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 5,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 4051,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-18",
+      "offMarketAt": null,
+      "mediaAssetCount": 15,
+      "geoPoint": {
+       "latitude": 40.68562,
+       "longitude": -73.99145
+      },
+      "photos": [
+       {
+        "key": "45a4fc11e0c95657242010747eab2511"
+       },
+       {
+        "key": "2896e1e622d60780546e6f05eccff401"
+       },
+       {
+        "key": "95f9c1b7dbe4a22229991dd7403f3bc5"
+       },
+       {
+        "key": "7605f66f8efc856038d588dc54a2a420"
+       },
+       {
+        "key": "12673f5c5257fdda31ce47608b39490c"
+       },
+       {
+        "key": "9efc2e11be9b3276e3ad855d73d28f79"
+       },
+       {
+        "key": "f3bb77c6de5e1fb485a89e6036beea16"
+       },
+       {
+        "key": "cd03d20c0ede0b8bd6e519d98850c7af"
+       },
+       {
+        "key": "7d3f2eddceb9d88150e50b5ba35f238d"
+       },
+       {
+        "key": "a470e8f2f38b0c4803472110749c4fba"
+       },
+       {
+        "key": "71fda96aeec9e3003fd6103ead01404a"
+       },
+       {
+        "key": "59b358140b88591d4b0957978d7f738e"
+       },
+       {
+        "key": "2284258b1fc8fea525d5bda61a86ca21"
+       },
+       {
+        "key": "79760cc7d024ebcd0394c254bdd10cd3"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "45a4fc11e0c95657242010747eab2511"
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

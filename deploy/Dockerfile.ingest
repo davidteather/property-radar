@@ -1,0 +1,20 @@
+# Build context is the repository root: docker build -f deploy/Dockerfile.ingest .
+# The Railway "crawler" worker builds this; it drains the crawl queue and then
+# waits on a Postgres crawl_due notification (poll fallback), so agent-queued
+# requests run within moments instead of waiting for a scheduled pass.
+FROM golang:1.27-alpine AS build
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/ingest ./cmd/ingest
+
+FROM gcr.io/distroless/static-debian12:nonroot
+COPY --from=build /out/ingest /usr/local/bin/ingest
+USER nonroot:nonroot
+ENTRYPOINT ["/usr/local/bin/ingest"]
+# -proxy-mode all routes the API + site pages through residential proxies, the
+# only config where cloud crawling reaches StreetEasy's API (docs/decisions.md).
+# -watch keeps the process alive as a queue worker; distroless has no shell, so
+# the mode must live here rather than in a start command.
+CMD ["-from-targets", "-proxy-mode", "all", "-watch"]

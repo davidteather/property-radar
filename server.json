@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.davidteather/property-radar",
+  "title": "Property Radar",
+  "description": "Self-hosted taste memory for your home search: verdicts, a rubric, and listing photos over MCP.",
+  "version": "0.1.0",
+  "repository": { 
+    "url": "https://github.com/davidteather/property-radar",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/davidteather/property-radar#readme",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/davidteather/property-radar/main/internal/shared/brand/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": ["any"]
+    }
+  ]
+}

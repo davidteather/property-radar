@@ -1,0 +1,391 @@
+{
+ "data": {
+  "searchRentals": {
+   "search": {
+    "criteria": "area:304,305,306,319,320,321,322,324,326,364|status:open",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 826,
+   "pageInfo": {
+    "currentPage": 2,
+    "hasNextPage": false,
+    "hasPreviousPage": true,
+    "totalPages": 2
+   },
+   "edges": [
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5133062",
+      "areaName": "Gowanus",
+      "street": "504 Corliss Street",
+      "unit": "608",
+      "displayUnit": "#608",
+      "zipCode": "11231",
+      "state": "NY",
+      "urlPath": "/building/the-corliss-residences/608",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 6595,
+      "totalMonthlyPrice": null,
+      "priceDelta": -355,
+      "priceChangedAt": "2026-08-22T18:01:59.000Z",
+      "interestingPriceDelta": -355,
+      "noFee": false,
+      "leaseTermMonths": 16.0,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 947,
+      "isNewDevelopment": true,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-13",
+      "offMarketAt": null,
+      "mediaAssetCount": 36,
+      "geoPoint": {
+       "latitude": 40.68001,
+       "longitude": -73.98861
+      },
+      "photos": [
+       {
+        "key": "fe99aa30559b1f88bbd2f07d4dceda2f"
+       },
+       {
+        "key": "8330513ece5934ad55c3f2124242fd15"
+       },
+       {
+        "key": "d4fd005bdc3ba91d2c02a435eb79d288"
+       },
+       {
+        "key": "cd08acdcae9f80eae8a37d4bf4f61fd5"
+       },
+       {
+        "key": "20a8269c071c92393c219d74a87e0a83"
+       },
+       {
+        "key": "0b41dbd939cc37d26158e529735de28a"
+       },
+       {
+        "key": "ed90a389cb6c6e8995679aaad147a887"
+       },
+       {
+        "key": "9ff1f4d1bde8202d4654f7a89492e5ec"
+       },
+       {
+        "key": "75fa6b2233d5cac5b2219b268ffdded1"
+       },
+       {
+        "key": "a05f06ddb8fe86d083191927f208f216"
+       },
+       {
+        "key": "1b78620f10c262be0c1d3060627e7ec3"
+       },
+       {
+        "key": "65bb49e1b3439077c5d62fbd5e2c41fd"
+       },
+       {
+        "key": "63fc1725ada68ed7873b46aadd0bd982"
+       },
+       {
+        "key": "8afe47bb954c723145ff9f3c526f766b"
+       },
+       {
+        "key": "8361a143c705a13cf6815a8d4f6cee30"
+       },
+       {
+        "key": "4576c0e754ca1242ab546ac7d19c55d7"
+       },
+       {
+        "key": "df2ee719db2cd8bd8d163d9aadb937dd"
+       },
+       {
+        "key": "641e1125da9ab9ff42a37c79d1bc5f0b"
+       },
+       {
+        "key": "819f823890ff5a60ce8a0f63cb9e69db"
+       },
+       {
+        "key": "00a7b7b05c550f04010ae04bd22e9312"
+       },
+       {
+        "key": "4af344e37073f09799d246f3a9db9aeb"
+       },
+       {
+        "key": "76a8fa36be594c3e178a9ab95549b8fe"
+       },
+       {
+        "key": "60de4f4178219f9c7b0ca49ae50e9e6d"
+       },
+       {
+        "key": "72e3895c0848747fe672d6a7fa8c3a13"
+       },
+       {
+        "key": "504cfc8a6118a1a470993f86f6afc64a"
+       },
+       {
+        "key": "f105a1ed23e1412a4f774376c3c18d97"
+       },
+       {
+        "key": "18447a7af085d298d5768cf64d536460"
+       },
+       {
+        "key": "0027d260c7e4a625c8c841e32e86fe67"
+       },
+       {
+        "key": "43e817018962056f416d2d1d1d6c6113"
+       },
+       {
+        "key": "2cea2418be15050a51d44c5cb3e24271"
+       },
+       {
+        "key": "a8154c5fab81fb7c8d2bfba7bdc385d4"
+       },
+       {
+        "key": "ed1573d07e7e81097f608ca282871491"
+       },
+       {
+        "key": "970041c88471146eb87212408f4f96b0"
+       },
+       {
+        "key": "cb7499eed133767d57dc2e83ae6480b8"
+       },
+       {
+        "key": "7ac9f271bc9855302f6407ab7f1ce9c3"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "fe99aa30559b1f88bbd2f07d4dceda2f"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5133065",
+      "areaName": "Clinton Hill",
+      "street": "66 Pinehurst Street",
+      "unit": "GARDEN",
+      "displayUnit": "#GARDEN",
+      "zipCode": "11238",
+      "state": "NY",
+      "urlPath": "/building/66-pinehurst-street-brooklyn/garden",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "TWOFAMILY",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Trailhead Realty",
+      "price": 5500,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-08-13T19:34:54.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": null,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 990,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-13",
+      "offMarketAt": null,
+      "mediaAssetCount": 8,
+      "geoPoint": {
+       "latitude": 40.68379,
+       "longitude": -73.96121
+      },
+      "photos": [
+       {
+        "key": "4b4ad174b3bee42fdfed024c9e9705c0"
+       },
+       {
+        "key": "b5639d45ab97c09b6572544ecc1336d9"
+       },
+       {
+        "key": "57af73a5d6823ba73fe79398ce9cfdb3"
+       },
+       {
+        "key": "8f78a08be7f8d72e39e4411798f471a9"
+       },
+       {
+        "key": "a918020da64f8b038e4c6da4e8362761"
+       },
+       {
+        "key": "30769aaf25d3c1a72ae321aca9e93602"
+       },
+       {
+        "key": "5c07eaecece572e924d27ab54993a473"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "4b4ad174b3bee42fdfed024c9e9705c0"
+       }
+      }
+     }
+    },
+    {
+     "__typename": "OrganicRentalEdge",
+     "node": {
+      "id": "5133068",
+      "areaName": "Gowanus",
+      "street": "504 Corliss Street",
+      "unit": "708",
+      "displayUnit": "#708",
+      "zipCode": "11231",
+      "state": "NY",
+      "urlPath": "/building/the-corliss-residences/708",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 6970,
+      "totalMonthlyPrice": null,
+      "priceDelta": null,
+      "priceChangedAt": "2026-08-13T19:38:41.000Z",
+      "interestingPriceDelta": null,
+      "noFee": false,
+      "leaseTermMonths": 16.0,
+      "bedroomCount": 2,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 947,
+      "isNewDevelopment": true,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "availableAt": "2026-08-13",
+      "offMarketAt": null,
+      "mediaAssetCount": 36,
+      "geoPoint": {
+       "latitude": 40.68001,
+       "longitude": -73.98861
+      },
+      "photos": [
+       {
+        "key": "8330513ece5934ad55c3f2124242fd15"
+       },
+       {
+        "key": "d4fd005bdc3ba91d2c02a435eb79d288"
+       },
+       {
+        "key": "fe99aa30559b1f88bbd2f07d4dceda2f"
+       },
+       {
+        "key": "20a8269c071c92393c219d74a87e0a83"
+       },
+       {
+        "key": "ed90a389cb6c6e8995679aaad147a887"
+       },
+       {
+        "key": "0b41dbd939cc37d26158e529735de28a"
+       },
+       {
+        "key": "cd08acdcae9f80eae8a37d4bf4f61fd5"
+       },
+       {
+        "key": "7ac9f271bc9855302f6407ab7f1ce9c3"
+       },
+       {
+        "key": "9ff1f4d1bde8202d4654f7a89492e5ec"
+       },
+       {
+        "key": "75fa6b2233d5cac5b2219b268ffdded1"
+       },
+       {
+        "key": "a05f06ddb8fe86d083191927f208f216"
+       },
+       {
+        "key": "1b78620f10c262be0c1d3060627e7ec3"
+       },
+       {
+        "key": "65bb49e1b3439077c5d62fbd5e2c41fd"
+       },
+       {
+        "key": "63fc1725ada68ed7873b46aadd0bd982"
+       },
+       {
+        "key": "8afe47bb954c723145ff9f3c526f766b"
+       },
+       {
+        "key": "8361a143c705a13cf6815a8d4f6cee30"
+       },
+       {
+        "key": "4576c0e754ca1242ab546ac7d19c55d7"
+       },
+       {
+        "key": "df2ee719db2cd8bd8d163d9aadb937dd"
+       },
+       {
+        "key": "641e1125da9ab9ff42a37c79d1bc5f0b"
+       },
+       {
+        "key": "819f823890ff5a60ce8a0f63cb9e69db"
+       },
+       {
+        "key": "00a7b7b05c550f04010ae04bd22e9312"
+       },
+       {
+        "key": "4af344e37073f09799d246f3a9db9aeb"
+       },
+       {
+        "key": "76a8fa36be594c3e178a9ab95549b8fe"
+       },
+       {
+        "key": "60de4f4178219f9c7b0ca49ae50e9e6d"
+       },
+       {
+        "key": "72e3895c0848747fe672d6a7fa8c3a13"
+       },
+       {
+        "key": "504cfc8a6118a1a470993f86f6afc64a"
+       },
+       {
+        "key": "f105a1ed23e1412a4f774376c3c18d97"
+       },
+       {
+        "key": "18447a7af085d298d5768cf64d536460"
+       },
+       {
+        "key": "0027d260c7e4a625c8c841e32e86fe67"
+       },
+       {
+        "key": "43e817018962056f416d2d1d1d6c6113"
+       },
+       {
+        "key": "2cea2418be15050a51d44c5cb3e24271"
+       },
+       {
+        "key": "a8154c5fab81fb7c8d2bfba7bdc385d4"
+       },
+       {
+        "key": "ed1573d07e7e81097f608ca282871491"
+       },
+       {
+        "key": "970041c88471146eb87212408f4f96b0"
+       },
+       {
+        "key": "cb7499eed133767d57dc2e83ae6480b8"
+       }
+      ],
+      "leadMedia": {
+       "photo": {
+        "key": "8330513ece5934ad55c3f2124242fd15"
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

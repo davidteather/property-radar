@@ -1,0 +1,21 @@
+# Applies to every Dockerfile built with the repo root as context (compose, Railway).
+.git
+.github
+.railway/node_modules
+_private
+bin
+data
+# Root-level `go build` outputs (never COPY 17 MB binaries into the build context).
+/ingest
+/mcpd
+/lst
+/console
+/api
+docs
+testdata
+deploy/thumbs
+*.env
+.env*
+.DS_Store
+.idea
+.vscode

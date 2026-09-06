@@ -1,0 +1,478 @@
+{
+ "availableAt": "2026-05-29",
+ "buildingId": "49212",
+ "createdAt": "2026-05-29T12:50:44.000-04:00",
+ "daysOnMarket": 86,
+ "description": "Great sunny renovated studio in a prime, well-connected location. The apartment features a renovated kitchen and bath with new cabinetry, freshly refinished hardwood floors, and a separate hallway with two closets adjacent to the bathroom. The building offers an elevator, on-site laundry, and shared outdoor space, just steps from trains, shops, and the waterfront. No pets or smoking. Available for immediate occupancy.",
+ "id": "5056345",
+ "interestingChangeAt": "2026-08-19T13:02:37.000-04:00",
+ "isPremiumHdpEnabled": false,
+ "latestListing": {
+  "id": "5056345",
+  "pricing": {
+   "price": 3000
+  },
+  "status": "ACTIVE"
+ },
+ "legacy": {
+  "license": {
+   "address": {
+    "city": "Brooklyn",
+    "displayUnit": "1b",
+    "state": "NY",
+    "street": "88 Willowbank Court",
+    "zipCode": "11201"
+   },
+   "businessName": "Cg Realty",
+   "licenseType": "Tradename Broker"
+  },
+  "sourceGroupLabel": "CG Realty"
+ },
+ "listingAddress": "55 Wexford Street #4D",
+ "listingSource": {
+  "sourceListingId": null,
+  "sourceType": "PARTNER"
+ },
+ "media": {
+  "floorPlans": [
+   {
+    "key": "6316c1899639b7ebe5fa5e76f282d795"
+   }
+  ],
+  "photos": [
+   {
+    "key": "58955400cf00528a3263e32f36dd5342"
+   },
+   {
+    "key": "ea4c409f79df76dd7cdd3e935b06503a"
+   },
+   {
+    "key": "62e8d21b929ec4c33423725b99392498"
+   },
+   {
+    "key": "eb2516f39d445c2bc0f22bb1b14ba490"
+   },
+   {
+    "key": "080e3bf82598c6f21aa914fb9c512eca"
+   },
+   {
+    "key": "6875a2e7f597d1697c383e8c36c071d1"
+   },
+   {
+    "key": "1c9290b6b299f61b58e072d0525490fb"
+   },
+   {
+    "key": "0bcfe1041d9729b96ceafe0de144c58b"
+   },
+   {
+    "key": "5e40e6fe14313e9757a6acb0f2f71127"
+   },
+   {
+    "key": "96d87a147911284a73eef37e204eae3d"
+   },
+   {
+    "key": "3843b6e3b209af93396eec927123cbad"
+   },
+   {
+    "key": "03ae5db0b3c77bdc328e50dbc9c9b4ba"
+   },
+   {
+    "key": "f9c1ba37351c9fa42acceb4a07b9ca38"
+   },
+   {
+    "key": "111989dd459ea96cd82bb80410f4e8fa"
+   },
+   {
+    "key": "aeda4a49b9983aa3b4f949398f2c9107"
+   },
+   {
+    "key": "e738e503c02d3f83db42af2d18ceb537"
+   },
+   {
+    "key": "ec76699f676169a24562d4f741bd7422"
+   },
+   {
+    "key": "f1697667fb91812e1c5bb331a0bfadb0"
+   },
+   {
+    "key": "e88e66fce716c1ed655a5cd9c770be20"
+   },
+   {
+    "key": "87e4a2a70621b3d6edaea3603a459f55"
+   },
+   {
+    "key": "bb46e56ebe0d19932dc45c0aa26ab2c3"
+   },
+   {
+    "key": "0a509c1480af0308b532bc9a82db4e39"
+   },
+   {
+    "key": "9a2935f2e0ed4a5b98e19fd9c25da1b2"
+   },
+   {
+    "key": "170f05b0c6a2499503adce12d5acfc77"
+   },
+   {
+    "key": "76769706e7131c71580363aa228416af"
+   },
+   {
+    "key": "e51153c7718b0184f616f39f45152986"
+   }
+  ],
+  "tour3dUrl": null,
+  "videos": []
+ },
+ "mlsNumber": null,
+ "offMarketAt": null,
+ "onMarketAt": "2026-05-29",
+ "pricing": {
+  "additionalFees": [],
+  "dueUpFront": null,
+  "furnishedRent": null,
+  "interestingPriceDelta": null,
+  "leaseTermMonths": null,
+  "monthlyFees": [],
+  "monthsFree": null,
+  "moveInFees": [
+   {
+    "calculation": {
+     "calculationType": "FLAT_FEE",
+     "feeQuantifier": 250,
+     "maxQuantifier": null
+    },
+    "refundability": {
+     "type": "NON_REFUNDABLE"
+    },
+    "requirement": "REQUIRED",
+    "schedule": {
+     "occurrenceType": "ONE_TIME",
+     "timing": "APPLICATION_SUBMISSION"
+    },
+    "typeLabel": "Move-in fee"
+   },
+   {
+    "calculation": {
+     "calculationType": "FLAT_FEE",
+     "feeQuantifier": 400,
+     "maxQuantifier": null
+    },
+    "refundability": {
+     "type": "NON_REFUNDABLE"
+    },
+    "requirement": "REQUIRED",
+    "schedule": {
+     "occurrenceType": "ONE_TIME",
+     "timing": "APPLICATION_SUBMISSION"
+    },
+    "typeLabel": "Application fee"
+   },
+   {
+    "calculation": {
+     "calculationType": "FLAT_FEE",
+     "feeQuantifier": 3000,
+     "maxQuantifier": null
+    },
+    "refundability": {
+     "type": "REFUNDABLE"
+    },
+    "requirement": "REQUIRED",
+    "schedule": {
+     "occurrenceType": "ONE_TIME",
+     "timing": "MOVE_IN"
+    },
+    "typeLabel": "Security deposit"
+   }
+  ],
+  "netEffectiveRent": null,
+  "price": 3000,
+  "priceChanges": [
+   {
+    "changedAt": "2026-05-29T13:02:46.000-04:00",
+    "price": 3000
+   }
+  ],
+  "priceDelta": null,
+  "rentedPrice": null,
+  "securityDeposit": null,
+  "totalMonthlyPrice": null
+ },
+ "propertyDetails": {
+  "address": {
+   "city": "BROOKLYN",
+   "displayUnit": "#4D",
+   "state": "NY",
+   "street": "55 Wexford Street",
+   "zipCode": "11201"
+  },
+  "amenities": {
+   "doormanTypes": [],
+   "list": [
+    "ELEVATOR",
+    "FIOS_AVAILABLE",
+    "LAUNDRY"
+   ],
+   "parkingTypes": [],
+   "sharedOutdoorSpaceTypes": [],
+   "storageSpaceTypes": []
+  },
+  "bedroomCount": 0,
+  "features": {
+   "fireplaceTypes": [],
+   "list": [
+    "HARDWOOD_FLOORS"
+   ],
+   "privateOutdoorSpaceTypes": [],
+   "views": []
+  },
+  "fullBathroomCount": 1,
+  "halfBathroomCount": 0,
+  "livingAreaSize": null,
+  "lotAreaSize": 0,
+  "roomCount": 1
+ },
+ "propertyHistory": [
+  {
+   "listingId": "5056345",
+   "photos": [
+    {
+     "key": "58955400cf00528a3263e32f36dd5342"
+    },
+    {
+     "key": "ea4c409f79df76dd7cdd3e935b06503a"
+    },
+    {
+     "key": "62e8d21b929ec4c33423725b99392498"
+    },
+    {
+     "key": "eb2516f39d445c2bc0f22bb1b14ba490"
+    },
+    {
+     "key": "080e3bf82598c6f21aa914fb9c512eca"
+    },
+    {
+     "key": "6875a2e7f597d1697c383e8c36c071d1"
+    },
+    {
+     "key": "1c9290b6b299f61b58e072d0525490fb"
+    },
+    {
+     "key": "0bcfe1041d9729b96ceafe0de144c58b"
+    },
+    {
+     "key": "5e40e6fe14313e9757a6acb0f2f71127"
+    },
+    {
+     "key": "96d87a147911284a73eef37e204eae3d"
+    },
+    {
+     "key": "3843b6e3b209af93396eec927123cbad"
+    },
+    {
+     "key": "03ae5db0b3c77bdc328e50dbc9c9b4ba"
+    },
+    {
+     "key": "f9c1ba37351c9fa42acceb4a07b9ca38"
+    },
+    {
+     "key": "111989dd459ea96cd82bb80410f4e8fa"
+    },
+    {
+     "key": "aeda4a49b9983aa3b4f949398f2c9107"
+    },
+    {
+     "key": "e738e503c02d3f83db42af2d18ceb537"
+    },
+    {
+     "key": "ec76699f676169a24562d4f741bd7422"
+    },
+    {
+     "key": "f1697667fb91812e1c5bb331a0bfadb0"
+    },
+    {
+     "key": "e88e66fce716c1ed655a5cd9c770be20"
+    },
+    {
+     "key": "87e4a2a70621b3d6edaea3603a459f55"
+    },
+    {
+     "key": "bb46e56ebe0d19932dc45c0aa26ab2c3"
+    },
+    {
+     "key": "0a509c1480af0308b532bc9a82db4e39"
+    },
+    {
+     "key": "9a2935f2e0ed4a5b98e19fd9c25da1b2"
+    },
+    {
+     "key": "170f05b0c6a2499503adce12d5acfc77"
+    },
+    {
+     "key": "76769706e7131c71580363aa228416af"
+    },
+    {
+     "key": "e51153c7718b0184f616f39f45152986"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2026-05-29",
+     "price": 3000,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "CG Realty"
+  },
+  {
+   "listingId": "4624156",
+   "photos": [],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2025-05-09",
+     "price": 2600,
+     "status": "RENTED"
+    },
+    {
+     "date": "2025-05-01",
+     "price": 2600,
+     "pricePercentChange": -7.142857074737549
+    },
+    {
+     "date": "2025-03-13",
+     "price": 2800,
+     "pricePercentChange": -3.4482758045196533
+    },
+    {
+     "date": "2025-02-28",
+     "price": 2900,
+     "pricePercentChange": 3.5714285373687744
+    },
+    {
+     "date": "2025-02-28",
+     "price": 2800,
+     "status": "ACTIVE"
+    },
+    {
+     "date": "2025-01-29",
+     "price": 2800,
+     "status": "TEMPORARILY_OFF_MARKET"
+    },
+    {
+     "date": "2025-01-27",
+     "price": 2800,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "CG Realty"
+  },
+  {
+   "listingId": "3098034",
+   "photos": [
+    {
+     "key": "9fd0899d42c526440a0bf175d3f7859d"
+    },
+    {
+     "key": "9271a29c6f8eac340bc15ab287118281"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2020-10-14",
+     "price": 1800,
+     "status": "RENTED"
+    },
+    {
+     "date": "2020-09-25",
+     "price": 1800,
+     "status": "TEMPORARILY_OFF_MARKET"
+    },
+    {
+     "date": "2020-09-18",
+     "price": 1800,
+     "pricePercentChange": -2.702702760696411
+    },
+    {
+     "date": "2020-09-18",
+     "price": 1850,
+     "pricePercentChange": -2.6315789222717285
+    },
+    {
+     "date": "2020-09-08",
+     "price": 1900,
+     "pricePercentChange": -2.5641026496887207
+    },
+    {
+     "date": "2020-08-11",
+     "price": 1950,
+     "pricePercentChange": -2.5
+    },
+    {
+     "date": "2020-06-28",
+     "price": 2000,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "CG Realty"
+  },
+  {
+   "listingId": "962080",
+   "photos": [
+    {
+     "key": "58f7afb2874d9f319402f25b6d9da2cc"
+    },
+    {
+     "key": "afc7d58722273035b45015ba1d98ef4b"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2012-11-23",
+     "price": 1995,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2012-11-20",
+     "price": 1995,
+     "pricePercentChange": -2.682926893234253
+    },
+    {
+     "date": "2012-11-18",
+     "price": 2050,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Anchor Lane Property Management"
+  }
+ ],
+ "recentListingsPriceStats": {
+  "bedroomCount": 0,
+  "rentalPriceStats": {
+   "maxPrice": 10000,
+   "medianPrice": 3400,
+   "minPrice": 2100,
+   "numListings": 47
+  },
+  "salePriceStats": {
+   "maxPrice": 785000,
+   "medianPrice": 450000,
+   "minPrice": 300000,
+   "numListings": 24
+  }
+ },
+ "saleType": null,
+ "signatureMediaGallery": null,
+ "slug": "4d",
+ "status": "ACTIVE",
+ "statusChanges": [
+  {
+   "changedAt": "2026-05-29T12:50:44.000-04:00",
+   "status": "DRAFT"
+  },
+  {
+   "changedAt": "2026-05-29T13:02:47.000-04:00",
+   "status": "ACTIVE"
+  }
+ ],
+ "upcomingOpenHouses": [],
+ "updatedAt": "2026-08-23T14:00:07.000-04:00",
+ "urlPath": "/building/55-wexford-street-brooklyn/4d"
+}

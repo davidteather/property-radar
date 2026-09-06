@@ -1,0 +1,32 @@
+{{template "head" .}}{{template "nav" .}}
+<main><div class="wrap">
+  <h1>Verdicts &amp; rubric</h1>
+  <p class="sub">What the agent has learned about your taste — the summary it wrote and every listing you've rated.</p>
+
+  <div class="card">
+    <div class="row" style="align-items:center">
+      <h2 style="margin:0">Taste rubric</h2>
+      {{if .Rated.RubricStale}}<span class="badge warn">stale</span>{{else if .Rated.Rubric}}<span class="badge good">fresh</span>{{else}}<span class="badge">none</span>{{end}}
+    </div>
+    {{if .Rated.Rubric}}
+    <p style="white-space:pre-wrap;margin:.6rem 0 0;max-width:72ch">{{.Rated.Rubric.Content}}</p>
+    <div class="muted" style="font-size:.78rem;margin-top:.6rem">written {{date .Rated.Rubric.CreatedAt}}{{if .Rated.RubricStale}} &middot; new verdicts since; the agent will rewrite it{{end}}</div>
+    {{else}}<p class="muted" style="margin:.5rem 0 0">No rubric yet — the agent writes one from your verdicts as they accumulate.</p>{{end}}
+  </div>
+
+  <h2 class="sectiongap">Rated listings <span class="muted" style="font-weight:400;font-size:.9rem">({{.Rated.Count}})</span></h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Address</th><th>Verdict</th><th>Note</th><th>When</th></tr></thead>
+      <tbody>
+        {{range .Rated.Rated}}<tr>
+          <td><a href="/listings/{{.Listing.ID}}">{{.Listing.Address}}</a>{{if gt (len .History) 1}} <span class="muted" style="font-size:.72rem">({{len .History}} verdicts)</span>{{end}}</td>
+          <td>{{template "verdictBadge" .Verdict}}</td>
+          <td class="muted" style="max-width:34rem">{{if .Note}}{{.Note}}{{else}}&mdash;{{end}}</td>
+          <td class="muted">{{if .History}}{{date (index .History 0).CreatedAt}}{{end}}</td>
+        </tr>{{else}}<tr><td colspan="4" class="muted" style="text-align:center;padding:1.4rem">No verdicts yet. Rate listings in a conversation and they'll show here.</td></tr>{{end}}
+      </tbody>
+    </table>
+  </div>
+</div></main>
+{{template "foot" .}}

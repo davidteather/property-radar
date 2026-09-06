@@ -1,0 +1,281 @@
+{
+ "availableAt": "2008-09-01",
+ "buildingId": "49927",
+ "createdAt": "2006-04-21T01:46:33.000-04:00",
+ "daysOnMarket": 18,
+ "description": "Great studio in a prime, full-service building. Well-kept apartment with an elevator, on-site laundry, and easy access to transit and neighborhood shops. Call today for a showing.",
+ "id": "9140",
+ "interestingChangeAt": "2008-09-05T10:14:43.000-04:00",
+ "isPremiumHdpEnabled": false,
+ "latestListing": {
+  "id": "3837931",
+  "pricing": {
+   "price": 2300
+  },
+  "status": "RENTED"
+ },
+ "legacy": {
+  "license": {
+   "address": {
+    "city": "New York",
+    "displayUnit": null,
+    "state": "NY",
+    "street": "620 Corporate Plaza",
+    "zipCode": "10022"
+   },
+   "businessName": "Parkline Properties Group",
+   "licenseType": "Limited Liability Broker"
+  },
+  "sourceGroupLabel": "Parkline Properties"
+ },
+ "listingAddress": "90 Sterling Street #6G",
+ "listingSource": {
+  "sourceListingId": "1372937",
+  "sourceType": "FEED"
+ },
+ "media": {
+  "floorPlans": [
+   {
+    "key": "0dd9f563f005dd0034bae693bb277db2"
+   }
+  ],
+  "photos": [],
+  "tour3dUrl": null,
+  "videos": []
+ },
+ "mlsNumber": "48623",
+ "offMarketAt": "2006-05-09",
+ "onMarketAt": "2006-04-21",
+ "pricing": {
+  "additionalFees": [],
+  "dueUpFront": null,
+  "furnishedRent": null,
+  "interestingPriceDelta": null,
+  "leaseTermMonths": null,
+  "monthlyFees": [],
+  "monthsFree": null,
+  "moveInFees": [],
+  "netEffectiveRent": null,
+  "price": 1500,
+  "priceChanges": [
+   {
+    "changedAt": "2006-04-21T01:46:33.000-04:00",
+    "price": 1400
+   },
+   {
+    "changedAt": "2008-09-05T10:14:44.000-04:00",
+    "price": 1500
+   }
+  ],
+  "priceDelta": 100,
+  "rentedPrice": null,
+  "securityDeposit": null,
+  "totalMonthlyPrice": null
+ },
+ "propertyDetails": {
+  "address": {
+   "city": "BROOKLYN",
+   "displayUnit": "#6G",
+   "state": "NY",
+   "street": "90 Sterling Street",
+   "zipCode": "11201"
+  },
+  "amenities": {
+   "doormanTypes": [],
+   "list": [
+    "ELEVATOR",
+    "FIOS_AVAILABLE",
+    "LAUNDRY"
+   ],
+   "parkingTypes": [],
+   "sharedOutdoorSpaceTypes": [],
+   "storageSpaceTypes": []
+  },
+  "bedroomCount": 0,
+  "features": null,
+  "fullBathroomCount": 1,
+  "halfBathroomCount": 0,
+  "livingAreaSize": null,
+  "lotAreaSize": 0,
+  "roomCount": 2
+ },
+ "propertyHistory": [
+  {
+   "listingId": "3837931",
+   "photos": [
+    {
+     "key": "2e5ac779a1498f398f59e026d666d34c"
+    },
+    {
+     "key": "3a89d04d97b5a84d7380aee925f92ced"
+    },
+    {
+     "key": "5c2e6db53a41e1e24d52fe900d47e4ec"
+    },
+    {
+     "key": "d1a4aa4543b955d89f3d0369ae7f2266"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2022-05-13",
+     "price": 2300,
+     "status": "RENTED"
+    },
+    {
+     "date": "2022-05-07",
+     "price": 2300,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Parkline Properties"
+  },
+  {
+   "listingId": "1998559",
+   "photos": [
+    {
+     "key": "05b1ca32ce0da064d84e3a72eb916345"
+    },
+    {
+     "key": "3a06516b278ea9484a8061bf70b1d74a"
+    },
+    {
+     "key": "b9d1b6a208f50b416e29f390d8cbe8aa"
+    },
+    {
+     "key": "cec064dbd77ad01a7cdeed198fbb3fb4"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2017-02-22",
+     "price": 1895,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2017-02-13",
+     "price": 1895,
+     "pricePercentChange": -5.012531280517578
+    },
+    {
+     "date": "2017-02-01",
+     "price": 1995,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Parkline Properties"
+  },
+  {
+   "listingId": "961560",
+   "photos": [
+    {
+     "key": "1c0c422a62d1ffad3829d4f319d30347"
+    },
+    {
+     "key": "cad7ceaa6539e4ecf147ffb9825905cb"
+    },
+    {
+     "key": "f73e5ba18e45925f6ac993c0f6c9b0bd"
+    },
+    {
+     "key": "2082c3eb51090e3f274b0019908f9a76"
+    }
+   ],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2012-11-20",
+     "price": 1600,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2012-11-16",
+     "price": 1600,
+     "pricePercentChange": -5.604719638824463
+    },
+    {
+     "date": "2012-11-16",
+     "price": 1695,
+     "pricePercentChange": 0
+    },
+    {
+     "date": "2012-11-14",
+     "price": 1695,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Parkline Properties"
+  },
+  {
+   "listingId": "9140",
+   "photos": [],
+   "rentalEventsOfInterest": [
+    {
+     "date": "2008-09-05",
+     "price": 1500,
+     "pricePercentChange": 7.142857074737549
+    },
+    {
+     "date": "2008-09-05",
+     "price": 1500,
+     "status": "RENTED"
+    },
+    {
+     "date": "2006-05-09",
+     "price": 1400,
+     "status": "NO_LONGER_AVAILABLE"
+    },
+    {
+     "date": "2006-05-09",
+     "price": 1400,
+     "status": "IN_CONTRACT"
+    },
+    {
+     "date": "2006-04-21",
+     "price": 1400,
+     "status": "ACTIVE"
+    }
+   ],
+   "sourceGroupLabel": "Parkline Properties"
+  }
+ ],
+ "recentListingsPriceStats": {
+  "bedroomCount": 0,
+  "rentalPriceStats": {
+   "maxPrice": 10000,
+   "medianPrice": 3400,
+   "minPrice": 2100,
+   "numListings": 47
+  },
+  "salePriceStats": {
+   "maxPrice": 785000,
+   "medianPrice": 450000,
+   "minPrice": 300000,
+   "numListings": 24
+  }
+ },
+ "saleType": null,
+ "signatureMediaGallery": null,
+ "slug": "6g",
+ "status": "RENTED",
+ "statusChanges": [
+  {
+   "changedAt": "2006-04-21T01:46:33.000-04:00",
+   "status": "ACTIVE"
+  },
+  {
+   "changedAt": "2006-05-09T00:00:00.000-04:00",
+   "status": "IN_CONTRACT"
+  },
+  {
+   "changedAt": "2006-05-09T00:00:00.000-04:00",
+   "status": "NO_LONGER_AVAILABLE"
+  },
+  {
+   "changedAt": "2008-09-05T10:14:44.000-04:00",
+   "status": "RENTED"
+  }
+ ],
+ "upcomingOpenHouses": [],
+ "updatedAt": "2016-11-16T16:10:59.000-05:00",
+ "urlPath": "/rental/9140"
+}

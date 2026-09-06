@@ -1,0 +1,21 @@
+template: testify
+
+formatter: goimports
+force-file-write: true
+
+dir: '{{.InterfaceDir}}/mocks'
+filename: mocks.go
+pkgname: mocks
+
+packages:
+  github.com/davidteather/property-radar/internal/ingest:
+    interfaces:
+      Source:
+      Store:
+      TargetStore:
+      PhotoCacher:
+      PhotoStore:
+  github.com/davidteather/property-radar/internal/listings:
+    interfaces:
+      Store:
+      PhotoStore:

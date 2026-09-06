@@ -1,0 +1,1213 @@
+{
+ "data": {
+  "searchSales": {
+   "search": {
+    "criteria": "area:304,305,306,319,320,321,322,324,326,364|status:open",
+    "searchId": "00000000-0000-4000-8000-000000000000"
+   },
+   "totalCount": 320,
+   "pageInfo": {
+    "currentPage": 1,
+    "hasNextPage": false,
+    "hasPreviousPage": false,
+    "totalPages": 1
+   },
+   "edges": [
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1644015",
+      "areaName": "Brooklyn Heights",
+      "street": "175 Harborline Street",
+      "unit": "1216",
+      "displayUnit": "#1216",
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/building/harborline-commons/1216",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CONDO",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Beacon Vale Realty",
+      "price": 14495000,
+      "soldPrice": 0,
+      "priceDelta": -500000,
+      "priceChangedAt": "2025-04-25T15:39:30.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 7568,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 12484,
+      "bedroomCount": 6,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 2,
+      "livingAreaSize": 8500,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-10T14:43:24.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 67,
+      "geoPoint": {
+       "latitude": 40.6935,
+       "longitude": -74.0002
+      },
+      "photos": [
+       {
+        "key": "0c8009f9a90a51a3997dff37f2e13416"
+       },
+       {
+        "key": "48089ba554e6c4173cb754209d17d2b2"
+       },
+       {
+        "key": "4a1cd3a20dd5cce3e43348e0d60346a9"
+       },
+       {
+        "key": "bf7b697e4b96ee7ffc0e0e1573da6995"
+       },
+       {
+        "key": "9cce836f7a40e995f15c058648d68bb3"
+       },
+       {
+        "key": "098230949da1cfd01020c2c32b492ca1"
+       },
+       {
+        "key": "bf1225ed67ad29757bf8243defa53519"
+       },
+       {
+        "key": "96b4c5a00e1cbea6018008b0cae4ec4c"
+       },
+       {
+        "key": "e208b9c5785723905ceb4d80041fe363"
+       },
+       {
+        "key": "678d41c916760f7bb738f92adee5266d"
+       },
+       {
+        "key": "e8dc02fe2995e03082373a6b18029849"
+       },
+       {
+        "key": "d1a453d65c11485612e82323aabc3343"
+       },
+       {
+        "key": "0b342e676e4566bc7ed0112104c6fa60"
+       },
+       {
+        "key": "cb886917e6e981df2b540d70017a5c3b"
+       },
+       {
+        "key": "905edcce26efaaec5234314183b89ac3"
+       },
+       {
+        "key": "a7ef1a760c2a7e0b4a9a3af321a76a01"
+       },
+       {
+        "key": "7508b5dcde095ef97fe0c61093ab3a5e"
+       },
+       {
+        "key": "f03a3cd2ad2da7835123935664a41b54"
+       },
+       {
+        "key": "96ebb7a201297f51935c749955019a4d"
+       },
+       {
+        "key": "c6d1affe637114603ccff80c997e94d8"
+       },
+       {
+        "key": "dd19cb558d14decee1bad1f5ffe2dc86"
+       },
+       {
+        "key": "b45a95e89037b5f194aa0e982b2ce870"
+       },
+       {
+        "key": "6cfbe108161ee47435335034d69c1084"
+       },
+       {
+        "key": "99b7bff20c458fdf9f84c16fc8dfa4a1"
+       },
+       {
+        "key": "6c95a04daa66eb7db38e8fd9460a26f8"
+       },
+       {
+        "key": "295df0f18e43490f2bd21f5d13a5b050"
+       },
+       {
+        "key": "f26d0f553f7b42998b708d6e9c0d20e0"
+       },
+       {
+        "key": "55c31e2008a1afeee2407ebeff853dd3"
+       },
+       {
+        "key": "a3c850710c72e956a368be1f9fb6e22d"
+       },
+       {
+        "key": "8b531173cc7486ad6ad74b26d6beb661"
+       },
+       {
+        "key": "51e87a705a98de90450675bac5c82f86"
+       },
+       {
+        "key": "d7ccfdc038629b453e5c7a0aeb365456"
+       },
+       {
+        "key": "0cec98f6f26b11ea226075fa507c6acd"
+       },
+       {
+        "key": "5eb107d020665c01e3d02caf3133a632"
+       },
+       {
+        "key": "35c583a46b75dd2d7fd133a9a7103937"
+       },
+       {
+        "key": "27fc861641ce0f0eb48b0cab3269feb0"
+       },
+       {
+        "key": "0d17545cfc1f085e684c15adccc18fdc"
+       },
+       {
+        "key": "c03cda6ad2e4c2370db762f382a6dd0b"
+       },
+       {
+        "key": "985b2a927a8dc01ff6d85984a9d608d3"
+       },
+       {
+        "key": "937595e1dae00442e8ef83bb35fd7405"
+       },
+       {
+        "key": "7353b9feffdcb3196ad76ff3e8091a2d"
+       },
+       {
+        "key": "9f214c175cc8d441e964516a0f024f8e"
+       },
+       {
+        "key": "7659a3f384fe8aa1d2c8ca345933782e"
+       },
+       {
+        "key": "e34bccde2c169d451a084a5725f8933c"
+       },
+       {
+        "key": "c1335bc19aa1791eeadf32c28d077692"
+       },
+       {
+        "key": "9f42c10ecca3faadc5c00156565a8211"
+       },
+       {
+        "key": "b34902786a8c381062f0113a3bc7043d"
+       },
+       {
+        "key": "819a964493f684aa175015213030b662"
+       },
+       {
+        "key": "9d2a6642a8d37c38d5befcf4ddfd43fe"
+       },
+       {
+        "key": "3367008ea8eba0d0d25b95d47a41e79e"
+       },
+       {
+        "key": "1738b7adb306edd8bd2cd8efe6b4634a"
+       },
+       {
+        "key": "9fce992333acd71d9afa7eec080ee37c"
+       },
+       {
+        "key": "54b31807129723836a51a637d0735be1"
+       },
+       {
+        "key": "f67c94654880420b74658b02dd640255"
+       },
+       {
+        "key": "8b6ba8bb9770eccf8afeb0324a3ea445"
+       },
+       {
+        "key": "87ce2cf55fb4a288ae99d5a8054980df"
+       },
+       {
+        "key": "b214c73d047d8c2dadbabbdb0cc18987"
+       },
+       {
+        "key": "906d8411cee894c0106f1f273132854c"
+       },
+       {
+        "key": "33ebf8854944f04aa382cf97138f36b6"
+       },
+       {
+        "key": "297a1c146e699d8fbe361e82aaebc8c0"
+       },
+       {
+        "key": "52ca290d63ed7949ef91f00c786ab55b"
+       },
+       {
+        "key": "2d6c06cc05edc1cc44248c65b59e437d"
+       },
+       {
+        "key": "a2b54f69fb1c6f53afa10e5624dd780e"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1744990",
+      "areaName": "Clinton Hill",
+      "street": "470 Elmcrest Avenue",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11205",
+      "state": "NY",
+      "urlPath": "/building/470-elmcrest-avenue-brooklyn/sale/1744990",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "MIXED_USE",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Hartwell Residential",
+      "price": 2200000,
+      "soldPrice": 0,
+      "priceDelta": -295000,
+      "priceChangedAt": "2025-03-06T20:11:13.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 436,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": null,
+      "bedroomCount": 4,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-10T16:46:08.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 2,
+      "geoPoint": {
+       "latitude": 40.693195,
+       "longitude": -73.96645
+      },
+      "photos": [
+       {
+        "key": "f3014c3d25322f775b63b009fabb3428"
+       },
+       {
+        "key": "a07ced6c4327dce7ff04680d12f31e69"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1766217",
+      "areaName": "Park Slope",
+      "street": "232 Kestrel Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/232-kestrel-street-brooklyn/sale/1766217",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "HOUSE",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Cadence Real Estate LLC",
+      "price": 2379000,
+      "soldPrice": 0,
+      "priceDelta": -119000,
+      "priceChangedAt": "2025-07-01T18:21:40.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 405,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 4,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 2550,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-17T16:11:14.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 15,
+      "geoPoint": {
+       "latitude": 40.668045,
+       "longitude": -73.98972
+      },
+      "photos": [
+       {
+        "key": "435dee208ef2167fdd4647b3df67741b"
+       },
+       {
+        "key": "60eec37d30a5aa6669941a459a634800"
+       },
+       {
+        "key": "b15a23027dcd2a5dee040ea226580e5a"
+       },
+       {
+        "key": "8037c1528c7a250d08e84540c4c1285f"
+       },
+       {
+        "key": "2f2fde5e3fe625bff12480b9122e55ff"
+       },
+       {
+        "key": "182e43aa20afa6b79d2a15f2a4bff6bd"
+       },
+       {
+        "key": "1e494177bd8b372c5d784b3c22441f12"
+       },
+       {
+        "key": "5f41aea5f25f5f83ba5398b238290573"
+       },
+       {
+        "key": "5e9490368bcb9b0e95341ae7f4cb4a97"
+       },
+       {
+        "key": "d36fd69547821640b2d73489e2fac379"
+       },
+       {
+        "key": "177a3c011dc420cca139eacf6b4dc49c"
+       },
+       {
+        "key": "d070f11fbd0d3f352ec82b5046dcd2e8"
+       },
+       {
+        "key": "db5e4041836b5e11ac190d650995a37d"
+       },
+       {
+        "key": "dad3ae92f5da41c869033ed90ff0304b"
+       },
+       {
+        "key": "69c8f95f2e5b37b978ce7876d6bbe15f"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1770391",
+      "areaName": "Fort Greene",
+      "street": "62 Baytree Place",
+      "unit": "HOUSE",
+      "displayUnit": null,
+      "zipCode": "11217",
+      "state": "NY",
+      "urlPath": "/building/62-baytree-place-brooklyn/house",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "TWOFAMILY",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Parkline Properties",
+      "price": 4250000,
+      "soldPrice": 0,
+      "priceDelta": -240000,
+      "priceChangedAt": "2026-07-06T18:03:27.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 1700,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 7,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 4500,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-07-06T14:02:37.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 41,
+      "geoPoint": {
+       "latitude": 40.68804,
+       "longitude": -73.97706
+      },
+      "photos": [
+       {
+        "key": "e69243a03d6009e3f583f7cd57394b06"
+       },
+       {
+        "key": "4e2ac2df438dda0a7412306af165a2fe"
+       },
+       {
+        "key": "7f1b7c4c20279c866cddd47178446c7e"
+       },
+       {
+        "key": "77c3f75624553c8817b0d3c3df00f4e2"
+       },
+       {
+        "key": "7c6b25fc0b8e34bc853f54613e483b2b"
+       },
+       {
+        "key": "cc59281ea46554fe7c953fd594640e96"
+       },
+       {
+        "key": "a771d08cd1ef90659408dd8f3af1c518"
+       },
+       {
+        "key": "efb3e25d114df146f55a114b11feb117"
+       },
+       {
+        "key": "d7c8ba95862c5ebc336e87d3eb8af02c"
+       },
+       {
+        "key": "3f95bfd6a74df1ea34b8bfcd02d19a1f"
+       },
+       {
+        "key": "bf0ea1e95ce3ba43148a6a124e29b776"
+       },
+       {
+        "key": "a35bae258278922ad6d2b30ed1920ba7"
+       },
+       {
+        "key": "5555dbda779cf4b808d4fb8241cc17de"
+       },
+       {
+        "key": "a1104fe1d368548c074da69fee570725"
+       },
+       {
+        "key": "49d8e800b5a8aa571b22e8548d4ff8c3"
+       },
+       {
+        "key": "79c75757fbe1de554f4e67913e7748cd"
+       },
+       {
+        "key": "f3bd3864e8dcaf7f4ec572b53288f0a8"
+       },
+       {
+        "key": "2fc195e82773e3a030b019a848695c40"
+       },
+       {
+        "key": "852155f9e96b1ff645ca4d646fd15a3b"
+       },
+       {
+        "key": "c2fb782318fcf0dd5ca41333cbf83b94"
+       },
+       {
+        "key": "a1ac4cc7e572e39f04bf07e0baa0c04c"
+       },
+       {
+        "key": "7d94fc51d546b1060408a16b112bccd7"
+       },
+       {
+        "key": "35474f1f391e0679ac4a7574bc33c5ea"
+       },
+       {
+        "key": "602105b5642797fe06ad6935f476af42"
+       },
+       {
+        "key": "da87dbae4d7c9fc7ca245b982a595ea6"
+       },
+       {
+        "key": "6130df88c28044d9c55ef80cf4ee27a8"
+       },
+       {
+        "key": "2c09d5609fc015d54a0ca60e1e84f5f7"
+       },
+       {
+        "key": "e1cb562ee9db904731bba6807201b2ec"
+       },
+       {
+        "key": "9b334cb34e601744608485adb423d85b"
+       },
+       {
+        "key": "13bb7ebab281d07e6a78be4940de2594"
+       },
+       {
+        "key": "30e562789e463a783f142425ff175ecf"
+       },
+       {
+        "key": "43432098d80647f987c8b0b6f49b5085"
+       },
+       {
+        "key": "1cd401d5bc49cdfdae715e95c6b398de"
+       },
+       {
+        "key": "50ee756e6d1f3ab4cd394afa43edf031"
+       },
+       {
+        "key": "bb1d94b97f5565c3dcf4dfb9ab3ab9a5"
+       },
+       {
+        "key": "9e9e862d09649833d832ea366cfb8015"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1777453",
+      "areaName": "Clinton Hill",
+      "street": "288 Larkspur Street",
+      "unit": "614",
+      "displayUnit": "#614",
+      "zipCode": "11205",
+      "state": "NY",
+      "urlPath": "/building/288-larkspur-street-brooklyn/614",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CO_OP",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Harborline Realty",
+      "price": 499000,
+      "soldPrice": 0,
+      "priceDelta": -20000,
+      "priceChangedAt": "2026-06-12T14:57:35.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": 912,
+      "monthlyCommonCharges": null,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 711,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-02-11T14:52:58.000-05:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 9,
+      "geoPoint": {
+       "latitude": 40.6925,
+       "longitude": -73.9652
+      },
+      "photos": [
+       {
+        "key": "e47137fc31e9b66b594612a8f34510d9"
+       },
+       {
+        "key": "148b9c3c62f8012c8efc6b6e0e5ab5cf"
+       },
+       {
+        "key": "12b748dd4a262d5d7905997a72deed1d"
+       },
+       {
+        "key": "2d2730f5593669907e1a842362d28bcd"
+       },
+       {
+        "key": "7658fa554dd797187c180eb867ee48ab"
+       },
+       {
+        "key": "80a228f177eb09da7d484d835a3b0764"
+       },
+       {
+        "key": "f13af38366b0556d6d5ac62557ba0e20"
+       },
+       {
+        "key": "e8d8f9261ffc3121db299509dee93783"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1777965",
+      "areaName": "Prospect Heights",
+      "street": "245 Windmere Place",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11238",
+      "state": "NY",
+      "urlPath": "/building/245-windmere-place-brooklyn/sale/1777965",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "FOURFAMILY",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Jordan Avery, LREB",
+      "price": 4350000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2025-06-27T10:02:43.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 1147,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 14,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 5200,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-19T17:14:03.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 24,
+      "geoPoint": {
+       "latitude": 40.677795,
+       "longitude": -73.96815
+      },
+      "photos": [
+       {
+        "key": "72210f7cd50aaf88f6d873e8bc770480"
+       },
+       {
+        "key": "765444ed651bf16b0fb1f0020144f63f"
+       },
+       {
+        "key": "220f22a8ff6be9dec73cc2e969c698ae"
+       },
+       {
+        "key": "cedbd9355c37dd1e38d7b72750c89624"
+       },
+       {
+        "key": "7414cb72d37b06a1df725b54bb7f5d55"
+       },
+       {
+        "key": "28d4800b223934b5a5e712d8df7c2996"
+       },
+       {
+        "key": "8ecb3c5d7af448aa06c042c4f0317c00"
+       },
+       {
+        "key": "d0edecb97e3f02295c7190079097b6b3"
+       },
+       {
+        "key": "a4d2a2f790a7604483856325c632d10c"
+       },
+       {
+        "key": "778cb7b557b0a804eeb59d7e07637ead"
+       },
+       {
+        "key": "034d16c41b646d30691d260b6cf96952"
+       },
+       {
+        "key": "ccc03e0a502356220be126d8a5f9b655"
+       },
+       {
+        "key": "be4df757c24cdcc8d2abd4dd7001c87b"
+       },
+       {
+        "key": "b6c275ef2b946854380f1a4a2e233f4d"
+       },
+       {
+        "key": "164002abd237d386f1149665123b9feb"
+       },
+       {
+        "key": "e365f9d156a82d8560f76d74746a8b8a"
+       },
+       {
+        "key": "6125399bd8e5ed5d306c05f9d52dde2f"
+       },
+       {
+        "key": "ab2e6d27b224c6aef64d43cadd6985da"
+       },
+       {
+        "key": "e4e7fabf5f37d2ea04ecacabb0c17fc6"
+       },
+       {
+        "key": "6629a848275ef825ecb30b15ad294874"
+       },
+       {
+        "key": "b82af67ae72311d2c05a6b43b63873b1"
+       },
+       {
+        "key": "a631677536a132d7d3790c946bc570ef"
+       },
+       {
+        "key": "3b5d921c4cd237610adc10c13967d471"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1786176",
+      "areaName": "Boerum Hill",
+      "street": "361 Foxglove Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11217",
+      "state": "NY",
+      "urlPath": "/building/361-foxglove-street-brooklyn/sale/1786176",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "THREEFAMILY",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Beacon Vale Realty",
+      "price": 3695000,
+      "soldPrice": 0,
+      "priceDelta": -105000,
+      "priceChangedAt": "2026-04-07T14:13:30.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 682,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 4,
+      "fullBathroomCount": 4,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": true,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-06-23T09:21:56.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 19,
+      "geoPoint": {
+       "latitude": 40.68351,
+       "longitude": -73.97954
+      },
+      "photos": [
+       {
+        "key": "5d5424ba5bd1fd4d9d9b73fe275dc97a"
+       },
+       {
+        "key": "1927e895105168328753489e7988be81"
+       },
+       {
+        "key": "ce90708a093fd682b0a4090c5b1cb665"
+       },
+       {
+        "key": "c9e59465c3d73a00319efd204f551ad1"
+       },
+       {
+        "key": "05103189d77150686e426cdcfe10f533"
+       },
+       {
+        "key": "2e14f62b15f618e46bec7c33bb4f1c51"
+       },
+       {
+        "key": "24c72f57673895cb3dc3c6d58eaf01e6"
+       },
+       {
+        "key": "fdf11c98f81cec3831a579078c9e4aff"
+       },
+       {
+        "key": "f9bfa858ea521d89a94abbb6ac104cf0"
+       },
+       {
+        "key": "d54ed98d8ff781181aa10ee4b5f3ee4b"
+       },
+       {
+        "key": "a90917457095dcdeba1a37b020992f3e"
+       },
+       {
+        "key": "d0c384b247b34c93625a734cbf0b8584"
+       },
+       {
+        "key": "9fa1b2f8993ff4e697f48375b86e1d1e"
+       },
+       {
+        "key": "d27495845059e35217e502858254bcba"
+       },
+       {
+        "key": "630edeaef6993a18f20182a6b28514c8"
+       },
+       {
+        "key": "f90e20239ae62b8f2b96f147955922d4"
+       },
+       {
+        "key": "4a028e0ab1684e586487e604686cfb01"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1794523",
+      "areaName": "Park Slope",
+      "street": "176 Parkmeadow West",
+      "unit": "9FAM",
+      "displayUnit": "#9FAM",
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/176-parkmeadow-west-brooklyn/9fam",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "RENTAL",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "MERIDIAN GROUP",
+      "price": 8000000,
+      "soldPrice": 0,
+      "priceDelta": -1000000,
+      "priceChangedAt": "2025-11-14T18:49:24.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 34,
+      "fullBathroomCount": 9,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 14200,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-08-19T13:39:11.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 19,
+      "geoPoint": {
+       "latitude": 40.662537,
+       "longitude": -73.97896
+      },
+      "photos": [
+       {
+        "key": "6ab969d03a4847a45dee60e102e791d0"
+       },
+       {
+        "key": "b2449eb0bbfa7a926910ea78acb46b23"
+       },
+       {
+        "key": "def4ad5cb7a06590d80c19d784d8408a"
+       },
+       {
+        "key": "7bd53812e8721e62b80f7179e3b565d0"
+       },
+       {
+        "key": "9594742d1d66c182999a453357644758"
+       },
+       {
+        "key": "a537a73706397cab938809add0143fba"
+       },
+       {
+        "key": "9ab7106fbd9a59615ef2949c3c76c36c"
+       },
+       {
+        "key": "fb8e9b804fdd5317f93706544ba9cdcf"
+       },
+       {
+        "key": "0ec919ef6ebab9932f0444297691f085"
+       },
+       {
+        "key": "a2b88c714ec5132c9242e522a894906d"
+       },
+       {
+        "key": "1442c61cf281400b72146ee75c0f2ab1"
+       },
+       {
+        "key": "07bc551f37180b33a637eedcac165bfe"
+       },
+       {
+        "key": "c9c056bfa9983c43687760712fd2da6b"
+       },
+       {
+        "key": "759df26aadc761327942fcae92a4943e"
+       },
+       {
+        "key": "936bf835ca8b556aea41a4e78dbddf19"
+       },
+       {
+        "key": "6f0d4eee2cf08f654af366443b71d515"
+       },
+       {
+        "key": "6c4467aa4075acbe6b581af1879cbff1"
+       },
+       {
+        "key": "1ce8a813de587c4023589ce027fe45cf"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1801037",
+      "areaName": "Park Slope",
+      "street": "1205 Sycamore Avenue",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11215",
+      "state": "NY",
+      "urlPath": "/building/1205-sycamore-avenue-brooklyn/sale/1801037",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "MULTIFAMILY",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Rowhouse Realty",
+      "price": 2500000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2025-11-19T20:25:21.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 2140,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 12,
+      "fullBathroomCount": 8,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 6611,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-07-27T12:06:17.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 6,
+      "geoPoint": {
+       "latitude": 40.663605,
+       "longitude": -73.98064
+      },
+      "photos": [
+       {
+        "key": "bfa6bdc6617bc2e364295e6c099e06ac"
+       },
+       {
+        "key": "620725f95562de693752a131a208f19e"
+       },
+       {
+        "key": "55feee816c8430863904d9aba9dcf886"
+       },
+       {
+        "key": "4beac0ae126fe65c06342b698d86f7fd"
+       },
+       {
+        "key": "983509f8d4db6d49c0a13dcfab7c5082"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1832614",
+      "areaName": "Clinton Hill",
+      "street": "742 Aldergrove Street",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11238",
+      "state": "NY",
+      "urlPath": "/building/742-aldergrove-street-brooklyn/sale/1832614",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "TOWNHOUSE",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "NORTHSTAR.",
+      "price": 1850000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-06-08T21:30:35.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 211,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 3,
+      "fullBathroomCount": 2,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 1320,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": null,
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 13,
+      "geoPoint": {
+       "latitude": 40.6823,
+       "longitude": -73.9603
+      },
+      "photos": [
+       {
+        "key": "583ec1a5a18948d4c35282436e89296a"
+       },
+       {
+        "key": "a5547a8736218c50d9a194568d0df627"
+       },
+       {
+        "key": "adf583c910f0f730004e0d7b8d3f4fa5"
+       },
+       {
+        "key": "8ffc9cc49ee05491eaa2148899112a02"
+       },
+       {
+        "key": "47f7a38430e2315bcbc45cbb1e01f85b"
+       },
+       {
+        "key": "461633393d074670b98febe94205b282"
+       },
+       {
+        "key": "76fcc03cdd9835b809f0dc2d5ba4996b"
+       },
+       {
+        "key": "d9f81bab3bea939327a6813ee5cf2bbe"
+       },
+       {
+        "key": "910892b8b49db186c158934c31bc3e68"
+       },
+       {
+        "key": "f2319b2b6bfba48211438209d8f84a45"
+       },
+       {
+        "key": "ecbff4dd8246ad1fc44ca41abf048b37"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1837550",
+      "areaName": "Cobble Hill",
+      "street": "234 Seabright Avenue",
+      "unit": null,
+      "displayUnit": null,
+      "zipCode": "11201",
+      "state": "NY",
+      "urlPath": "/building/234-seabright-avenue-brooklyn/sale/1837550",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "COMMERCIAL",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Hartwell Residential",
+      "price": 3200000,
+      "soldPrice": 0,
+      "priceDelta": null,
+      "priceChangedAt": "2026-07-10T14:29:07.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": null,
+      "monthlyCommonCharges": 0,
+      "bedroomCount": 3,
+      "fullBathroomCount": 3,
+      "halfBathroomCount": 1,
+      "livingAreaSize": 4000,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": null,
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 7,
+      "geoPoint": {
+       "latitude": 40.68919,
+       "longitude": -73.9915
+      },
+      "photos": [
+       {
+        "key": "ef21adb184b18d98fc41659131b03156"
+       },
+       {
+        "key": "54e3e84954c50446d1bbecc586a06da1"
+       },
+       {
+        "key": "f4b7538957e643b1927bbdfbe03c67df"
+       },
+       {
+        "key": "c12850859a55231ca3bdea3785c96d6a"
+       },
+       {
+        "key": "b8a176abf1a23eb2cb0fbba5b3867b67"
+       },
+       {
+        "key": "d504d9a8b15b2425d5a2dcc8cb8eb380"
+       }
+      ]
+     }
+    },
+    {
+     "__typename": "OrganicSaleEdge",
+     "node": {
+      "id": "1781392",
+      "areaName": "Clinton Hill",
+      "street": "269 Halewood Avenue",
+      "unit": "A2",
+      "displayUnit": "#A2",
+      "zipCode": "11205",
+      "state": "NY",
+      "urlPath": "/building/269-halewood-avenue-brooklyn/a2",
+      "slug": null,
+      "status": "ACTIVE",
+      "buildingType": "CO_OP",
+      "saleType": "RESALE",
+      "sourceType": "PARTNER",
+      "sourceGroupLabel": "Trailhead Realty",
+      "price": 649000,
+      "soldPrice": 0,
+      "priceDelta": -26000,
+      "priceChangedAt": "2026-06-07T02:41:32.000Z",
+      "interestingPriceDelta": null,
+      "monthlyTaxes": 0,
+      "monthlyMaintenance": 1034,
+      "monthlyCommonCharges": null,
+      "bedroomCount": 1,
+      "fullBathroomCount": 1,
+      "halfBathroomCount": 0,
+      "livingAreaSize": 0,
+      "isNewDevelopment": false,
+      "furnished": false,
+      "hasTour3d": false,
+      "hasVideos": false,
+      "advertisedOnSe": false,
+      "verifiedAt": "2026-05-27T17:14:58.000-04:00",
+      "availableAt": null,
+      "offMarketAt": null,
+      "mediaAssetCount": 11,
+      "geoPoint": {
+       "latitude": 40.690025,
+       "longitude": -73.96776
+      },
+      "photos": [
+       {
+        "key": "56c567338166cc7b713fd54a1516967f"
+       },
+       {
+        "key": "31ecd388db1edd345395649f1ebce2ca"
+       },
+       {
+        "key": "866cbf456277a532501da17e9e7706cd"
+       },
+       {
+        "key": "4c9c55cea01eb58843a684e68800258c"
+       },
+       {
+        "key": "2e4053fdf97e9e946298bb17b81277d6"
+       },
+       {
+        "key": "5f94620e84ea5750d3b89dce2418552e"
+       },
+       {
+        "key": "7e36b1e6af297ccdd7e3604b86b632bc"
+       },
+       {
+        "key": "9ec696b25875d24f64857fe3da202555"
+       },
+       {
+        "key": "b7f35409926ae6537b5f7ba572eff4ed"
+       },
+       {
+        "key": "ba529e54eb2b4d178f9de53a2f9a9842"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ }
+}
