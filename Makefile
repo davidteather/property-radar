@@ -59,11 +59,11 @@ registry-validate:
 registry-publish: registry-validate
 	mcp-publisher publish
 
-# make sync: push main to the working remote, then mirror it to the public one
-# (same history since v0; no-op when the upstream remote isn't configured).
+# make sync: push main + release tags to the working remote, then mirror to the
+# public one. Only v* tags cross over: archive/* tags carry pre-v0 history.
 sync:
-	git push origin main --tags
-	@git remote get-url upstream >/dev/null 2>&1 && git push upstream main --tags || true
+	git push origin main 'refs/tags/v*:refs/tags/v*'
+	@git remote get-url upstream >/dev/null 2>&1 && git push upstream main 'refs/tags/v*:refs/tags/v*' || true
 
 db-up:
 	docker compose up -d db
