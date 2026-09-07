@@ -19,6 +19,7 @@ cmd/lst/lst
 # operator-private folder: notes, instance runbooks, scratch — never committed,
 # so it can never reach the public template (ignored in both repos).
 /_private/
+/.claude/
 
 # OS noise
 .DS_Store

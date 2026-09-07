@@ -1,4 +1,4 @@
-.PHONY: fmt vet lint test test-short build check ci mocks gen-proto clean-proto gen-code check-generated db-up db-down binaries bump registry-validate registry-publish
+.PHONY: fmt vet lint test test-short build check ci mocks gen-proto clean-proto gen-code check-generated db-up db-down binaries bump registry-validate registry-publish sync
 
 PART ?= patch
 
@@ -58,6 +58,12 @@ registry-validate:
 
 registry-publish: registry-validate
 	mcp-publisher publish
+
+# make sync: push main to the working remote, then mirror it to the public one
+# (same history since v0; no-op when the upstream remote isn't configured).
+sync:
+	git push origin main --tags
+	@git remote get-url upstream >/dev/null 2>&1 && git push upstream main --tags || true
 
 db-up:
 	docker compose up -d db
