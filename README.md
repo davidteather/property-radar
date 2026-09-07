@@ -6,36 +6,35 @@
 [![GitHub release](https://img.shields.io/github/v/release/davidteather/property-radar?style=flat-square)](https://github.com/davidteather/property-radar/releases)
 [![Go Reference](https://pkg.go.dev/badge/github.com/davidteather/property-radar.svg)](https://pkg.go.dev/github.com/davidteather/property-radar)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=flat-square&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/davidteather)
-![No LLM on the server](https://img.shields.io/badge/server-no%20LLM%20calls-6f42c1?style=flat-square)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=davidteather.property-radar)
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=readme)
 
 **Your AI forgets your home search the moment the chat ends. Property Radar
-doesn't.** It's a self-hosted memory layer: listings crawled from StreetEasy
-(more sources coming) into your own Postgres database, plus a permanent record
-of your taste built up as you react in chat: love/maybe/dislike verdicts, a
-written taste rubric, and curated lists like ⭐ favorites or "big windows".
+doesn't.**
 
-Connect Claude or ChatGPT over MCP and a brand-new conversation picks up right
-where the last one ended. It loads your history, looks at the actual photos, and
-shows you the three to five homes worth your time, with your own past reactions
-as the reasons. Ask about a neighborhood you haven't covered and it queues the
-crawl. A small web console shows everything in the browser.
+It's a memory layer you host yourself. Listings get crawled from StreetEasy
+into your own Postgres, and every reaction you give in chat sticks: love, maybe,
+dislike, a taste rubric in your own words, lists like ⭐ favorites or "big
+windows".
 
-The twist: **this repository never calls a model.** No Anthropic or OpenAI SDK,
-no embeddings, no ranking model. The backend fetches, normalizes, persists,
-filters, and serves photos. All taste, vision, and judgment stay with the
-caller's LLM. That boundary is the whole design.
+Plug Claude or ChatGPT in over MCP and a fresh conversation just carries on. It
+knows what you've already seen, looks at the actual photos, and hands you the
+three to five homes worth a look, with your own past reactions as the reasons.
+Mention a neighborhood it hasn't covered and it queues the crawl. A small web
+console shows the whole thing in a browser.
 
-Property Radar is a **free, personal** project (MIT-licensed), built as a tool
-rather than a product. You run your own copy; it hosts nothing for anyone else,
-resells nothing, and has no paid tier.
+The twist: **this repo never calls a model.** No SDKs, no embeddings, no
+ranking. It fetches, stores, filters, and serves photos. Taste, vision, and
+judgment stay with whatever LLM you plugged in. That line is the whole design.
 
-> **Early days.** Property Radar currently supports **NYC only** (via
-> StreetEasy). The provider is a swappable seam, so more metros and sources are
-> planned (see [Status & roadmap](#status--roadmap)). **Screenshots are coming
-> soon**; the demo below shows the loop end to end.
+Free, MIT-licensed, and personal. You run your own copy; nothing is hosted for
+anyone else and there's no paid tier.
+
+> **Early days.** NYC only for now (StreetEasy). The provider is a swappable
+> seam, so more metros and sources are on the
+> [roadmap](#status--roadmap). Screenshots soon; the demo below shows the loop
+> end to end.
 
 https://github.com/user-attachments/assets/cba7e24e-088d-44d4-8360-fdb843768d1e
 
