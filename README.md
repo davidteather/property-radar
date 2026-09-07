@@ -10,31 +10,22 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=readme)
 
-**Your AI forgets your home search the moment the chat ends. Property Radar
-doesn't.**
+A self-hosted MCP server for discovering and monitoring properties for sale or
+rent.
 
-It's a memory layer you host yourself. Listings get crawled from StreetEasy
-into your own Postgres, and every reaction you give in chat sticks: love, maybe,
-dislike, a taste rubric in your own words, lists like ⭐ favorites or "big
-windows".
+It crawls listings into your own Postgres database and remembers how you reacted
+to each one, so Claude or ChatGPT can pick your search back up in a new
+conversation instead of starting from zero. The model looks at the actual
+photos, recommends a handful of homes with your past reactions as the reasons,
+and files what you say into verdicts, a taste rubric, and lists. A small web
+console shows it all in the browser.
 
-Plug Claude or ChatGPT in over MCP and a fresh conversation just carries on. It
-knows what you've already seen, looks at the actual photos, and hands you the
-three to five homes worth a look, with your own past reactions as the reasons.
-Mention a neighborhood it hasn't covered and it queues the crawl. A small web
-console shows the whole thing in a browser.
+The server never calls a model itself. It fetches, stores, filters, and serves
+photos; the LLM you connect does the judging. Free, MIT-licensed, no paid tier.
 
-The twist: **this repo never calls a model.** No SDKs, no embeddings, no
-ranking. It fetches, stores, filters, and serves photos. Taste, vision, and
-judgment stay with whatever LLM you plugged in. That line is the whole design.
-
-Free, MIT-licensed, and personal. You run your own copy; nothing is hosted for
-anyone else and there's no paid tier.
-
-> **Early days.** NYC only for now (StreetEasy). The provider is a swappable
-> seam, so more metros and sources are on the
-> [roadmap](#status--roadmap). Screenshots soon; the demo below shows the loop
-> end to end.
+> **Early days.** NYC only for now (StreetEasy), with more metros and sources on
+> the [roadmap](#status--roadmap). Screenshots soon; the demo below shows the
+> loop end to end.
 
 https://github.com/user-attachments/assets/cba7e24e-088d-44d4-8360-fdb843768d1e
 
