@@ -5,7 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"math/rand/v2"
+	"slices"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/davidteather/property-radar/internal/domain"
@@ -247,8 +250,11 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 	seen := []string{}
 	var crawlErr error
 	errs := itemErrors{}
-	failStreak := 0
 
+	// Enumerate the whole scope before any detail fetch: search pages are a few
+	// cheap API calls, and interleaving them with detail pages had page 2
+	// arriving an hour later through an already-burned proxy pool.
+	var pending []SourceProperty
 	for sp, err := range s.source.Search(ctx, q) {
 		// Checked first so a dead context does not churn through the rest of
 		// an already-decoded page (each step failing fast but logging).
@@ -273,8 +279,23 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 		if errors.Is(err, ErrUnusableListing) {
 			continue
 		}
+		pending = append(pending, sp)
+	}
 
-		if s.shouldEnrich(ctx, q, sp) {
+	rank := make([]int, len(pending))
+	for i, sp := range pending {
+		rank[i] = s.enrichPriority(ctx, q, sp)
+	}
+	order := crawlOrder(rank)
+
+	photos := s.startPhotoDrain(ctx, len(pending))
+	failStreak := 0
+	for _, i := range order {
+		if ctx.Err() != nil {
+			break
+		}
+		sp := pending[i]
+		if rank[i] > enrichCurrent {
 			if failStreak >= enrichAbortStreak {
 				if failStreak == enrichAbortStreak {
 					s.log.Warn("detail fetches failing back to back; storing the rest search-only", "streak", failStreak)
@@ -307,8 +328,9 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 			stats.Updated++
 		}
 		s.deleteKeys(ctx, applied.EvictedKeys, "replaced")
-		stats.PhotoFailures += s.cachePhotos(ctx, sp, applied.PropertyID)
+		photos.add(sp, applied.PropertyID)
 	}
+	stats.PhotoFailures = photos.wait()
 
 	// A dead context is classified from the context itself: a provider's own
 	// timeout also reads as DeadlineExceeded but is a failure, not a pause.
@@ -357,27 +379,105 @@ func clearSearchStatus(sp *SourceProperty) {
 	}
 }
 
-// shouldEnrich: deep runs fetch every detail page not merged within DeepInterval
+// Enrichment ranks: current needs no detail fetch; refresh is a stored listing
+// whose page is due; fresh is one the corpus has never seen.
+const (
+	enrichCurrent = iota
+	enrichRefresh
+	enrichFresh
+)
+
+// enrichPriority: deep runs fetch every detail page not merged within DeepInterval
 // (so an interrupted deep pass resumes, not restarts); incremental runs only what
 // is new, changed, or never enriched. An unreadable state enriches.
-func (s *Service) shouldEnrich(ctx context.Context, q SearchQuery, sp SourceProperty) bool {
+func (s *Service) enrichPriority(ctx context.Context, q SearchQuery, sp SourceProperty) int {
 	state, err := s.store.EnrichmentState(ctx, sp.Provider, sp.ProviderID)
 	if err != nil {
 		s.log.Warn("enrichment state unavailable; enriching", "provider_id", sp.ProviderID, "err", err)
-		return true
+		return enrichRefresh
+	}
+	if !state.Exists {
+		return enrichFresh
 	}
 	// A listing enriched once and still without a description has none; do not
 	// refetch it every run.
-	if !state.Exists || (state.EnrichedAt == nil && !state.HasDescription) {
-		return true
+	if state.EnrichedAt == nil && !state.HasDescription {
+		return enrichRefresh
 	}
 	if q.Deep && (state.EnrichedAt == nil || time.Since(*state.EnrichedAt) >= DeepInterval) {
-		return true
+		return enrichRefresh
 	}
 	if !moneyEqual(state.Price, sp.Property.Price) {
-		return true
+		return enrichRefresh
 	}
-	return sp.Property.Status != "" && sp.Property.Status != state.Status
+	if sp.Property.Status != "" && sp.Property.Status != state.Status {
+		return enrichRefresh
+	}
+	return enrichCurrent
+}
+
+// crawlOrder visits fresh listings first, then refreshes, then rows needing no
+// fetch, shuffling within each rank: a run that gets blocked partway lands on a
+// different slice of the scope each time, so a few partial runs cover it.
+func crawlOrder(rank []int) []int {
+	order := make([]int, len(rank))
+	for i := range order {
+		order[i] = i
+	}
+	rand.Shuffle(len(order), func(i, j int) { order[i], order[j] = order[j], order[i] })
+	slices.SortStableFunc(order, func(a, b int) int { return rank[b] - rank[a] })
+	return order
+}
+
+type photoJob struct {
+	sp SourceProperty
+	id domain.PropertyID
+}
+
+// photoDrain caches thumbnails off the crawl loop: a listing's text lands as
+// soon as it is fetched and its photos catch up in the background, in the same
+// fresh-first order. wait returns the failure count once every job has run.
+type photoDrain struct {
+	jobs     chan photoJob
+	wg       sync.WaitGroup
+	failures atomic.Int64
+}
+
+// photoDrainWorkers caches this many listings' photos at once; each listing's
+// fetches are already photoConcurrency wide, and the CDN gate is shared.
+const photoDrainWorkers = 2
+
+// capacity must cover every job the crawl can add, so add never blocks the loop.
+func (s *Service) startPhotoDrain(ctx context.Context, capacity int) *photoDrain {
+	d := &photoDrain{}
+	if s.photos == nil {
+		return d
+	}
+	d.jobs = make(chan photoJob, capacity)
+	for range photoDrainWorkers {
+		d.wg.Add(1)
+		go func() {
+			defer d.wg.Done()
+			for j := range d.jobs {
+				d.failures.Add(int64(s.cachePhotos(ctx, j.sp, j.id)))
+			}
+		}()
+	}
+	return d
+}
+
+func (d *photoDrain) add(sp SourceProperty, id domain.PropertyID) {
+	if d.jobs != nil {
+		d.jobs <- photoJob{sp: sp, id: id}
+	}
+}
+
+func (d *photoDrain) wait() int {
+	if d.jobs != nil {
+		close(d.jobs)
+	}
+	d.wg.Wait()
+	return int(d.failures.Load())
 }
 
 func moneyEqual(a, b *domain.Money) bool {

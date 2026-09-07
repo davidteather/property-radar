@@ -542,6 +542,9 @@ func TestRunCancelledMidPageStopsAndRecordsFetchedPhotos(t *testing.T) {
 	h.expectBaseline(ingest.Baseline{})
 	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, listing("1", "photo-a"), mock.Anything).
 		Return(ingest.ApplyResult{PropertyID: 11}, nil).Once()
+	// Photos drain in the background, so the loop may apply 2 and 3 before it sees the cancel.
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.Anything, mock.Anything).
+		Return(ingest.ApplyResult{PropertyID: 12}, nil).Maybe()
 	h.photos.EXPECT().Cache(mock.Anything, "streeteasy", "photo-a").
 		RunAndReturn(func(context.Context, string, string) (ingest.CachedPhoto, error) {
 			cancel()
@@ -557,9 +560,8 @@ func TestRunCancelledMidPageStopsAndRecordsFetchedPhotos(t *testing.T) {
 	_, err := h.svc.Run(ctx, testQuery())
 	require.ErrorIs(t, err, context.Canceled)
 	assert.NoError(t, recordCtxErr, "the fetched thumbnail is recorded on a live context")
-	assert.Equal(t, 1, h.stats.ListingsSeen, "listings 2 and 3 are not touched after cancellation")
+	assert.Equal(t, 3, h.stats.ListingsSeen, "the scope is enumerated before any fetch")
 	assert.Empty(t, h.stats.ItemErrors)
-	h.store.AssertNumberOfCalls(t, "ApplySourceProperty", 1)
 }
 
 // Shutdown is classified from the context, and that classification survives a
@@ -588,7 +590,7 @@ func TestRunCancelledDuringApplyDoesNotChurnThePage(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	h := newHarness(t, ingest.Options{}, yielded{sp: listing("1")}, yielded{sp: listing("2")}, yielded{sp: listing("3")})
 	h.expectBaseline(ingest.Baseline{})
-	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, listing("1"), mock.Anything).
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.Anything, mock.Anything).
 		RunAndReturn(func(context.Context, domain.IngestRunID, ingest.SourceProperty, time.Time) (ingest.ApplyResult, error) {
 			cancel()
 			return ingest.ApplyResult{}, context.Canceled
@@ -597,6 +599,7 @@ func TestRunCancelledDuringApplyDoesNotChurnThePage(t *testing.T) {
 	_, err := h.svc.Run(ctx, testQuery())
 	require.ErrorIs(t, err, context.Canceled)
 	require.Len(t, h.stats.ItemErrors, 1, "only the interrupted listing is recorded as an error")
+	assert.Equal(t, 3, h.stats.ListingsSeen, "the scope is enumerated before any fetch")
 	h.store.AssertNumberOfCalls(t, "ApplySourceProperty", 1)
 }
 
@@ -643,6 +646,72 @@ func TestRunIncrementalEnrichesOnlyChangedListings(t *testing.T) {
 	svc := ingest.NewService(source, st, nil, ingest.Options{Logger: logger})
 	_, err := svc.Run(context.Background(), testQuery()) // Deep=false
 	require.NoError(t, err)
+}
+
+// The whole scope is enumerated before the first detail fetch, and fetches go
+// fresh listings first, then refreshes, then rows that need none; a blocked run
+// therefore always spends its budget on what the corpus lacks most.
+func TestRunEnumeratesThenEnrichesFreshFirst(t *testing.T) {
+	logger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	price := func(v int64) *domain.Money { p := domain.Money(v); return &p }
+	withPrice := func(sp ingest.SourceProperty, v int64) ingest.SourceProperty {
+		sp.Property.Price = price(v)
+		return sp
+	}
+	current := ingest.EnrichState{Exists: true, HasDescription: true, Price: price(500000), Status: domain.StatusActive}
+	changed := ingest.EnrichState{Exists: true, HasDescription: true, Price: price(475000), Status: domain.StatusActive}
+
+	source := mocks.NewMockSource(t)
+	st := mocks.NewMockStore(t)
+	source.EXPECT().Name().Return("streeteasy").Maybe()
+	// Search order deliberately puts the current row first and the new one last.
+	items := []yielded{
+		{sp: withPrice(listing("c1"), 500000)}, {sp: withPrice(listing("r1"), 500000)}, {sp: listing("n1")},
+		{sp: withPrice(listing("c2"), 500000)}, {sp: withPrice(listing("r2"), 500000)}, {sp: listing("n2")},
+	}
+	pagesDone := false
+	source.EXPECT().Search(mock.Anything, mock.Anything).Return(func(yield func(ingest.SourceProperty, error) bool) {
+		for _, it := range items {
+			if !yield(it.sp, it.err) {
+				return
+			}
+		}
+		pagesDone = true
+	}).Once()
+	for _, id := range []string{"c1", "c2"} {
+		st.EXPECT().EnrichmentState(mock.Anything, "streeteasy", id).Return(current, nil).Once()
+	}
+	for _, id := range []string{"r1", "r2"} {
+		st.EXPECT().EnrichmentState(mock.Anything, "streeteasy", id).Return(changed, nil).Once()
+	}
+	for _, id := range []string{"n1", "n2"} {
+		st.EXPECT().EnrichmentState(mock.Anything, "streeteasy", id).Return(ingest.EnrichState{}, nil).Once()
+	}
+	var fetched []string
+	source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
+		RunAndReturn(func(_ context.Context, sp ingest.SourceProperty) (ingest.SourceProperty, error) {
+			assert.True(t, pagesDone, "detail fetch before the search finished enumerating")
+			fetched = append(fetched, sp.ProviderID)
+			return sp, nil
+		}).Times(4)
+	var applied []string
+	st.EXPECT().StartRun(mock.Anything, "streeteasy", mock.Anything).Return(domain.IngestRun{ID: testRunID}, nil).Once()
+	st.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.Anything, mock.Anything).
+		RunAndReturn(func(_ context.Context, _ domain.IngestRunID, sp ingest.SourceProperty, _ time.Time) (ingest.ApplyResult, error) {
+			applied = append(applied, sp.ProviderID)
+			return ingest.ApplyResult{PropertyID: 11}, nil
+		}).Times(6)
+	st.EXPECT().BaselineVolume(mock.Anything, mock.Anything, mock.Anything).Return(ingest.Baseline{}, nil).Once()
+	st.EXPECT().FinishRun(mock.Anything, testRunID, mock.Anything).Return(nil).Once()
+	st.EXPECT().MarkMissingSources(mock.Anything, "streeteasy", []string{"c1", "r1", "n1", "c2", "r2", "n2"}, testRunID).
+		Return(ingest.MissingResult{}, nil).Once()
+
+	svc := ingest.NewService(source, st, nil, ingest.Options{Logger: logger})
+	_, err := svc.Run(context.Background(), testQuery())
+	require.NoError(t, err)
+	assert.ElementsMatch(t, []string{"n1", "n2"}, fetched[:2], "fresh listings fetched first")
+	assert.ElementsMatch(t, []string{"r1", "r2"}, fetched[2:], "then refreshes")
+	assert.ElementsMatch(t, []string{"c1", "c2"}, applied[4:], "rows needing no fetch land last")
 }
 
 // A deep run re-enriches every unchanged listing whose detail is older than
@@ -744,7 +813,7 @@ func TestRunCapsItemErrors(t *testing.T) {
 	_, err := h.svc.Run(context.Background(), testQuery())
 	require.NoError(t, err)
 	require.Len(t, h.stats.ItemErrors, 201)
-	assert.Equal(t, "199", h.stats.ItemErrors[199].ProviderID)
+	assert.NotEmpty(t, h.stats.ItemErrors[199].ProviderID)
 	assert.Contains(t, h.stats.ItemErrors[0].Message, "upsert failed")
 	assert.Contains(t, h.stats.ItemErrors[200].Message, "50 more errors not recorded")
 }

@@ -66,7 +66,10 @@ behind wire types + `convert.go`. Politeness first: large pages (perPage 500),
 ~1.5s inter-request delay, concurrency 1. Proxying is a `-proxy-mode {off,split,all}`
 selector over a Webshare pool of static IPs; a proxy that answers 403 is benched
 for 30 minutes, and a run that fails 20 detail fetches in a row stops fetching
-them (the rows land search-only and the next run retries).
+them (the rows land search-only and the next run retries). A run enumerates the
+whole scope from the search API first, then fetches detail pages new listings
+first, refreshes next, each group shuffled, so partial runs cover different
+slices; thumbnails cache in the background off the crawl loop.
 
 **Why / current state.** StreetEasy PX-blocks per IP, and a ban sticks for a
 while: re-sending through a banned proxy only keeps it burned, which is why the
