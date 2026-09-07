@@ -12,6 +12,7 @@ import (
 	"io"
 	"iter"
 	"net/http"
+	"slices"
 	"strconv"
 	"strings"
 	"sync"
@@ -109,7 +110,7 @@ func (c *Client) Search(ctx context.Context, q ingest.SearchQuery) iter.Seq2[ing
 		if listingType == "" {
 			listingType = domain.ListingSale
 		}
-		var fetch func(context.Context, []int, ingest.SearchQuery, int) (*searchOutput, error)
+		var fetch func(context.Context, []int, ingest.SearchQuery, priceBand, int) (*searchOutput, error)
 		switch listingType {
 		case domain.ListingSale:
 			fetch = c.salesPage
@@ -126,63 +127,119 @@ func (c *Client) Search(ctx context.Context, q ingest.SearchQuery) iter.Seq2[ing
 		}
 
 		seen := make(map[string]struct{})
-		for page := 1; page <= maxPages; page++ {
-			out, err := fetch(ctx, areas, q, page)
-			if err != nil {
-				yield(zero, fmt.Errorf("streeteasy search page %d: %w: %w", page, ingest.ErrSearchAborted, err))
-				return
+		emit := func(edge searchEdge) bool {
+			if len(edge.Node) == 0 || string(edge.Node) == "null" {
+				return true
 			}
-			for _, edge := range out.Edges {
-				if len(edge.Node) == 0 || string(edge.Node) == "null" {
-					continue
+			var node searchListing
+			if err := json.Unmarshal(edge.Node, &node); err != nil {
+				// A field of the wrong type still decodes the id; report the listing
+				// as seen-but-unusable so it is not aged toward delisting.
+				var typeErr *json.UnmarshalTypeError
+				if errors.As(err, &typeErr) && node.ID != "" {
+					seen[node.ID] = struct{}{}
+					return yield(ingest.SourceProperty{ProviderID: node.ID}, fmt.Errorf("streeteasy decode listing %s: %w: %w", node.ID, ingest.ErrUnusableListing, err))
 				}
-				var node searchListing
-				if err := json.Unmarshal(edge.Node, &node); err != nil {
-					// A field of the wrong type still decodes the id; report the listing
-					// as seen-but-unusable so it is not aged toward delisting.
-					var typeErr *json.UnmarshalTypeError
-					if errors.As(err, &typeErr) && node.ID != "" {
-						if !yield(ingest.SourceProperty{ProviderID: node.ID}, fmt.Errorf("streeteasy decode listing %s: %w: %w", node.ID, ingest.ErrUnusableListing, err)) {
-							return
-						}
-						seen[node.ID] = struct{}{}
-						continue
-					}
-					if !yield(zero, fmt.Errorf("streeteasy decode listing: %w", err)) {
-						return
-					}
-					continue
-				}
-				if node.ID == "" {
-					if !yield(zero, errors.New("streeteasy decode listing: missing id")) {
-						return
-					}
-					continue
-				}
-				if _, dup := seen[node.ID]; dup {
-					continue
-				}
-				seen[node.ID] = struct{}{}
-
-				sp, itemErr := c.sourceProperty(ctx, node, edge.Node, listingType)
-				if !yield(sp, itemErr) {
-					return
-				}
+				return yield(zero, fmt.Errorf("streeteasy decode listing: %w", err))
 			}
-			if !out.PageInfo.HasNextPage {
-				return
+			if node.ID == "" {
+				return yield(zero, errors.New("streeteasy decode listing: missing id"))
 			}
-			// An empty page that claims a successor is the provider misbehaving; stopping
-			// quietly would count the run complete and age everything unseen toward delisting.
-			if len(out.Edges) == 0 {
-				yield(zero, fmt.Errorf("streeteasy search page %d: %w: empty page while more pages were claimed", page, ingest.ErrSearchAborted))
-				return
+			if _, dup := seen[node.ID]; dup {
+				return true
 			}
+			seen[node.ID] = struct{}{}
+			sp, itemErr := c.sourceProperty(ctx, node, edge.Node, listingType)
+			return yield(sp, itemErr)
 		}
-		// Stopping silently would let the run count as complete and age every
-		// listing past the page cap toward delisting.
-		yield(zero, fmt.Errorf("streeteasy search: %w: more than %d pages; scope too broad to crawl completely", ingest.ErrSearchAborted, maxPages))
+
+		// The API answers at most ~1000 rows per query however many pages are
+		// asked for, so a band it caps is split at its median price and walked
+		// in halves; every abort below leaves the run incomplete on purpose.
+		var walk func(band priceBand) bool
+		walk = func(band priceBand) bool {
+			for page := 1; page <= maxPages; page++ {
+				out, err := fetch(ctx, areas, q, band, page)
+				if err != nil {
+					yield(zero, fmt.Errorf("streeteasy search page %d: %w: %w", page, ingest.ErrSearchAborted, err))
+					return false
+				}
+				if page == 1 && out.PageInfo.TotalPages > 0 && out.PageInfo.TotalPages*c.cfg.PerPage < out.TotalCount {
+					lower, upper, ok := band.split(out.Edges)
+					if !ok {
+						yield(zero, fmt.Errorf("streeteasy search: %w: %d listings priced %s exceed the provider's result cap", ingest.ErrSearchAborted, out.TotalCount, band))
+						return false
+					}
+					return walk(lower) && walk(upper)
+				}
+				for _, edge := range out.Edges {
+					if !emit(edge) {
+						return false
+					}
+				}
+				if !out.PageInfo.HasNextPage {
+					return true
+				}
+				if len(out.Edges) == 0 {
+					yield(zero, fmt.Errorf("streeteasy search page %d: %w: empty page while more pages were claimed", page, ingest.ErrSearchAborted))
+					return false
+				}
+			}
+			yield(zero, fmt.Errorf("streeteasy search: %w: more than %d pages; scope too broad to crawl completely", ingest.ErrSearchAborted, maxPages))
+			return false
+		}
+		var root priceBand
+		if q.MaxPrice > 0 {
+			root.hi = ptr.To(int(q.MaxPrice))
+		}
+		walk(root)
 	}
+}
+
+// priceBand is an inclusive price range; a nil end is open.
+type priceBand struct{ lo, hi *int }
+
+func (b priceBand) String() string {
+	s := func(p *int) string {
+		if p == nil {
+			return "*"
+		}
+		return strconv.Itoa(*p)
+	}
+	return s(b.lo) + ".." + s(b.hi)
+}
+
+func (b priceBand) bounds() *boundsInput {
+	if b.lo == nil && b.hi == nil {
+		return nil
+	}
+	return &boundsInput{LowerBound: b.lo, UpperBound: b.hi}
+}
+
+// split halves the band at the median price of a sample of its listings; ok is
+// false when the band cannot shrink any further.
+func (b priceBand) split(sample []searchEdge) (lower, upper priceBand, ok bool) {
+	var prices []int
+	for _, edge := range sample {
+		var node struct {
+			Price num `json:"price"`
+		}
+		if json.Unmarshal(edge.Node, &node) == nil && node.Price.v != nil {
+			prices = append(prices, int(*node.Price.v))
+		}
+	}
+	if len(prices) == 0 {
+		return b, b, false
+	}
+	slices.Sort(prices)
+	pivot := prices[len(prices)/2]
+	if b.hi != nil && pivot >= *b.hi {
+		pivot = *b.hi - 1
+	}
+	if b.lo != nil && pivot < *b.lo {
+		return b, b, false
+	}
+	return priceBand{lo: b.lo, hi: ptr.To(pivot)}, priceBand{lo: ptr.To(pivot + 1), hi: b.hi}, true
 }
 
 // EnrichDetail fetches one search-only listing's detail page and merges its
@@ -230,10 +287,9 @@ func (c *Client) sourceProperty(_ context.Context, node searchListing, rawNode j
 	return toSourceProperty(node, nil, raw, c.cfg.SiteURL, listingType), nil
 }
 
-func (c *Client) salesPage(ctx context.Context, areas []int, q ingest.SearchQuery, page int) (*searchOutput, error) {
-	price, beds := searchBounds(q)
+func (c *Client) salesPage(ctx context.Context, areas []int, q ingest.SearchQuery, band priceBand, page int) (*searchOutput, error) {
 	resp, err := c.searchPage(ctx, salesQuery, saleFiltersInput{
-		Areas: areas, SaleStatus: "ACTIVE", Price: price, Bedrooms: beds,
+		Areas: areas, SaleStatus: "ACTIVE", Price: band.bounds(), Bedrooms: bedsBound(q),
 	}, page)
 	if err != nil {
 		return nil, err
@@ -244,10 +300,9 @@ func (c *Client) salesPage(ctx context.Context, areas []int, q ingest.SearchQuer
 	return resp.Data.SearchSales, nil
 }
 
-func (c *Client) rentalsPage(ctx context.Context, areas []int, q ingest.SearchQuery, page int) (*searchOutput, error) {
-	price, beds := searchBounds(q)
+func (c *Client) rentalsPage(ctx context.Context, areas []int, q ingest.SearchQuery, band priceBand, page int) (*searchOutput, error) {
 	resp, err := c.searchPage(ctx, rentalsQuery, rentalFiltersInput{
-		Areas: areas, RentalStatus: "ACTIVE", Price: price, Bedrooms: beds,
+		Areas: areas, RentalStatus: "ACTIVE", Price: band.bounds(), Bedrooms: bedsBound(q),
 	}, page)
 	if err != nil {
 		return nil, err
@@ -258,14 +313,11 @@ func (c *Client) rentalsPage(ctx context.Context, areas []int, q ingest.SearchQu
 	return resp.Data.SearchRentals, nil
 }
 
-func searchBounds(q ingest.SearchQuery) (price, beds *boundsInput) {
-	if q.MaxPrice > 0 {
-		price = &boundsInput{UpperBound: ptr.To(int(q.MaxPrice))}
-	}
+func bedsBound(q ingest.SearchQuery) *boundsInput {
 	if q.MinBeds > 0 {
-		beds = &boundsInput{LowerBound: ptr.To(q.MinBeds)}
+		return &boundsInput{LowerBound: ptr.To(q.MinBeds)}
 	}
-	return price, beds
+	return nil
 }
 
 func (c *Client) searchPage(ctx context.Context, query string, filters any, page int) (*graphQLResponse, error) {

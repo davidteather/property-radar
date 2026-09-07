@@ -47,6 +47,9 @@ type Options struct {
 	Logger   *slog.Logger
 	// StandingEvery spaces standing-scope runs; 0 uses DefaultStandingInterval, < 0 runs them every drain.
 	StandingEvery time.Duration
+	// EnrichFor caps the time one run spends on detail pages; the rest of the
+	// scope is stored search-only and the run still completes. 0 is unlimited.
+	EnrichFor time.Duration
 }
 
 type Service struct {
@@ -57,6 +60,8 @@ type Service struct {
 	log      *slog.Logger
 
 	standingEvery time.Duration
+	enrichFor     time.Duration
+	now           func() time.Time
 }
 
 // NewService builds the crawl service; photos may be nil to disable thumbnail caching.
@@ -77,6 +82,8 @@ func NewService(source Source, st Store, photos PhotoCacher, opts Options) *Serv
 		photoCap:      opts.PhotoCap,
 		log:           opts.Logger,
 		standingEvery: opts.StandingEvery,
+		enrichFor:     opts.EnrichFor,
+		now:           time.Now,
 	}
 }
 
@@ -290,6 +297,11 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 
 	photos := s.startPhotoDrain(ctx, len(pending))
 	failStreak := 0
+	var enrichUntil time.Time
+	if s.enrichFor > 0 {
+		enrichUntil = s.now().Add(s.enrichFor)
+	}
+	budgetSpent := false
 	for _, i := range order {
 		if ctx.Err() != nil {
 			break
@@ -300,6 +312,12 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 				if failStreak == enrichAbortStreak {
 					s.log.Warn("detail fetches failing back to back; storing the rest search-only", "streak", failStreak)
 					failStreak++
+				}
+				clearSearchStatus(&sp)
+			} else if !enrichUntil.IsZero() && s.now().After(enrichUntil) {
+				if !budgetSpent {
+					budgetSpent = true
+					s.log.Info("enrich budget spent; storing the rest search-only", "budget", s.enrichFor, "attempts", stats.EnrichAttempts)
 				}
 				clearSearchStatus(&sp)
 			} else if enriched, err := s.source.EnrichDetail(ctx, sp); err != nil {

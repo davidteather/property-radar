@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"sort"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -98,7 +99,7 @@ func pageJSON(root, edgeType string, hasNext bool, nodes ...string) string {
 		edges = append(edges, fmt.Sprintf(`{"__typename":%q,"node":%s}`, edgeType, n))
 	}
 	return fmt.Sprintf(
-		`{"data":{%q:{"search":{"criteria":"area:319|status:open"},"totalCount":9,"pageInfo":{"currentPage":1,"hasNextPage":%t,"hasPreviousPage":false,"totalPages":2},"edges":[%s]}}}`,
+		`{"data":{%q:{"search":{"criteria":"area:319|status:open"},"totalCount":9,"pageInfo":{"currentPage":1,"hasNextPage":%t,"hasPreviousPage":false,"totalPages":5},"edges":[%s]}}}`,
 		root, hasNext, strings.Join(edges, ","))
 }
 
@@ -800,5 +801,150 @@ func TestCancelledContextIsNotRetried(t *testing.T) {
 	close(release)
 	if got := attempts.Load(); got != 1 {
 		t.Errorf("attempts = %d, want 1 (a dead crawl context is never retried)", got)
+	}
+}
+
+// cappedServer mimics the provider's result cap: a query answers at most
+// resultCap rows across its pages, however many exist, filtered by price bounds.
+type cappedServer struct {
+	prices    map[string]int
+	perPage   int
+	resultCap int
+	mu        sync.Mutex
+	bounds    []string
+}
+
+func (s *cappedServer) handler() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		body, _ := io.ReadAll(r.Body)
+		var req struct {
+			Variables struct {
+				Input struct {
+					Page    int `json:"page"`
+					Filters struct {
+						Price *struct{ LowerBound, UpperBound *int } `json:"price"`
+					} `json:"filters"`
+				} `json:"input"`
+			} `json:"variables"`
+		}
+		_ = json.Unmarshal(body, &req)
+		in := req.Variables.Input
+		lo, hi := 0, int(^uint(0)>>1)
+		if in.Filters.Price != nil {
+			if in.Filters.Price.LowerBound != nil {
+				lo = *in.Filters.Price.LowerBound
+			}
+			if in.Filters.Price.UpperBound != nil {
+				hi = *in.Filters.Price.UpperBound
+			}
+		}
+		s.mu.Lock()
+		s.bounds = append(s.bounds, fmt.Sprintf("%d..%d/%d", lo, hi, in.Page))
+		s.mu.Unlock()
+
+		var ids []string
+		for id, p := range s.prices {
+			if p >= lo && p <= hi {
+				ids = append(ids, id)
+			}
+		}
+		sort.Strings(ids)
+		total := len(ids)
+		pages := (min(total, s.resultCap) + s.perPage - 1) / s.perPage
+		start := min((in.Page-1)*s.perPage, len(ids))
+		end := min(start+s.perPage, min(total, s.resultCap))
+		var edges []string
+		for _, id := range ids[start:end] {
+			edges = append(edges, fmt.Sprintf(`{"__typename":"OrganicSaleEdge","node":%s}`,
+				strings.Replace(node(id, "/"+id, "CONDO"), `"price":900000`, fmt.Sprintf(`"price":%d`, s.prices[id]), 1)))
+		}
+		w.Header().Set("content-type", "application/json")
+		_, _ = fmt.Fprintf(w, `{"data":{"searchSales":{"search":{"criteria":""},"totalCount":%d,"pageInfo":{"currentPage":%d,"hasNextPage":%t,"hasPreviousPage":false,"totalPages":%d},"edges":[%s]}}}`,
+			total, in.Page, in.Page < pages, pages, strings.Join(edges, ","))
+	})
+}
+
+// A scope the provider caps is walked in price bands until every band fits,
+// so a broad standing scope sees every listing instead of the first thousand.
+func TestSearchSplitsACappedScopeByPrice(t *testing.T) {
+	stub := &cappedServer{prices: map[string]int{}, perPage: 2, resultCap: 4}
+	for i := range 23 {
+		stub.prices[fmt.Sprintf("l%02d", i)] = 100000 * (i + 1)
+	}
+	stub.prices["l06"] = 700000 // two listings at one price straddle a pivot
+	srv := httptest.NewServer(stub.handler())
+	defer srv.Close()
+
+	cfg := testConfig(srv)
+	cfg.DisableDetail = true
+	c := NewClient(srv.Client(), cfg)
+
+	props, errs := collect(t, c.Search(t.Context(), saleQuery()))
+	for i, err := range errs {
+		if err != nil {
+			t.Errorf("item %d: %v", i, err)
+		}
+	}
+	got := map[string]bool{}
+	for _, p := range props {
+		got[p.ProviderID] = true
+	}
+	if len(props) != len(stub.prices) || len(got) != len(stub.prices) {
+		t.Fatalf("yielded %d (%d distinct), want all %d listings once; requests: %v", len(props), len(got), len(stub.prices), stub.bounds)
+	}
+	if stub.bounds[0] != "0..9223372036854775807/1" {
+		t.Errorf("first request should be unbounded, got %s", stub.bounds[0])
+	}
+}
+
+func TestSearchSplitStaysUnderTheQueryCeiling(t *testing.T) {
+	stub := &cappedServer{prices: map[string]int{}, perPage: 2, resultCap: 4}
+	for i := range 12 {
+		stub.prices[fmt.Sprintf("l%02d", i)] = 100000 * (i + 1)
+	}
+	srv := httptest.NewServer(stub.handler())
+	defer srv.Close()
+
+	cfg := testConfig(srv)
+	cfg.DisableDetail = true
+	c := NewClient(srv.Client(), cfg)
+
+	q := saleQuery()
+	q.MaxPrice = 800000
+	props, _ := collect(t, c.Search(t.Context(), q))
+	if len(props) != 8 {
+		t.Fatalf("yielded %d, want the 8 listings at or under the ceiling; requests: %v", len(props), stub.bounds)
+	}
+	for _, b := range stub.bounds {
+		var lo, hi, page int
+		if _, err := fmt.Sscanf(b, "%d..%d/%d", &lo, &hi, &page); err != nil || hi > 800000 {
+			t.Errorf("request %s escaped the ceiling", b)
+		}
+	}
+}
+
+// Listings that share one price cannot be split apart; the run aborts rather
+// than counting itself complete on a truncated sweep.
+func TestSearchAbortsWhenOnePriceExceedsTheCap(t *testing.T) {
+	stub := &cappedServer{prices: map[string]int{}, perPage: 2, resultCap: 4}
+	for i := range 6 {
+		stub.prices[fmt.Sprintf("l%02d", i)] = 500000
+	}
+	srv := httptest.NewServer(stub.handler())
+	defer srv.Close()
+
+	cfg := testConfig(srv)
+	cfg.DisableDetail = true
+	c := NewClient(srv.Client(), cfg)
+
+	props, errs := collect(t, c.Search(t.Context(), saleQuery()))
+	last := errs[len(errs)-1]
+	if !errors.Is(last, ingest.ErrSearchAborted) || !strings.Contains(last.Error(), "result cap") {
+		t.Fatalf("last yield = %v, want ErrSearchAborted naming the result cap", last)
+	}
+	for i, p := range props[:len(props)-1] {
+		if p.ProviderID == "" || errs[i] != nil {
+			t.Errorf("item %d = %+v %v", i, p, errs[i])
+		}
 	}
 }

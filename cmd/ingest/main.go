@@ -197,7 +197,11 @@ func run(logger *slog.Logger) error {
 	if standingEvery <= 0 {
 		standingEvery = -1
 	}
-	svc := ingest.NewService(provider, st, thumbs, ingest.Options{PhotoCap: opt.photoCap, Logger: logger, StandingEvery: standingEvery})
+	// Half the deadline goes to detail pages so a scope of any size finishes
+	// as a complete run instead of being cut off mid-enrich.
+	svc := ingest.NewService(provider, st, thumbs, ingest.Options{
+		PhotoCap: opt.photoCap, Logger: logger, StandingEvery: standingEvery, EnrichFor: opt.timeout / 2,
+	})
 
 	if opt.fromTargets {
 		if opt.watch {

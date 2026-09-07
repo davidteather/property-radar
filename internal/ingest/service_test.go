@@ -303,6 +303,45 @@ func TestRunStopsEnrichingAfterFailureStreak(t *testing.T) {
 	assert.ErrorContains(t, ingest.RunOutcome(res, nil), "all 20 detail-page fetches failed")
 }
 
+// A run that would outlast its enrich budget stores the rest search-only and
+// still completes, so a huge scope never leaves aging switched off.
+func TestRunStoresTheRestSearchOnlyWhenTheEnrichBudgetIsSpent(t *testing.T) {
+	const n = 30
+	items := make([]yielded, 0, n)
+	for i := range n {
+		items = append(items, yielded{sp: listing(strconv.Itoa(i + 1))})
+	}
+	h := newHarness(t, ingest.Options{EnrichFor: time.Hour}, items...)
+	h.expectBaseline(ingest.Baseline{})
+	h.source.ExpectedCalls = nil
+	h.source.EXPECT().Name().Return("streeteasy").Maybe()
+	h.source.EXPECT().Search(mock.Anything, mock.Anything).Return(sourceSeq(items...)).Once()
+	// Each detail fetch costs eleven minutes of the hour; the seventh is over budget.
+	now := time.Now()
+	ingest.SetNow(h.svc, func() time.Time { return now })
+	h.source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
+		RunAndReturn(func(_ context.Context, sp ingest.SourceProperty) (ingest.SourceProperty, error) {
+			now = now.Add(11 * time.Minute)
+			return sp, nil
+		}).Times(6)
+	enriched := 0
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.MatchedBy(func(sp ingest.SourceProperty) bool {
+		if sp.Property.Status != "" {
+			enriched++
+		}
+		return true
+	}), mock.Anything).Return(ingest.ApplyResult{PropertyID: 11}, nil).Times(n)
+	h.store.EXPECT().MarkMissingSources(mock.Anything, "streeteasy", mock.Anything, testRunID).
+		Return(ingest.MissingResult{}, nil).Once()
+
+	res, err := h.svc.Run(context.Background(), testQuery())
+	require.NoError(t, err)
+	assert.Equal(t, 6, res.Stats.EnrichAttempts)
+	assert.Equal(t, 6, enriched, "rows past the budget land with status cleared")
+	assert.True(t, res.Run.Complete)
+	assert.Empty(t, h.stats.ItemErrors)
+}
+
 // One success resets the streak: intermittent failures never trip the breaker.
 func TestRunFailureStreakResetsOnSuccess(t *testing.T) {
 	const n = 40
