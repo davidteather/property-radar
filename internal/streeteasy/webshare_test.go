@@ -78,15 +78,25 @@ func TestProxyPoolPick(t *testing.T) {
 	a := &url.URL{Scheme: "http", Host: "a:1"}
 	b := &url.URL{Scheme: "http", Host: "b:2"}
 	pool := NewProxyPool([]*url.URL{a, b})
+	now := time.Unix(1_700_000_000, 0)
+	pool.now = func() time.Time { return now }
 
-	want := []string{"a:1", "b:2", "a:1", "b:2"}
-	for i, w := range want {
-		if u := pool.Pick(); u.Host != w {
-			t.Errorf("pick %d host = %q, want %q", i, u.Host, w)
+	// Least recently used wins; a fresh pool cycles in list order with no wait.
+	for i, want := range []string{"a:1", "b:2"} {
+		if u, wait := pool.Pick(); u.Host != want || wait != 0 {
+			t.Errorf("pick %d = %v wait %s, want %s with no wait", i, u, wait, want)
 		}
 	}
-	if u := NewProxyPool(nil).Pick(); u != nil {
-		t.Errorf("empty pool should mean direct, got %v", u)
+	// Both used this instant: the gap applies and is booked into the future.
+	if u, wait := pool.Pick(); u.Host != "a:1" || wait != proxyMinGap {
+		t.Errorf("pick 2 = %v wait %s, want a:1 after %s", u, wait, proxyMinGap)
+	}
+	now = now.Add(proxyMinGap)
+	if u, wait := pool.Pick(); u.Host != "b:2" || wait != 0 {
+		t.Errorf("pick 3 = %v wait %s, want b:2 with no wait", u, wait)
+	}
+	if u, _ := NewProxyPool(nil).Pick(); u != nil {
+		t.Errorf("empty pool should hand out nothing, got %v", u)
 	}
 }
 
@@ -94,7 +104,7 @@ func TestProxyPoolCopiesInput(t *testing.T) {
 	in := []*url.URL{{Scheme: "http", Host: "a:1"}}
 	pool := NewProxyPool(in)
 	in[0] = &url.URL{Scheme: "http", Host: "mutated:9"}
-	if u := pool.Pick(); u.Host != "a:1" {
+	if u, _ := pool.Pick(); u.Host != "a:1" {
 		t.Errorf("caller mutation leaked into the proxy pool: %q", u.Host)
 	}
 }
@@ -103,12 +113,13 @@ func TestProxyPoolBench(t *testing.T) {
 	a := &url.URL{Scheme: "http", Host: "a:1"}
 	b := &url.URL{Scheme: "http", Host: "b:2"}
 	pool := NewProxyPool([]*url.URL{a, b})
+	pool.minGap = 0
 	now := time.Unix(1_700_000_000, 0)
 	pool.now = func() time.Time { return now }
 
 	pool.Bench(a)
 	for i := range 3 {
-		if u := pool.Pick(); u.Host != "b:2" {
+		if u, _ := pool.Pick(); u.Host != "b:2" {
 			t.Fatalf("pick %d after benching a = %q, want b:2", i, u.Host)
 		}
 	}
@@ -116,19 +127,18 @@ func TestProxyPoolBench(t *testing.T) {
 		t.Errorf("healthy = %d/%d, want 1/2", h, n)
 	}
 
-	// Everyone benched: hand out the proxy whose bench ends first, not nothing.
+	// Everyone benched: hand out nothing rather than re-hit a banned IP.
 	now = now.Add(time.Minute)
 	pool.Bench(b)
-	if u := pool.Pick(); u.Host != "a:1" {
-		t.Errorf("all benched: picked %q, want the soonest-expiring a:1", u.Host)
+	if u, _ := pool.Pick(); u != nil {
+		t.Errorf("all benched: picked %q, want nil", u.Host)
 	}
 
-	now = now.Add(proxyBenchFor)
-	if u := pool.Pick(); u.Host != "a:1" {
-		t.Errorf("after cooldown: picked %q, want a:1 back in rotation", u.Host)
-	}
-	if u := pool.Pick(); u.Host != "b:2" {
-		t.Errorf("b should still be benched for a minute, got %q", u.Host)
+	now = now.Add(proxyBenchFor - 30*time.Second)
+	for i := range 2 {
+		if u, _ := pool.Pick(); u == nil || u.Host != "a:1" {
+			t.Errorf("pick %d after a's cooldown: %v, want a:1 (b still benched)", i, u)
+		}
 	}
 }
 
@@ -141,7 +151,7 @@ func TestProxyPoolReplaceKeepsBenches(t *testing.T) {
 	pool.Bench(b)
 
 	pool.Replace([]*url.URL{a, c})
-	if u := pool.Pick(); u.Host != "c:3" {
+	if u, _ := pool.Pick(); u.Host != "c:3" {
 		t.Errorf("a should stay benched across a refresh, got %q", u.Host)
 	}
 	if h, n := pool.Healthy(); h != 1 || n != 2 {

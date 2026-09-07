@@ -64,16 +64,20 @@ so one-off discoveries do not linger un-delistable.
 listing-page HTML (embedded JSON preferred over CSS selectors) for detail, both
 behind wire types + `convert.go`. Politeness first: large pages (perPage 500),
 ~1.5s inter-request delay, concurrency 1. Proxying is a `-proxy-mode {off,split,all}`
-selector over a Webshare pool of static IPs; a proxy that answers 403 is benched
-for 30 minutes, and a run that fails 20 detail fetches in a row stops fetching
-them (the rows land search-only and the next run retries). A run enumerates the
+selector over a Webshare pool of static IPs; no single IP is hit more than
+once per 10 s, a proxy that answers 403 is benched for 30 minutes, a fully
+benched pool fails requests without sending them, and a
+run that fails 20 detail fetches in a row stops fetching them (the rows land
+search-only and the next run retries). A run enumerates the
 whole scope from the search API first, then fetches detail pages new listings
 first, refreshes next, each group shuffled, so partial runs cover different
 slices; thumbnails cache in the background off the crawl loop.
 
-**Why / current state.** StreetEasy PX-blocks per IP, and a ban sticks for a
-while: re-sending through a banned proxy only keeps it burned, which is why the
-pool benches and the run gives up rather than retrying 500 doomed pages. A cloud
+**Why / current state.** StreetEasy PX-blocks per IP: measured on a datacenter
+IP, ~10 bare page hits inside 15 s earn a block, 12 hits 10 s apart do not, and
+a block left alone clears in under 10 minutes; re-sending through a banned IP
+keeps it burned, which is why the pool benches, a fully benched pool sends
+nothing, and the run gives up rather than retrying 500 doomed pages. A cloud
 host's own IP is blocked outright. Only **residential** proxies in `-proxy-mode all`
 (both API and site pages through the pool) reliably let a cloud crawl worker
 reach the API; `off` is local/residential-laptop, `split` proxies only site

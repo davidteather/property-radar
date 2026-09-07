@@ -1,6 +1,7 @@
 package streeteasy
 
 import (
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -42,8 +43,8 @@ func TestNewProxyTransport(t *testing.T) {
 				if err != nil {
 					t.Fatalf("build request: %v", err)
 				}
-				if got := pt.proxyFor(req); (got != nil) != tc.proxied[i] {
-					t.Errorf("%s: %s proxied = %v, want %v", tc.mode, raw, got != nil, tc.proxied[i])
+				if got := pt.proxied(req); got != tc.proxied[i] {
+					t.Errorf("%s: %s proxied = %v, want %v", tc.mode, raw, got, tc.proxied[i])
 				}
 			}
 		})
@@ -80,6 +81,7 @@ func TestProxyTransportBenchesOn403(t *testing.T) {
 	badURL, _ := url.Parse(bad.URL)
 	goodURL, _ := url.Parse(good.URL)
 	pool := NewProxyPool([]*url.URL{badURL, goodURL})
+	pool.minGap = 0
 	rt, err := NewProxyTransport(&http.Transport{}, ProxyAll, pool)
 	if err != nil {
 		t.Fatal(err)
@@ -103,5 +105,15 @@ func TestProxyTransportBenchesOn403(t *testing.T) {
 	}
 	if h, n := pool.Healthy(); h != 1 || n != 2 {
 		t.Errorf("healthy = %d/%d, want 1/2", h, n)
+	}
+
+	// Bench the last healthy proxy: the next request must fail without a hit.
+	pool.Bench(goodURL)
+	_, err = client.Get("http://streeteasy.com/sale/2")
+	if !errors.Is(err, ErrProxiesBenched) {
+		t.Errorf("all benched: err = %v, want ErrProxiesBenched", err)
+	}
+	if badHits.Load() != 1 || goodHits.Load() != 3 {
+		t.Errorf("all benched still sent traffic: bad=%d good=%d", badHits.Load(), goodHits.Load())
 	}
 }

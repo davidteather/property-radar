@@ -100,22 +100,33 @@ const (
 // The GraphQL API host is deliberately absent: it 403s datacenter proxy IPs.
 var siteHosts = []string{"streeteasy.com", "www.streeteasy.com"}
 
-// proxyBenchFor is how long a proxy that answered 403 sits out. PX bans are per
-// IP and sticky, so re-sending through it only keeps it burned.
+// proxyBenchFor is how long a proxy that answered 403 sits out. A PX ban is per
+// IP, clears within minutes if left alone, and lengthens on every re-hit.
 const proxyBenchFor = 30 * time.Minute
 
-// ProxyPool round-robins the proxies that are not benched; when every proxy is
-// benched it hands out the one whose bench ends soonest rather than none.
+// proxyMinGap spaces hits through one IP: ~10 within 15 s earn a block, 10 s
+// apart never did.
+const proxyMinGap = 10 * time.Second
+
+// ProxyPool hands out the least recently used proxy that is not benched.
+// Hitting a banned IP again lengthens its ban, so a fully benched pool hands
+// out nothing.
 type ProxyPool struct {
-	mu      sync.Mutex
-	proxies []*url.URL
-	benched map[string]time.Time
-	next    int
-	now     func() time.Time
+	mu       sync.Mutex
+	proxies  []*url.URL
+	benched  map[string]time.Time
+	lastUsed map[string]time.Time
+	minGap   time.Duration
+	now      func() time.Time
 }
 
 func NewProxyPool(proxies []*url.URL) *ProxyPool {
-	p := &ProxyPool{benched: make(map[string]time.Time), now: time.Now}
+	p := &ProxyPool{
+		benched:  make(map[string]time.Time),
+		lastUsed: make(map[string]time.Time),
+		minGap:   proxyMinGap,
+		now:      time.Now,
+	}
 	p.Replace(proxies)
 	return p
 }
@@ -125,7 +136,6 @@ func (p *ProxyPool) Replace(proxies []*url.URL) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 	p.proxies = slices.Clone(proxies)
-	p.next = 0
 	keep := make(map[string]time.Time, len(p.benched))
 	for _, u := range p.proxies {
 		if until, ok := p.benched[u.Host]; ok {
@@ -135,28 +145,30 @@ func (p *ProxyPool) Replace(proxies []*url.URL) {
 	p.benched = keep
 }
 
-func (p *ProxyPool) Pick() *url.URL {
+// Pick returns the proxy to use next and how long to wait before using it;
+// nil means every proxy is benched.
+func (p *ProxyPool) Pick() (*url.URL, time.Duration) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	n := len(p.proxies)
-	if n == 0 {
-		return nil
-	}
 	now := p.now()
-	var soonest *url.URL
-	for range n {
-		u := p.proxies[p.next%n]
-		p.next++
-		until, ok := p.benched[u.Host]
-		if !ok || !until.After(now) {
+	var pick *url.URL
+	for _, u := range p.proxies {
+		if until, ok := p.benched[u.Host]; ok {
+			if until.After(now) {
+				continue
+			}
 			delete(p.benched, u.Host)
-			return u
 		}
-		if soonest == nil || until.Before(p.benched[soonest.Host]) {
-			soonest = u
+		if pick == nil || p.lastUsed[u.Host].Before(p.lastUsed[pick.Host]) {
+			pick = u
 		}
 	}
-	return soonest
+	if pick == nil {
+		return nil, 0
+	}
+	wait := max(0, p.minGap-now.Sub(p.lastUsed[pick.Host]))
+	p.lastUsed[pick.Host] = now.Add(wait)
+	return pick, wait
 }
 
 func (p *ProxyPool) Bench(u *url.URL) {
@@ -215,19 +227,29 @@ func NewProxyTransport(base *http.Transport, mode string, pool *ProxyPool) (http
 	return t, nil
 }
 
-func (t *proxyTransport) proxyFor(req *http.Request) *url.URL {
-	if t.hosts != nil {
-		if _, ok := t.hosts[strings.ToLower(req.URL.Hostname())]; !ok {
-			return nil
-		}
+// ErrProxiesBenched is returned instead of sending through a banned IP.
+var ErrProxiesBenched = errors.New("every proxy is benched")
+
+func (t *proxyTransport) proxied(req *http.Request) bool {
+	if t.hosts == nil {
+		return true
 	}
-	return t.pool.Pick()
+	_, ok := t.hosts[strings.ToLower(req.URL.Hostname())]
+	return ok
 }
 
 func (t *proxyTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	u := t.proxyFor(req)
-	if u == nil {
+	if !t.proxied(req) {
 		return t.base.RoundTrip(req)
+	}
+	u, wait := t.pool.Pick()
+	if u == nil {
+		return nil, ErrProxiesBenched
+	}
+	if wait > 0 {
+		if err := sleepCtx(req.Context(), wait); err != nil {
+			return nil, err
+		}
 	}
 	resp, err := t.base.RoundTrip(req.WithContext(context.WithValue(req.Context(), pickedProxyKey{}, u)))
 	if err == nil && resp.StatusCode == http.StatusForbidden {

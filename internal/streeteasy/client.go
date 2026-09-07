@@ -387,7 +387,7 @@ func sleepCtx(ctx context.Context, d time.Duration) error {
 // http.Client timeout, which also reports DeadlineExceeded) as retryable;
 // only a dead crawl context or a non-retryable HTTP status ends the attempts.
 func isRetryable(ctx context.Context, err error) bool {
-	if ctx.Err() != nil {
+	if ctx.Err() != nil || errors.Is(err, ErrProxiesBenched) {
 		return false
 	}
 	if he, ok := errors.AsType[*HTTPError](err); ok {
