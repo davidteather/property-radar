@@ -4,7 +4,9 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestFetchWebshareProxies(t *testing.T) {
@@ -60,46 +62,92 @@ func TestFetchWebshareProxiesErrors(t *testing.T) {
 	if _, err := FetchWebshareProxies(t.Context(), empty.Client(), WebshareConfig{APIKey: "k", ListURL: empty.URL}); err == nil {
 		t.Error("empty list should error")
 	}
+
+	// Rotating residential plans list proxies with no address (backbone only).
+	rotating := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write([]byte(`{"results":[{"proxy_address":null,"port":0,"username":"u","password":"p","valid":true}]}`))
+	}))
+	defer rotating.Close()
+	_, err := FetchWebshareProxies(t.Context(), rotating.Client(), WebshareConfig{APIKey: "k", ListURL: rotating.URL})
+	if err == nil || !strings.Contains(err.Error(), "backbone") {
+		t.Errorf("addressless list should name the rotating plan, got %v", err)
+	}
 }
 
-func TestRotatingProxyFunc(t *testing.T) {
+func TestProxyPoolPick(t *testing.T) {
 	a := &url.URL{Scheme: "http", Host: "a:1"}
 	b := &url.URL{Scheme: "http", Host: "b:2"}
-	next := rotatingProxyFunc([]*url.URL{a, b})
+	pool := NewProxyPool([]*url.URL{a, b})
 
-	req, err := http.NewRequestWithContext(t.Context(), http.MethodGet, "https://example.test", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
 	want := []string{"a:1", "b:2", "a:1", "b:2"}
 	for i, w := range want {
-		u, err := next(req)
-		if err != nil {
-			t.Fatalf("call %d: %v", i, err)
-		}
-		if u.Host != w {
-			t.Errorf("call %d host = %q, want %q", i, u.Host, w)
+		if u := pool.Pick(); u.Host != w {
+			t.Errorf("pick %d host = %q, want %q", i, u.Host, w)
 		}
 	}
-
-	direct := rotatingProxyFunc(nil)
-	u, err := direct(req)
-	if err != nil || u != nil {
-		t.Errorf("empty pool should mean direct, got %v %v", u, err)
+	if u := NewProxyPool(nil).Pick(); u != nil {
+		t.Errorf("empty pool should mean direct, got %v", u)
 	}
 }
 
-func TestRotatingProxyFuncCopiesPool(t *testing.T) {
-	pool := []*url.URL{{Scheme: "http", Host: "a:1"}}
-	next := rotatingProxyFunc(pool)
-	pool[0] = &url.URL{Scheme: "http", Host: "mutated:9"}
-
-	req, err := http.NewRequestWithContext(t.Context(), http.MethodGet, "https://example.test", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-	u, _ := next(req)
-	if u.Host != "a:1" {
+func TestProxyPoolCopiesInput(t *testing.T) {
+	in := []*url.URL{{Scheme: "http", Host: "a:1"}}
+	pool := NewProxyPool(in)
+	in[0] = &url.URL{Scheme: "http", Host: "mutated:9"}
+	if u := pool.Pick(); u.Host != "a:1" {
 		t.Errorf("caller mutation leaked into the proxy pool: %q", u.Host)
+	}
+}
+
+func TestProxyPoolBench(t *testing.T) {
+	a := &url.URL{Scheme: "http", Host: "a:1"}
+	b := &url.URL{Scheme: "http", Host: "b:2"}
+	pool := NewProxyPool([]*url.URL{a, b})
+	now := time.Unix(1_700_000_000, 0)
+	pool.now = func() time.Time { return now }
+
+	pool.Bench(a)
+	for i := range 3 {
+		if u := pool.Pick(); u.Host != "b:2" {
+			t.Fatalf("pick %d after benching a = %q, want b:2", i, u.Host)
+		}
+	}
+	if h, n := pool.Healthy(); h != 1 || n != 2 {
+		t.Errorf("healthy = %d/%d, want 1/2", h, n)
+	}
+
+	// Everyone benched: hand out the proxy whose bench ends first, not nothing.
+	now = now.Add(time.Minute)
+	pool.Bench(b)
+	if u := pool.Pick(); u.Host != "a:1" {
+		t.Errorf("all benched: picked %q, want the soonest-expiring a:1", u.Host)
+	}
+
+	now = now.Add(proxyBenchFor)
+	if u := pool.Pick(); u.Host != "a:1" {
+		t.Errorf("after cooldown: picked %q, want a:1 back in rotation", u.Host)
+	}
+	if u := pool.Pick(); u.Host != "b:2" {
+		t.Errorf("b should still be benched for a minute, got %q", u.Host)
+	}
+}
+
+func TestProxyPoolReplaceKeepsBenches(t *testing.T) {
+	a := &url.URL{Scheme: "http", Host: "a:1"}
+	b := &url.URL{Scheme: "http", Host: "b:2"}
+	c := &url.URL{Scheme: "http", Host: "c:3"}
+	pool := NewProxyPool([]*url.URL{a, b})
+	pool.Bench(a)
+	pool.Bench(b)
+
+	pool.Replace([]*url.URL{a, c})
+	if u := pool.Pick(); u.Host != "c:3" {
+		t.Errorf("a should stay benched across a refresh, got %q", u.Host)
+	}
+	if h, n := pool.Healthy(); h != 1 || n != 2 {
+		t.Errorf("healthy = %d/%d, want 1/2", h, n)
+	}
+	if len(pool.benched) != 1 {
+		t.Errorf("bench for the dropped proxy b should be forgotten, have %d", len(pool.benched))
 	}
 }

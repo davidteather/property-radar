@@ -12,7 +12,6 @@ import (
 	"os/signal"
 	"slices"
 	"strings"
-	"sync/atomic"
 	"syscall"
 	"time"
 
@@ -162,23 +161,21 @@ func run(logger *slog.Logger) error {
 		return nil
 	}
 
-	transport := http.DefaultTransport.(*http.Transport).Clone()
+	var transport http.RoundTripper = http.DefaultTransport.(*http.Transport).Clone()
 	if proxyMode != streeteasy.ProxyOff {
 		proxies, err := fetchProxies(ctx, logger, cfg.WebshareAPIKey, opt.watch)
 		if err != nil {
 			return fmt.Errorf("fetch webshare proxies: %w", err)
 		}
 		// Proxy URLs embed credentials: log the count and mode, never the URLs.
-		proxyFn, err := streeteasy.ProxyForMode(proxyMode, proxies)
+		pool := streeteasy.NewProxyPool(proxies)
+		transport, err = streeteasy.NewProxyTransport(transport.(*http.Transport), proxyMode, pool)
 		if err != nil {
 			return err
 		}
-		var current atomic.Pointer[func(*http.Request) (*url.URL, error)]
-		current.Store(&proxyFn)
-		transport.Proxy = func(r *http.Request) (*url.URL, error) { return (*current.Load())(r) }
 		logger.Info("proxy rotation enabled", "mode", proxyMode, "proxies", len(proxies))
 		if opt.watch {
-			go refreshProxies(ctx, logger, cfg.WebshareAPIKey, proxyMode, &current)
+			go refreshProxies(ctx, logger, cfg.WebshareAPIKey, pool)
 		}
 	}
 
@@ -354,7 +351,7 @@ func fetchProxies(ctx context.Context, logger *slog.Logger, apiKey string, watch
 const proxyRefreshEvery = 6 * time.Hour
 
 // refreshProxies periodically swaps in a fresh proxy list; a failed refresh keeps the current one.
-func refreshProxies(ctx context.Context, logger *slog.Logger, apiKey, mode string, current *atomic.Pointer[func(*http.Request) (*url.URL, error)]) {
+func refreshProxies(ctx context.Context, logger *slog.Logger, apiKey string, pool *streeteasy.ProxyPool) {
 	client := &http.Client{Timeout: 30 * time.Second}
 	for {
 		select {
@@ -367,13 +364,9 @@ func refreshProxies(ctx context.Context, logger *slog.Logger, apiKey, mode strin
 			logger.Warn("refresh webshare proxies; keeping the current list", "err", err)
 			continue
 		}
-		fn, err := streeteasy.ProxyForMode(mode, proxies)
-		if err != nil {
-			logger.Warn("refresh webshare proxies", "err", err)
-			continue
-		}
-		current.Store(&fn)
-		logger.Info("proxy list refreshed", "proxies", len(proxies))
+		pool.Replace(proxies)
+		healthy, total := pool.Healthy()
+		logger.Info("proxy list refreshed", "proxies", total, "healthy", healthy)
 	}
 }
 

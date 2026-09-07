@@ -269,6 +269,72 @@ func TestRunEnrichFailureDoesNotRevertStatus(t *testing.T) {
 	assert.Equal(t, 2, res.Stats.EnrichFailures)
 }
 
+// Once detail fetches fail 20 times in a row the run stops asking: a blocked
+// provider only gets more blocked. The rest store search-only and retry later.
+func TestRunStopsEnrichingAfterFailureStreak(t *testing.T) {
+	const n = 30
+	items := make([]yielded, 0, n)
+	ids := make([]string, 0, n)
+	for i := range n {
+		id := strconv.Itoa(i + 1)
+		items = append(items, yielded{sp: listing(id)})
+		ids = append(ids, id)
+	}
+	h := newHarness(t, ingest.Options{}, items...)
+	h.expectBaseline(ingest.Baseline{})
+	h.source.ExpectedCalls = nil
+	h.source.EXPECT().Name().Return("streeteasy").Maybe()
+	h.source.EXPECT().Search(mock.Anything, mock.Anything).Return(sourceSeq(items...)).Once()
+	h.source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
+		Return(ingest.SourceProperty{}, errors.New("streeteasy detail: 403")).Times(20)
+
+	// Every row lands, the skipped ones with status cleared like a failed one.
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.MatchedBy(func(sp ingest.SourceProperty) bool {
+		return sp.Property.Status == ""
+	}), mock.Anything).Return(ingest.ApplyResult{PropertyID: 11}, nil).Times(n)
+	h.store.EXPECT().MarkMissingSources(mock.Anything, "streeteasy", ids, testRunID).
+		Return(ingest.MissingResult{}, nil).Once()
+
+	res, err := h.svc.Run(context.Background(), testQuery())
+	require.NoError(t, err)
+	assert.Equal(t, 20, res.Stats.EnrichAttempts)
+	assert.Equal(t, 20, res.Stats.EnrichFailures)
+	assert.Len(t, h.stats.ItemErrors, 20, "skipped listings are not errors")
+	assert.ErrorContains(t, ingest.RunOutcome(res, nil), "all 20 detail-page fetches failed")
+}
+
+// One success resets the streak: intermittent failures never trip the breaker.
+func TestRunFailureStreakResetsOnSuccess(t *testing.T) {
+	const n = 40
+	items := make([]yielded, 0, n)
+	for i := range n {
+		items = append(items, yielded{sp: listing(strconv.Itoa(i + 1))})
+	}
+	h := newHarness(t, ingest.Options{}, items...)
+	h.expectBaseline(ingest.Baseline{})
+	h.source.ExpectedCalls = nil
+	h.source.EXPECT().Name().Return("streeteasy").Maybe()
+	h.source.EXPECT().Search(mock.Anything, mock.Anything).Return(sourceSeq(items...)).Once()
+	calls := 0
+	h.source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
+		RunAndReturn(func(_ context.Context, sp ingest.SourceProperty) (ingest.SourceProperty, error) {
+			calls++
+			if calls%20 == 0 {
+				return sp, nil
+			}
+			return ingest.SourceProperty{}, errors.New("streeteasy detail: 403")
+		}).Times(n)
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.Anything, mock.Anything).
+		Return(ingest.ApplyResult{PropertyID: 11}, nil).Times(n)
+	h.store.EXPECT().MarkMissingSources(mock.Anything, "streeteasy", mock.Anything, testRunID).
+		Return(ingest.MissingResult{}, nil).Once()
+
+	res, err := h.svc.Run(context.Background(), testQuery())
+	require.NoError(t, err)
+	assert.Equal(t, n, res.Stats.EnrichAttempts)
+	assert.Equal(t, n-2, res.Stats.EnrichFailures)
+}
+
 // An empty page is never evidence of absence: with no baseline to flag it
 // suspect, advancing would delist everything the scope had seen.
 func TestRunEmptyPageNeverAdvancesMissing(t *testing.T) {

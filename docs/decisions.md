@@ -64,15 +64,20 @@ so one-off discoveries do not linger un-delistable.
 listing-page HTML (embedded JSON preferred over CSS selectors) for detail, both
 behind wire types + `convert.go`. Politeness first: large pages (perPage 500),
 ~1.5s inter-request delay, concurrency 1. Proxying is a `-proxy-mode {off,split,all}`
-selector over a Webshare pool.
+selector over a Webshare pool of static IPs; a proxy that answers 403 is benched
+for 30 minutes, and a run that fails 20 detail fetches in a row stops fetching
+them (the rows land search-only and the next run retries).
 
-**Why / current state.** StreetEasy PX-blocks datacenter IPs on the GraphQL API,
-so a cloud host's own IP is blocked. Only **residential** proxies in `-proxy-mode all`
-(both API and site pages through the pool) let a cloud crawl worker reach the
-API; `off` is local/residential-laptop, `split` proxies only site pages. A
-datacenter or free proxy plan is honestly a no-op rather than pretended to work;
-a provider-level block is a run-level failure that cannot corrupt data or
-mass-delist. The always-available fallback is running the crawler from the
+**Why / current state.** StreetEasy PX-blocks per IP, and a ban sticks for a
+while: re-sending through a banned proxy only keeps it burned, which is why the
+pool benches and the run gives up rather than retrying 500 doomed pages. A cloud
+host's own IP is blocked outright. Only **residential** proxies in `-proxy-mode all`
+(both API and site pages through the pool) reliably let a cloud crawl worker
+reach the API; `off` is local/residential-laptop, `split` proxies only site
+pages. Rotating (backbone) Webshare plans list no per-proxy address and are
+refused with a message saying so; a datacenter or free plan is honestly a no-op
+rather than pretended to work. A provider-level block is a run-level failure that
+cannot corrupt data or mass-delist. The always-available fallback is running the crawler from the
 operator's own machine against the same cloud DB and bucket. `mcpd` never
 crawls. Test fixtures are synthetic — real-shaped payloads with fabricated
 content (no real listing data or auth material); normal tests never touch the

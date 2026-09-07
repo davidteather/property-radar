@@ -247,6 +247,7 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 	seen := []string{}
 	var crawlErr error
 	errs := itemErrors{}
+	failStreak := 0
 
 	for sp, err := range s.source.Search(ctx, q) {
 		// Checked first so a dead context does not churn through the rest of
@@ -274,19 +275,23 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 		}
 
 		if s.shouldEnrich(ctx, q, sp) {
-			stats.EnrichAttempts++
-			enriched, err := s.source.EnrichDetail(ctx, sp)
-			if err != nil {
+			if failStreak >= enrichAbortStreak {
+				if failStreak == enrichAbortStreak {
+					s.log.Warn("detail fetches failing back to back; storing the rest search-only", "streak", failStreak)
+					failStreak++
+				}
+				clearSearchStatus(&sp)
+			} else if enriched, err := s.source.EnrichDetail(ctx, sp); err != nil {
+				stats.EnrichAttempts++
 				stats.EnrichFailures++
+				failStreak++
 				// Soft: the search-only listing still applies; its missing
 				// description makes the next incremental run retry enrichment.
 				errs.add(domain.RunError{ProviderID: sp.ProviderID, Message: err.Error()})
-				// A search row only ever says "active": without the detail page it
-				// must not overturn a status (in_contract, sold) that page reported.
-				if sp.Property.Status == domain.StatusActive {
-					sp.Property.Status = ""
-				}
+				clearSearchStatus(&sp)
 			} else {
+				stats.EnrichAttempts++
+				failStreak = 0
 				sp = enriched
 			}
 		}
@@ -337,6 +342,19 @@ func (e *itemErrors) list() []domain.RunError {
 		return e.kept
 	}
 	return append(e.kept, domain.RunError{Message: fmt.Sprintf("%d more errors not recorded", e.dropped)})
+}
+
+// enrichAbortStreak is how many detail fetches must fail in a row before a run
+// stops fetching them: past that the provider is blocking, and every further
+// request only keeps the crawler's IPs burned. The next run retries.
+const enrichAbortStreak = 20
+
+// A search row only ever says "active": without the detail page it must not
+// overturn a status (in_contract, sold) that page reported.
+func clearSearchStatus(sp *SourceProperty) {
+	if sp.Property.Status == domain.StatusActive {
+		sp.Property.Status = ""
+	}
 }
 
 // shouldEnrich: deep runs fetch every detail page not merged within DeepInterval
