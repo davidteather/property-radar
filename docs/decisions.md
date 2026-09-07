@@ -73,7 +73,8 @@ whole scope from the search API first, splitting any query the API caps into
 price bands until each band fits, then fetches detail pages new listings
 first, refreshes next, each group shuffled, for at most half the run deadline;
 whatever is left lands search-only so the run still completes. Thumbnails
-cache in the background off the crawl loop.
+cache in the background off the crawl loop under that same budget; photos it
+does not reach are fetched by the next run.
 
 **Why / current state.** StreetEasy PX-blocks per IP: measured on a datacenter
 IP, ~10 bare page hits inside 15 s earn a block, 12 hits 10 s apart do not, and
@@ -86,7 +87,8 @@ different thousand each run and delist the rest; price bounds are inclusive,
 which is what makes disjoint bands possible. The enrich budget exists because
 a 12,000-listing scope needs hours of detail pages: without it every deep pass
 overran the drain deadline, stayed due, and re-ran back to back with aging
-switched off. A cloud host's own IP is blocked outright. Only **residential** proxies in `-proxy-mode all`
+switched off; a first crawl's photo backlog (~14 per listing at ~5/s) would
+do the same on its own, so the drain shares the budget. A cloud host's own IP is blocked outright. Only **residential** proxies in `-proxy-mode all`
 (both API and site pages through the pool) reliably let a cloud crawl worker
 reach the API; `off` is local/residential-laptop, `split` proxies only site
 pages. Rotating (backbone) Webshare plans list no per-proxy address and are

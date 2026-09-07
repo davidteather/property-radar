@@ -295,12 +295,12 @@ func (s *Service) crawl(ctx context.Context, runID domain.IngestRunID, q SearchQ
 	}
 	order := crawlOrder(rank)
 
-	photos := s.startPhotoDrain(ctx, len(pending))
-	failStreak := 0
 	var enrichUntil time.Time
 	if s.enrichFor > 0 {
 		enrichUntil = s.now().Add(s.enrichFor)
 	}
+	photos := s.startPhotoDrain(ctx, len(pending), enrichUntil)
+	failStreak := 0
 	budgetSpent := false
 	for _, i := range order {
 		if ctx.Err() != nil {
@@ -466,17 +466,23 @@ type photoDrain struct {
 const photoDrainWorkers = 2
 
 // capacity must cover every job the crawl can add, so add never blocks the loop.
-func (s *Service) startPhotoDrain(ctx context.Context, capacity int) *photoDrain {
+// Photos share the enrich budget: past until, the rest wait for the next run.
+func (s *Service) startPhotoDrain(ctx context.Context, capacity int, until time.Time) *photoDrain {
 	d := &photoDrain{}
 	if s.photos == nil {
 		return d
 	}
 	d.jobs = make(chan photoJob, capacity)
+	var spent sync.Once
 	for range photoDrainWorkers {
 		d.wg.Add(1)
 		go func() {
 			defer d.wg.Done()
 			for j := range d.jobs {
+				if !until.IsZero() && s.now().After(until) {
+					spent.Do(func() { s.log.Info("photo budget spent; leaving the rest for the next run") })
+					continue
+				}
 				d.failures.Add(int64(s.cachePhotos(ctx, j.sp, j.id)))
 			}
 		}()

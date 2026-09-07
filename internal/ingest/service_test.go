@@ -8,6 +8,7 @@ import (
 	"iter"
 	"log/slog"
 	"strconv"
+	"sync"
 	"testing"
 	"time"
 
@@ -61,6 +62,16 @@ func cacheURLs(m *mocks.MockPhotoCacher) []string {
 	}
 	return urls
 }
+
+// fakeClock is a settable now() safe to advance from the crawl loop while
+// photo workers read it.
+type fakeClock struct {
+	mu sync.Mutex
+	t  time.Time
+}
+
+func (c *fakeClock) now() time.Time          { c.mu.Lock(); defer c.mu.Unlock(); return c.t }
+func (c *fakeClock) advance(d time.Duration) { c.mu.Lock(); defer c.mu.Unlock(); c.t = c.t.Add(d) }
 
 type harness struct {
 	source *mocks.MockSource
@@ -317,11 +328,11 @@ func TestRunStoresTheRestSearchOnlyWhenTheEnrichBudgetIsSpent(t *testing.T) {
 	h.source.EXPECT().Name().Return("streeteasy").Maybe()
 	h.source.EXPECT().Search(mock.Anything, mock.Anything).Return(sourceSeq(items...)).Once()
 	// Each detail fetch costs eleven minutes of the hour; the seventh is over budget.
-	now := time.Now()
-	ingest.SetNow(h.svc, func() time.Time { return now })
+	clock := &fakeClock{t: time.Now()}
+	ingest.SetNow(h.svc, clock.now)
 	h.source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
 		RunAndReturn(func(_ context.Context, sp ingest.SourceProperty) (ingest.SourceProperty, error) {
-			now = now.Add(11 * time.Minute)
+			clock.advance(11 * time.Minute)
 			return sp, nil
 		}).Times(6)
 	enriched := 0
@@ -340,6 +351,33 @@ func TestRunStoresTheRestSearchOnlyWhenTheEnrichBudgetIsSpent(t *testing.T) {
 	assert.Equal(t, 6, enriched, "rows past the budget land with status cleared")
 	assert.True(t, res.Run.Complete)
 	assert.Empty(t, h.stats.ItemErrors)
+}
+
+func TestRunLeavesPhotosForTheNextRunWhenTheBudgetIsSpent(t *testing.T) {
+	items := []yielded{{sp: listing("1", "photo-a", "photo-b")}, {sp: listing("2", "photo-c")}}
+	h := newHarness(t, ingest.Options{EnrichFor: time.Hour}, items...)
+	h.expectBaseline(ingest.Baseline{})
+	h.source.ExpectedCalls = nil
+	h.source.EXPECT().Name().Return("streeteasy").Maybe()
+	h.source.EXPECT().Search(mock.Anything, mock.Anything).Return(sourceSeq(items...)).Once()
+	// The first detail page alone eats the whole hour.
+	clock := &fakeClock{t: time.Now()}
+	ingest.SetNow(h.svc, clock.now)
+	h.source.EXPECT().EnrichDetail(mock.Anything, mock.Anything).
+		RunAndReturn(func(_ context.Context, sp ingest.SourceProperty) (ingest.SourceProperty, error) {
+			clock.advance(2 * time.Hour)
+			return sp, nil
+		}).Once()
+	h.store.EXPECT().ApplySourceProperty(mock.Anything, testRunID, mock.Anything, mock.Anything).
+		Return(ingest.ApplyResult{PropertyID: 11}, nil).Times(2)
+	h.store.EXPECT().MarkMissingSources(mock.Anything, "streeteasy", mock.Anything, testRunID).
+		Return(ingest.MissingResult{}, nil).Once()
+
+	res, err := h.svc.Run(context.Background(), testQuery())
+	require.NoError(t, err)
+	assert.Empty(t, cacheURLs(h.photos), "no photo is fetched past the budget")
+	assert.True(t, res.Run.Complete)
+	assert.Zero(t, res.Stats.PhotoFailures)
 }
 
 // One success resets the streak: intermittent failures never trip the breaker.
