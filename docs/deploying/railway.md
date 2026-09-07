@@ -18,6 +18,9 @@ REST API at `/v1`, interactive docs at `/docs`.
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=docs)
 
+The whole thing, start to first search, is recorded in the
+**[setup walkthrough on YouTube](https://youtu.be/kGgKUymeSzc)** (~15 min).
+
 Deploying the template gives you every service pre-wired, with
 `MCP_BEARER_TOKEN`, `PUBLIC_IMG_TOKEN`, and the storage secret
 **auto-generated** — you type no secrets. What the deployer does:

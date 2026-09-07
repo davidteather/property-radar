@@ -25,7 +25,8 @@ photos; the LLM you connect does the judging. Free, MIT-licensed, no paid tier.
 
 > **Early days.** NYC only for now (StreetEasy), with more metros and sources on
 > the [roadmap](#status--roadmap). Screenshots soon; the demo below shows the
-> loop end to end.
+> loop end to end, and the **[full setup walkthrough on YouTube](https://youtu.be/kGgKUymeSzc)**
+> goes from a blank Railway project to a first real search in ~15 minutes.
 
 https://github.com/user-attachments/assets/cba7e24e-088d-44d4-8360-fdb843768d1e
 
@@ -129,7 +130,8 @@ The cloud shape mirrors the local one exactly: Postgres, VersityGW, `mcpd`, and
 an always-on crawl worker, behind one auto-generated bearer token and a
 `https://<you>.up.railway.app` URL. The one-click template provisions all of it
 with the secrets generated for you; the guide covers the CLI path too:
-**[docs/deploying/railway.md](docs/deploying/railway.md)**.
+**[docs/deploying/railway.md](docs/deploying/railway.md)**. Prefer to watch it
+done first? **[Full setup walkthrough (YouTube, ~15 min)](https://youtu.be/kGgKUymeSzc)**.
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=quickstart)
 
