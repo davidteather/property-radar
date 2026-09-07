@@ -378,7 +378,7 @@ service:
 
 | Variable | Value |
 |---|---|
-| `WEBSHARE_API_KEY` | your **residential** Webshare key |
+| `WEBSHARE_API_KEY` | your **residential** Webshare key ([how to get one](../../docs/deploying/railway.md#getting-a-webshare-key)) |
 | `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` |
 | `STORAGE_BACKEND` / `S3_*` | same values as `mcpd` (step 4) |
 | `RAILWAY_DOCKERFILE_PATH` | `deploy/Dockerfile.ingest` |
@@ -472,7 +472,13 @@ deploying templates is to attach to and deploy directly from the template
 repository. Therefore, you will **not** automatically get a copy of the
 repository on deploy." A deployer who wants their own copy uses the service's
 **Eject** action. The repository does have to be public (or the deployer must
-have access), which `davidteather/property-radar` satisfies once it is public.
+have access), which `davidteather/property-radar` satisfies.
+
+The generator copies the live project but **blanks every literal value** (it
+cannot tell `S3_BUCKET=thumbs` from a secret) and keeps only `${{…}}`
+references, and it does not read `.railway/railway.ts`. So the composer pass
+below is where each literal gets typed back in, once. That pass is what turns
+"N variable values needed" on the deploy page into zero.
 
 Check, service by service:
 
@@ -555,17 +561,28 @@ that the deployer is responsible for how they use it.
 
 ### 4. Publish, then take the badge
 
-Publish from the composer's publish button, or Workspace **Settings →
-Templates → Publish**. Once it is live, the badge markdown is:
+Publish from the composer's publish button, Workspace **Settings → Templates →
+Publish**, or the CLI:
 
-```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/ZweBXA?utm_medium=integration&utm_source=button&utm_campaign=generic)
+```bash
+railway templates publish <template-id> --category Other \
+  --description "Self-hosted taste memory for your home search over MCP. Zero secrets to type." \
+  --readme-file deploy/railway/TEMPLATE_README.md --json
 ```
 
-Replace `ZweBXA` with your template's code and `utm_campaign=generic` with the
-template name for attribution. (`https://railway.com/deploy/<code>` also
-resolves, but `/new/template/` is the documented badge form.) Paste the result
-into the root `README.md`, at the `<!-- TODO (badges) -->` marker.
+The deploy page is `https://railway.com/new/template/<code>`; Railway's
+documented badge form adds `?utm_medium=integration&utm_source=button&utm_campaign=<template-name>`
+for attribution. Property Radar's badges point at a redirect,
+`https://go.dteather.com/property-radar-template?src=<surface>&placement=<where>`,
+which resolves to that URL and lets the maintainer see which page a click came
+from. It sits in the root `README.md` (badge row and the Railway section) and
+in `docs/deploying/railway.md`:
+
+```md
+[![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=readme)
+```
+
+A fork publishes its own template and swaps the link for its own deploy page.
 
 Two things worth turning on afterwards: the template **metrics** page
 (deployments, support health) and **updatable templates**, which opens a PR

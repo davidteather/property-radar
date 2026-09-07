@@ -38,9 +38,17 @@ storage key are generated per deploy. The one optional prompt is
 The corpus comes from StreetEasy, which blocks datacenter IPs. The cloud
 crawler therefore needs a **residential** Webshare proxy key in
 `WEBSHARE_API_KEY`; a free or datacenter plan gets blocked and the crawler
-no-ops (the server and MCP tools still work). The always-works fallback is
-running the crawler from your own home connection against this database; see
-`deploy/README.md` and `docs/deploying/railway.md` in the repository.
+no-ops (the server and MCP tools still work). To get one:
+
+1. Sign up at [Webshare](https://go.dteather.com/webshare?src=property-radar&placement=railway-template)
+   and buy a **Residential** plan (Dashboard → Proxy → Plans).
+2. Dashboard → **API** → **API Keys** → **Create API Key**, copy it.
+3. On the `crawler` service here → **Variables** → paste it as
+   `WEBSHARE_API_KEY`. The crawler redeploys on its own.
+
+The always-works fallback is running the crawler from your own home connection
+against this database; see `deploy/README.md` and `docs/deploying/railway.md`
+in the repository.
 
 Photos accumulate in `versitygw` on their own once a crawl runs; the server
 works fine with an empty bucket.

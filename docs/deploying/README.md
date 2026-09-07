@@ -91,7 +91,7 @@ loader; `console` reads only its own three.
 ## See also
 
 - [Run it locally](LOCAL.md): the whole stack on your machine
-- [Deploy to Railway](railway.md): the cloud path (and how to publish the one-click template)
+- [Deploy to Railway](railway.md): the cloud path — one-click template or CLI, plus getting a Webshare key
 - [Self-host on a VPS](../../deploy/README.md): your own box
 - [Decision record](../decisions.md): the reasoning behind this shape, including
   the object store, the remote transport, and the cloud crawler

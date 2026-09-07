@@ -116,7 +116,7 @@ restart Claude Desktop afterwards.
 The server serves data; the crawler fills it. From a home (residential) IP the
 StreetEasy API works directly, so a Webshare key is optional here; it only
 helps fetch listing **site pages** through a residential pool. To use one, set
-`WEBSHARE_API_KEY` in `.env` ([get a key](https://go.dteather.com/webshare));
+`WEBSHARE_API_KEY` in `.env` ([get a key](https://go.dteather.com/webshare?src=property-radar&placement=local-guide));
 otherwise leave it blank.
 
 **Seed a scope first.** The crawler crawls what the `crawl_targets` table says

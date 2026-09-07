@@ -16,35 +16,26 @@ REST API at `/v1`, interactive docs at `/docs`.
 
 ### A. One-click template (0-click setup)
 
-<!-- ┌─────────────────────────────────────────────────────────────────────┐
-     │ TEMPLATE — TO BE PUBLISHED                                           │
-     │ The one-click Railway template is not published yet (it's gated on   │
-     │ the public-OSS milestone; the repo must be public first). When it     │
-     │ ships, fill in the blanks below. Publishing steps are in Part B of    │
-     │ deploy/railway/README.md.                                            │
-     └─────────────────────────────────────────────────────────────────────┘ -->
-
-<!-- TEMPLATE BADGE: paste the published badge markdown here once the template
-     is live:
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/XXXXXX?utm_medium=integration&utm_source=button&utm_campaign=property-radar)
--->
+[![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=docs)
 
 Deploying the template gives you every service pre-wired, with
-`MCP_BEARER_TOKEN` and the storage secret **auto-generated** — you type no
-secrets. What the deployer does:
+`MCP_BEARER_TOKEN`, `PUBLIC_IMG_TOKEN`, and the storage secret
+**auto-generated** — you type no secrets. What the deployer does:
 
 1. Click **Deploy on Railway** and confirm the project.
 2. _(Optional)_ paste a **residential** `WEBSHARE_API_KEY` on the `crawler`
-   service to enable the always-on cloud crawler. Skip it to crawl from your own
+   service to enable the always-on cloud crawler
+   ([how to get one](#getting-a-webshare-key)). Skip it to crawl from your own
    machine instead; everything else works without it.
-3. Wait for the build, then **Generate Domain** on the `mcpd` service.
+3. Wait for the five services to build; `mcpd` and `console` get public
+   domains automatically. Open `https://<mcpd domain>/connect`.
 4. Copy `MCP_BEARER_TOKEN` from the `mcpd` service's **Variables** tab (or
    `railway variables --service mcpd`) and register the endpoint with your
    client (see [Connect a client](#connect-a-client)).
 
-<!-- A screenshot or GIF of the deploy flow goes here once the template is published. -->
+<!-- A screenshot or GIF of the deploy flow goes here. -->
 
-That's the intended 0-click experience. Until the template is live, use path B.
+Prefer a terminal, or want to change the shape before the first deploy? Path B.
 
 ### B. From the CLI / dashboard
 
@@ -145,6 +136,25 @@ crawl **from your own machine** against the Railway Postgres + bucket over
 `railway connect --tunnel-only`; see
 [runbook step 10](../../deploy/railway/README.md#10-running-the-crawl).
 
+### Getting a Webshare key
+
+1. Create an account at [Webshare](https://go.dteather.com/webshare?src=property-radar&placement=railway-guide).
+2. Buy a **Residential** proxy plan (Dashboard → **Proxy** → **Plans**). The
+   free plan and the datacenter plans are the ones StreetEasy blocks; the
+   cloud crawler will no-op on them, so size the plan to what you'll crawl and
+   skip the rest.
+3. Dashboard → **API** → **API Keys**
+   ([dashboard.webshare.io/userapi/keys](https://dashboard.webshare.io/userapi/keys))
+   → **Create API Key**, then copy it. Every Webshare key has full account
+   access, so treat it like a password: it goes in Railway only, never in git.
+4. In Railway, open the `crawler` service → **Variables** → set
+   `WEBSHARE_API_KEY` to the key. Railway redeploys the crawler on save.
+5. Ask your client to `request_crawl` a neighborhood, then `get_crawl_status`
+   on the returned job. The crawler's logs end each pass with a
+   `crawl targets drained` line; `listings_seen > 0` means the pool is working.
+
+Only the `crawler` service takes the key. `mcpd` and the console never crawl.
+
 ## What it costs
 
 Roughly **~$1–6/month** all-in for an always-on personal instance, dominated by
@@ -154,22 +164,16 @@ are in
 [runbook Part C](../../deploy/railway/README.md#part-c-what-this-actually-costs).
 Set a usage cap while you learn the shape of the bill: Workspace → Usage.
 
-## Publishing the one-click template
+## How the one-click template is maintained
 
-<!-- ┌─────────────────────────────────────────────────────────────────────┐
-     │ TO BE FILLED IN when the template is published. The full procedure   │
-     │ (compose from the working project, declare reference/secret vars,     │
-     │ write the marketplace readme, publish, take the badge) is in          │
-     │ Part B of deploy/railway/README.md. Summarize the deployer-facing     │
-     │ result here and paste the badge into the "One-click template"         │
-     │ section above and the root README.                                    │
-     └─────────────────────────────────────────────────────────────────────┘ -->
-
-The template is composed from a working project and published from the Railway
-dashboard. Step-by-step:
+The template (code `57e20w`) is a recipe stored on Railway, independent of any
+running project: five services, each sourced from this repository's `main`
+branch, with every literal from [`.railway/railway.ts`](../../.railway/railway.ts)
+typed in as a default and the secrets declared as `${{secret(48)}}`. Code
+changes flow to new deploys on their own (they build from `main`); only a change
+to the service *shape* — a new variable, service, or volume — needs an edit in
+the template composer. The full procedure, from composing to publishing:
 [Part B of the runbook](../../deploy/railway/README.md#part-b-publish-it-as-a-template).
-Gated on making the repo public (the template deploys this repo directly, so it
-must be reachable).
 
 ## See also
 

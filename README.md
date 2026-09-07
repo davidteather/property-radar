@@ -9,6 +9,8 @@
 ![No LLM on the server](https://img.shields.io/badge/server-no%20LLM%20calls-6f42c1?style=flat-square)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=davidteather.property-radar)
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=readme)
+
 **Your AI forgets your home search the moment the chat ends. Property Radar
 doesn't.** It's a self-hosted memory layer: listings crawled from StreetEasy
 (more sources coming) into your own Postgres database, plus a permanent record
@@ -36,10 +38,6 @@ resells nothing, and has no paid tier.
 > soon**; the demo below shows the loop end to end.
 
 https://github.com/user-attachments/assets/cba7e24e-088d-44d4-8360-fdb843768d1e
-
-<!-- TODO (badges) — add to the badge row once the Railway template is live.
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/XXXXXX)
--->
 
 ---
 
@@ -139,10 +137,11 @@ Full walkthrough (including crawling in listings): **[docs/deploying/LOCAL.md](d
 
 The cloud shape mirrors the local one exactly: Postgres, VersityGW, `mcpd`, and
 an always-on crawl worker, behind one auto-generated bearer token and a
-`https://<you>.up.railway.app` URL. Guide and (soon) one-click template:
+`https://<you>.up.railway.app` URL. The one-click template provisions all of it
+with the secrets generated for you; the guide covers the CLI path too:
 **[docs/deploying/railway.md](docs/deploying/railway.md)**.
 
-<!-- TODO (badge) — Deploy-on-Railway badge goes here once the one-click template is published. -->
+[![Deploy on Railway](https://railway.com/button.svg)](https://go.dteather.com/property-radar-template?src=property-radar&placement=quickstart)
 
 **Not sure which?** See the pros/cons table in
 [docs/deploying/README.md](docs/deploying/README.md). Prefer your own VPS?
@@ -232,15 +231,16 @@ IPs (see [Provider access & crawling](docs/decisions.md) in the decision
 record), so the crawl must originate from a **residential** connection:
 
 - **Locally**, your home IP already qualifies: the API works with no proxy, and
-  a [Webshare](https://go.dteather.com/webshare) key only helps fetch listing
-  site pages through a residential pool.
+  a [Webshare](https://go.dteather.com/webshare?src=property-radar&placement=readme)
+  key only helps fetch listing site pages through a residential pool.
 - **In the cloud**, the datacenter IP is blocked, so the cloud crawler needs a
-  residential Webshare plan, or you run the same crawl from your own machine
+  **residential** Webshare plan, or you run the same crawl from your own machine
   against the cloud database. Either way `mcpd` never crawls.
 
-Both paths take the same `WEBSHARE_API_KEY`, on the crawler only. See the
-[local crawl walkthrough](docs/deploying/LOCAL.md) or the
-[Railway guide](docs/deploying/railway.md) for the specifics.
+Both paths take the same `WEBSHARE_API_KEY`, on the crawler only. Where to get
+the key and where to paste it:
+[Getting a Webshare key](docs/deploying/railway.md#getting-a-webshare-key).
+Crawling from your machine: the [local walkthrough](docs/deploying/LOCAL.md).
 
 ## Status & roadmap
 
