@@ -241,7 +241,7 @@ scopes re-crawl about hourly and deep-refresh roughly daily).
 
 Next up:
 
-- [ ] Demo video and screenshots
+- [ ] Screenshots
 - [ ] Re-cache listings whose photos failed to fetch
 - [ ] Second provider + cross-provider matching
 
@@ -293,6 +293,3 @@ StreetEasy or Zillow.
 
 See [LICENSE](LICENSE).
 
-<!-- This README is the initial public draft: prose is real, but the demo GIF,
-     screenshots, badges, and the Railway template badge are still placeholders.
-     Fill them in with the public-OSS milestone. -->
