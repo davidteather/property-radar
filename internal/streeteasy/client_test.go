@@ -850,7 +850,8 @@ func (s *cappedServer) handler() http.Handler {
 		}
 		sort.Strings(ids)
 		total := len(ids)
-		pages := (min(total, s.resultCap) + s.perPage - 1) / s.perPage
+		// Pages are counted honestly; only the rows stop at the cap.
+		pages := (total + s.perPage - 1) / s.perPage
 		start := min((in.Page-1)*s.perPage, len(ids))
 		end := min(start+s.perPage, min(total, s.resultCap))
 		var edges []string
@@ -877,6 +878,7 @@ func TestSearchSplitsACappedScopeByPrice(t *testing.T) {
 
 	cfg := testConfig(srv)
 	cfg.DisableDetail = true
+	cfg.ResultCap = stub.resultCap
 	c := NewClient(srv.Client(), cfg)
 
 	props, errs := collect(t, c.Search(t.Context(), saleQuery()))
@@ -907,6 +909,7 @@ func TestSearchSplitStaysUnderTheQueryCeiling(t *testing.T) {
 
 	cfg := testConfig(srv)
 	cfg.DisableDetail = true
+	cfg.ResultCap = stub.resultCap
 	c := NewClient(srv.Client(), cfg)
 
 	q := saleQuery()
@@ -935,6 +938,7 @@ func TestSearchAbortsWhenOnePriceExceedsTheCap(t *testing.T) {
 
 	cfg := testConfig(srv)
 	cfg.DisableDetail = true
+	cfg.ResultCap = stub.resultCap
 	c := NewClient(srv.Client(), cfg)
 
 	props, errs := collect(t, c.Search(t.Context(), saleQuery()))

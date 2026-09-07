@@ -31,6 +31,7 @@ const (
 	defaultUserAgent    = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
 	defaultDelay        = 1500 * time.Millisecond
 	defaultPerPage      = 500
+	defaultResultCap    = 1000
 	defaultMaxAttempts  = 3
 	defaultRetryBackoff = 2 * time.Second
 
@@ -47,7 +48,10 @@ type Config struct {
 	// Delay is the minimum spacing between outbound requests; concurrency is 1.
 	Delay time.Duration
 
-	PerPage      int
+	PerPage int
+	// ResultCap is the most rows the API answers per query; a scope counting
+	// more is split into price bands.
+	ResultCap    int
 	MaxAttempts  int
 	RetryBackoff time.Duration
 
@@ -71,6 +75,9 @@ func (c Config) withDefaults() Config {
 	}
 	if c.PerPage <= 0 {
 		c.PerPage = defaultPerPage
+	}
+	if c.ResultCap <= 0 {
+		c.ResultCap = defaultResultCap
 	}
 	if c.MaxAttempts <= 0 {
 		c.MaxAttempts = defaultMaxAttempts
@@ -154,8 +161,8 @@ func (c *Client) Search(ctx context.Context, q ingest.SearchQuery) iter.Seq2[ing
 		}
 
 		// The API answers at most ~1000 rows per query however many pages are
-		// asked for, so a band it caps is split at its median price and walked
-		// in halves; every abort below leaves the run incomplete on purpose.
+		// asked for (and counts pages as if it did not), so a band counting more
+		// is split at its median price; every abort below keeps the run incomplete.
 		var walk func(band priceBand) bool
 		walk = func(band priceBand) bool {
 			for page := 1; page <= maxPages; page++ {
@@ -164,7 +171,7 @@ func (c *Client) Search(ctx context.Context, q ingest.SearchQuery) iter.Seq2[ing
 					yield(zero, fmt.Errorf("streeteasy search page %d: %w: %w", page, ingest.ErrSearchAborted, err))
 					return false
 				}
-				if page == 1 && out.PageInfo.TotalPages > 0 && out.PageInfo.TotalPages*c.cfg.PerPage < out.TotalCount {
+				if page == 1 && out.TotalCount > c.cfg.ResultCap {
 					lower, upper, ok := band.split(out.Edges)
 					if !ok {
 						yield(zero, fmt.Errorf("streeteasy search: %w: %d listings priced %s exceed the provider's result cap", ingest.ErrSearchAborted, out.TotalCount, band))

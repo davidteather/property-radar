@@ -82,9 +82,10 @@ a block left alone clears in under 10 minutes; re-sending through a banned IP
 keeps it burned, which is why the pool benches, a fully benched pool sends
 nothing, and the run gives up rather than retrying 500 doomed pages. The
 search API silently returns at most ~1,000 rows per query (`hasNextPage`
-false with `totalCount` 12,000), so an unsplit five-borough scope would see a
-different thousand each run and delist the rest; price bounds are inclusive,
-which is what makes disjoint bands possible. The enrich budget exists because
+false with `totalCount` 12,000, while `totalPages` counts as if nothing were
+capped, so the count alone decides a split), so an unsplit five-borough scope
+would see a different thousand each run and delist the rest; price bounds are
+inclusive, which is what makes disjoint bands possible. The enrich budget exists because
 a 12,000-listing scope needs hours of detail pages: without it every deep pass
 overran the drain deadline, stayed due, and re-ran back to back with aging
 switched off; a first crawl's photo backlog (~14 per listing at ~5/s) would
