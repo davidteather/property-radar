@@ -116,11 +116,13 @@ drain remains for laptops and one-shot deploys.
 
 ## 4. Photos, storage & HTTP transport
 
-**Decision.** Photos are cached as content-addressed, write-once, ≤800px JPEG
-thumbnails under key `{provider}/{2-hex-shard}/{sha256}.jpg`, behind a
-consumer-owned `PhotoStore` (`local|s3`) seam so the crawler and `mcpd` share one
-cache even on different machines. The S3 backend is **VersityGW**, a tiny
-S3-over-POSIX gateway. `get_listing` shows photos as an **inline contact sheet by default** (so the
+**Decision.** Photos are cached as content-addressed, write-once, ≤640px JPEG
+thumbnails, at most 6 per listing, under key
+`{provider}/{2-hex-shard}/{sha256}.jpg`, behind a consumer-owned `PhotoStore`
+(`local|s3`) seam so the crawler and `mcpd` share one cache even on different
+machines. The S3 backend is **VersityGW**, a tiny S3-over-POSIX gateway with
+object metadata in xattrs (its sidecar mode costs 8 inodes per object, which
+exhausts a 5 GB volume's inode table at ~40K thumbnails). `get_listing` shows photos as an **inline contact sheet by default** (so the
 model can see them), with `individual`, `links` (public content-addressed
 `resource_link` URLs: `/img/{key}` and the constructable `/img/l/{id}/{n}`), and
 `none` as the other `photos` modes. Transport is a

@@ -377,7 +377,9 @@ func (s *Store) SetPhotoCache(ctx context.Context, id domain.PropertyID, positio
 	// gallery differently, and the URL guard alone stops a stale thumb landing.
 	const query = `
 UPDATE listing_photos
-SET cached_path = $3, mime_type = $4, width = $5, height = $6, refreshed_at = now()
+SET cached_path = $3, mime_type = $4,
+    width = COALESCE(NULLIF($5, 0), width), height = COALESCE(NULLIF($6, 0), height),
+    refreshed_at = now()
 WHERE listing_id = $1 AND source_url = $2`
 
 	tag, err := s.q.Exec(ctx, query, int64(id), sourceURL, nullText(cachedPath), nullText(mimeType), width, height)

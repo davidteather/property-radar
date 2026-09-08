@@ -277,6 +277,24 @@ func TestSetPhotoCacheMatchesByURLAcrossAKeptGallery(t *testing.T) {
 	}
 }
 
+// A store that no longer reports dimensions (0x0) must not erase the ones on record.
+func TestSetPhotoCacheKeepsDimensionsWhenReusedWithout(t *testing.T) {
+	s := newStore(t)
+	ctx := context.Background()
+	created := apply(t, s, startRun(t, s), newSource("1001"), baseTime)
+	url := "https://photos.example/1001/1.jpg"
+	if err := s.SetPhotoCache(ctx, created.PropertyID, 0, url, "thumbs/1.jpg", "image/jpeg", 800, 600); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.SetPhotoCache(ctx, created.PropertyID, 0, url, "thumbs/1.jpg", "image/jpeg", 0, 0); err != nil {
+		t.Fatal(err)
+	}
+	_, _, photos, _ := mustGet(t, s, created.PropertyID)
+	if photos[0].Width != 800 || photos[0].Height != 600 {
+		t.Errorf("dims = %dx%d, want 800x600 kept", photos[0].Width, photos[0].Height)
+	}
+}
+
 // numeric(3,1) rounds 99.96 up to 100.0, which the column cannot hold.
 func TestApplyDropsBathsThatRoundPastTheColumn(t *testing.T) {
 	s := newStore(t)

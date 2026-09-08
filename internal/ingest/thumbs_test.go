@@ -96,6 +96,8 @@ func newTestThumbnailer(t *testing.T, dir string) *ingest.Thumbnailer {
 	return ingest.NewThumbnailer(&http.Client{Timeout: 5 * time.Second}, store, ingest.ThumbConfig{
 		// Non-zero: withDefaults would otherwise apply the 100ms production delay.
 		Delay: time.Microsecond,
+		// Pinned so the expected dimensions below do not track the production default.
+		MaxEdge: 800,
 	})
 }
 
@@ -271,7 +273,7 @@ func TestThumbnailerErrors(t *testing.T) {
 func TestThumbnailerWritesThroughAnyStore(t *testing.T) {
 	srv := newPhotoServer(t, map[string][]byte{"photo.png": pngBytes(t, 1000, 500)})
 	mem := photostore.NewMemory()
-	thumbs := ingest.NewThumbnailer(&http.Client{Timeout: 5 * time.Second}, mem, ingest.ThumbConfig{Delay: time.Microsecond})
+	thumbs := ingest.NewThumbnailer(&http.Client{Timeout: 5 * time.Second}, mem, ingest.ThumbConfig{Delay: time.Microsecond, MaxEdge: 800})
 	sourceURL := srv.URL + "/photo.png"
 
 	first, err := thumbs.Cache(context.Background(), "streeteasy", sourceURL)

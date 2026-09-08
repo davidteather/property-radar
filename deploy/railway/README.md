@@ -205,11 +205,12 @@ service:
 
 - **New** → **GitHub Repo** → `davidteather/property-radar`, then set
   `RAILWAY_DOCKERFILE_PATH=deploy/versitygw/Dockerfile`. This is a thin wrapper
-  over `versity/versitygw:v1.7.0` whose entrypoint creates the object + sidecar
-  dirs a fresh volume lacks, then runs the gateway, so there is no Docker image
+  over `versity/versitygw:v1.7.0` whose entrypoint creates the object dir a
+  fresh volume lacks, then runs the gateway, so there is no Docker image
   to pick and **no start command** to set (the Dockerfile's `ENTRYPOINT` runs it).
 - **Volume**: attach one at mount path **`/data`** (VersityGW's own data dir,
-  its storage rather than a shared thumbnail mount). ~2 GB covers the v0 corpus.
+  its storage rather than a shared thumbnail mount). 5 GB covers a whole-city
+  corpus at the default 6 thumbnails per listing.
 - **Variables**: `ROOT_ACCESS_KEY=radar` and `ROOT_SECRET_KEY` =
   `openssl rand -hex 32` (these double as the S3 credentials below), plus
   `GOMEMLIMIT=64MiB`, `GOGC=50`, and `GODEBUG=madvdontneed=1` to keep idle RSS

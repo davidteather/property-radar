@@ -36,15 +36,17 @@ export default defineRailway(() => {
 	const storageData = volume("storage-data", { sizeMB: 5000 });
 
 	// VersityGW: a single-binary Go S3 gateway over a POSIX directory (MinIO idles at
-	// ~150 MB for the same tiny bucket). --sidecar keeps S3 metadata as files
-	// (Railway volumes lack xattr); GOMEMLIMIT/GOGC keep idle RSS near the binary floor.
+	// ~150 MB for the same tiny bucket); GOMEMLIMIT/GOGC keep idle RSS near the binary floor.
 	const storage = service("versitygw", {
 		// Thin wrapper image (deploy/versitygw/Dockerfile) whose entrypoint creates the
-		// object + sidecar dirs a fresh volume lacks, then starts the gateway. Built from
+		// object dir a fresh volume lacks, then starts the gateway. Built from
 		// the repo because Railway's start-command quoting could not carry the mkdir.
 		source: github(REPO, { branch: "main" }),
 		build: { watchPatterns: ["deploy/versitygw/**"] },
 		volumeMounts: { "/data": storageData },
+		// Railway meters the cgroup total, which counts the kernel's page cache of the
+		// thumbnail files; the cap makes the kernel evict it (the process itself is ~40 MB).
+		deploy: { limitOverride: { containers: { memoryBytes: 256 * 1024 * 1024 } } },
 		env: {
 			RAILWAY_DOCKERFILE_PATH: "deploy/versitygw/Dockerfile",
 			ROOT_ACCESS_KEY: "radar",

@@ -70,7 +70,7 @@ func run(logger *slog.Logger) error {
 	flag.IntVar(&opt.maxPrice, "max-price", 0, "maximum sale price in dollars; 0 means no cap (-areas only)")
 	flag.IntVar(&opt.minBeds, "min-beds", 0, "minimum bedrooms; 0 means no minimum (-areas only)")
 	flag.IntVar(&opt.photoCap, "photo-cap", ingest.DefaultPhotoCap, "thumbnails cached per listing")
-	flag.IntVar(&opt.photoQuality, "photo-quality", 0, "thumbnail JPEG quality 1-100; 0 uses the default (70)")
+	flag.IntVar(&opt.photoQuality, "photo-quality", 0, "thumbnail JPEG quality 1-100; 0 uses the default (65)")
 	flag.DurationVar(&opt.timeout, "timeout", defaultTimeout, "whole-run deadline")
 	flag.DurationVar(&opt.delay, "delay", 1500*time.Millisecond, "minimum spacing between provider requests")
 	flag.BoolVar(&opt.watch, "watch", false, "run as a long-lived worker: drain due targets, then wait for a crawl_due notification or -poll; -from-targets only")

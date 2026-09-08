@@ -27,10 +27,10 @@ import (
 const (
 	jpegMIME = "image/jpeg"
 
-	defaultMaxEdge = 800
-	// 70 halves bytes vs q80 with no visible loss at vision-model resolutions;
-	// cached files are write-once.
-	defaultJPEGQuality = 70
+	// 640px at q65 is ~50 KB, plenty for contact sheets and vision models; the
+	// cache is write-once and a 5 GB volume has to hold a whole city's listings.
+	defaultMaxEdge     = 640
+	defaultJPEGQuality = 65
 	defaultPhotoDelay  = 50 * time.Millisecond
 	defaultPhotoAgent  = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
 

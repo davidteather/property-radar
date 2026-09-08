@@ -209,7 +209,7 @@ Use two-stage retrieval:
 For v0:
 
 - Retain provider source image URLs as provenance; never hotlink them — always serve our own cached copies.
-- During ingestion, cache only capped thumbnails, approximately 800px on the longest edge (default 10 per listing, fetched by a small concurrent worker pool).
+- During ingestion, cache only capped thumbnails, approximately 640px on the longest edge (default 6 per listing, fetched by a small concurrent worker pool).
 - Do not archive full-resolution originals.
 - `get_listing` defaults to a contact sheet of up to 12 photos (`max_photos` caps at 30); the `individual` layout defaults to 6 (cap 10).
 - Photo fetch/resize failures are observable but do not fail the listing ingest.

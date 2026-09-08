@@ -155,7 +155,7 @@ StreetEasy ──▶ crawler (ingest) ──▶ Postgres (canonical corpus + tas
 
 - **The crawler** (`cmd/ingest`) fetches listings, normalizes them into a typed
   canonical schema with full provenance, tracks price history and lifecycle, and
-  caches capped ~800px thumbnails. It runs on a residential connection because
+  caches capped ~640px thumbnails. It runs on a residential connection because
   the provider blocks datacenter IPs.
 - **Postgres** is the source of truth: listings, price events, photos metadata,
   and the taste state (profile, verdicts, rubric, shown).

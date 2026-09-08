@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	DefaultPhotoCap = 10
+	DefaultPhotoCap = 6
 
 	// Workers per listing; the per-worker delay lives in ThumbConfig.Delay.
 	photoConcurrency = 4
