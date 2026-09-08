@@ -193,20 +193,22 @@ func (p *ProxyPool) Healthy() (healthy, total int) {
 	return healthy, len(p.proxies)
 }
 
-type pickedProxyKey struct{}
-
-// proxyTransport picks a pool proxy per request and benches the one that
-// answers 403; the base transport reads the pick back out of the context.
+// proxyTransport gives each proxy its own transport: Go's HTTP/2 pool keys
+// connections by authority, not proxy, so one shared transport would funnel
+// every host through whichever proxy dialed it first.
 type proxyTransport struct {
 	base  *http.Transport
 	pool  *ProxyPool
 	hosts map[string]struct{} // nil proxies every host
+
+	mu       sync.Mutex
+	perProxy map[string]*http.Transport
 }
 
-// NewProxyTransport wires base to route through pool per mode. base.Proxy is
-// overwritten; pass a transport nothing else shares.
+// NewProxyTransport wires base to route through pool per mode; base is the
+// template every per-proxy transport is cloned from.
 func NewProxyTransport(base *http.Transport, mode string, pool *ProxyPool) (http.RoundTripper, error) {
-	t := &proxyTransport{base: base, pool: pool}
+	t := &proxyTransport{base: base, pool: pool, perProxy: make(map[string]*http.Transport)}
 	switch mode {
 	case ProxyOff:
 		base.Proxy = nil
@@ -220,10 +222,7 @@ func NewProxyTransport(base *http.Transport, mode string, pool *ProxyPool) (http
 	default:
 		return nil, fmt.Errorf("unknown proxy mode %q", mode)
 	}
-	base.Proxy = func(r *http.Request) (*url.URL, error) {
-		u, _ := r.Context().Value(pickedProxyKey{}).(*url.URL)
-		return u, nil
-	}
+	base.Proxy = nil
 	return t, nil
 }
 
@@ -238,22 +237,50 @@ func (t *proxyTransport) proxied(req *http.Request) bool {
 	return ok
 }
 
+func (t *proxyTransport) via(u *url.URL) *http.Transport {
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	tr, ok := t.perProxy[u.String()]
+	if !ok {
+		tr = t.base.Clone()
+		tr.Proxy = http.ProxyURL(u)
+		t.perProxy[u.String()] = tr
+	}
+	return tr
+}
+
+// A 403 is the picked IP's problem, not the request's: bench it and resend
+// through another until the pool runs dry.
 func (t *proxyTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	if !t.proxied(req) {
 		return t.base.RoundTrip(req)
 	}
-	u, wait := t.pool.Pick()
-	if u == nil {
-		return nil, ErrProxiesBenched
-	}
-	if wait > 0 {
-		if err := sleepCtx(req.Context(), wait); err != nil {
-			return nil, err
+	for {
+		u, wait := t.pool.Pick()
+		if u == nil {
+			return nil, ErrProxiesBenched
+		}
+		if wait > 0 {
+			if err := sleepCtx(req.Context(), wait); err != nil {
+				return nil, err
+			}
+		}
+		resp, err := t.via(u).RoundTrip(req)
+		if err != nil || resp.StatusCode != http.StatusForbidden {
+			return resp, err
+		}
+		t.pool.Bench(u)
+		if req.Body != nil && req.GetBody == nil {
+			return resp, nil // body already consumed and not replayable
+		}
+		_ = resp.Body.Close()
+		if req.GetBody != nil {
+			body, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req = req.Clone(req.Context())
+			req.Body = body
 		}
 	}
-	resp, err := t.base.RoundTrip(req.WithContext(context.WithValue(req.Context(), pickedProxyKey{}, u)))
-	if err == nil && resp.StatusCode == http.StatusForbidden {
-		t.pool.Bench(u)
-	}
-	return resp, err
 }

@@ -64,11 +64,13 @@ so one-off discoveries do not linger un-delistable.
 listing-page HTML (embedded JSON preferred over CSS selectors) for detail, both
 behind wire types + `convert.go`. Politeness first: large pages (perPage 500),
 ~1.5s inter-request delay, concurrency 1. Proxying is a `-proxy-mode {off,split,all}`
-selector over a Webshare pool of static IPs; no single IP is hit more than
-once per 10 s, a proxy that answers 403 is benched for 30 minutes, a fully
-benched pool fails requests without sending them, and a
-run that fails 20 detail fetches in a row stops fetching them (the rows land
-search-only and the next run retries). A run enumerates the
+selector over a Webshare pool of static IPs, one `http.Transport` per proxy
+(Go's HTTP/2 pool is keyed by authority, so a shared one would reuse a single
+proxy's connection); no single IP is hit more than once per 10 s, a proxy that
+answers 403 is benched for 30 minutes and the request is resent through the
+next healthy one, a fully benched pool fails requests without sending them,
+and a run that fails 20 detail fetches in a row stops fetching them (the rows
+land search-only and the next run retries). A run enumerates the
 whole scope from the search API first, splitting any query the API caps into
 price bands until each band fits, then fetches detail pages new listings
 first, refreshes next, each group shuffled, for at most half the run deadline;
